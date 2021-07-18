@@ -67,10 +67,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.inject.Inject;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 import static org.floens.chan.Chan.inject;
 import static org.floens.chan.ui.theme.ThemeHelper.theme;
@@ -277,12 +279,8 @@ public class ReplyLayout extends LoadView implements
                 @Override
                 protected Void doInBackground(Void... voids) {
                     try {
-                        final int timeout_connect = 1000;
-                        final int timeout_read = 5000;
-                        HttpURLConnection con = (HttpURLConnection) clipboardURL.openConnection();
-                        con.setConnectTimeout(timeout_connect);
-                        con.setReadTimeout(timeout_read);
-                        InputStream is = con.getInputStream();
+                        Request request = new Request.Builder().url(clipboardURL).build();
+                        InputStream is = new OkHttpClient().newCall(request).execute().body().byteStream();
                         OutputStream os = new FileOutputStream(cacheFile);
 
                         int total = 0;
@@ -298,7 +296,7 @@ public class ReplyLayout extends LoadView implements
                         }
 
                         os.close();
-                        con.disconnect();
+                        is.close();
                     } catch (Exception ignored) { }
                     return null;
                 }
@@ -316,10 +314,9 @@ public class ReplyLayout extends LoadView implements
                 }
 
             }.execute();
-            Toast.makeText(getContext(), "Downloading url...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Downloading URL...", Toast.LENGTH_SHORT).show();
             return true;
-        } catch (Exception e) {
-            //XposedBridge.log(e);
+        } catch (Exception ignored) {
             return false;
         }
     }
