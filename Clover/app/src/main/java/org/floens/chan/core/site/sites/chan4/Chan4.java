@@ -194,6 +194,7 @@ public class Chan4 extends SiteBase {
             return a.newBuilder()
                     .addPathSegment(board.code)
                     .addPathSegment("catalog.json")
+                    .addQueryParameter("t", String.valueOf(System.currentTimeMillis()))
                     .build();
         }
 
@@ -203,6 +204,7 @@ public class Chan4 extends SiteBase {
                     .addPathSegment(board.code)
                     .addPathSegment("thread")
                     .addPathSegment(loadable.no + ".json")
+                    .addQueryParameter("t", String.valueOf(System.currentTimeMillis()))
                     .build();
         }
 
@@ -243,10 +245,10 @@ public class Chan4 extends SiteBase {
                     b.addPathSegment("country");
                     b.addPathSegment(arg.get("country_code").toLowerCase(Locale.ENGLISH) + ".gif");
                     break;
-                case "troll_country":
-                    b.addPathSegment("country");
-                    b.addPathSegment("troll");
-                    b.addPathSegment(arg.get("troll_country_code").toLowerCase(Locale.ENGLISH) + ".gif");
+                case "board_flag":
+                    b.addPathSegment("flags");
+                    b.addPathSegment(post.board.code);
+                    b.addPathSegment(arg.get("board_flag_code").toLowerCase(Locale.ENGLISH) + ".gif");
                     break;
                 case "since4pass":
                     b.addPathSegment("minileaf.gif");
@@ -392,6 +394,8 @@ public class Chan4 extends SiteBase {
                         return SiteAuthentication.fromCaptcha2(CAPTCHA_KEY, "https://boards.4chan.org");
                     case V2NOJS:
                         return SiteAuthentication.fromCaptcha2nojs(CAPTCHA_KEY, "https://boards.4chan.org");
+                    case NEWCAPTCHA:
+                        return SiteAuthentication.fromNewCaptcha("https://boards.4chan.org");
                     default:
                         throw new IllegalArgumentException();
                 }
@@ -458,7 +462,8 @@ public class Chan4 extends SiteBase {
 
     public enum CaptchaType implements OptionSettingItem {
         V2JS("v2js"),
-        V2NOJS("v2nojs");
+        V2NOJS("v2nojs"),
+        NEWCAPTCHA("newcaptcha");
 
         String name;
 
@@ -490,7 +495,7 @@ public class Chan4 extends SiteBase {
 
         captchaType = new OptionsSetting<>(settingsProvider,
                 "preference_captcha_type",
-                CaptchaType.class, CaptchaType.V2NOJS);
+                CaptchaType.class, CaptchaType.NEWCAPTCHA);
     }
 
     @Override
@@ -499,7 +504,7 @@ public class Chan4 extends SiteBase {
                 SiteSetting.forOption(
                         captchaType,
                         "Captcha type",
-                        Arrays.asList("Javascript", "Noscript"))
+                        Arrays.asList("Javascript", "Noscript", "New captcha"))
         );
     }
 

@@ -33,6 +33,8 @@ import org.floens.chan.R;
 import org.floens.chan.core.model.ChanThread;
 import org.floens.chan.core.model.Post;
 import org.floens.chan.core.model.orm.Board;
+import org.floens.chan.core.site.sites.chan4.Chan4;
+import org.floens.chan.core.site.sites.chan4.Chan4PagePositionFooter;
 
 import static org.floens.chan.utils.AndroidUtils.ROBOTO_MEDIUM;
 
@@ -146,6 +148,10 @@ public class ThreadStatusCell extends LinearLayout implements View.OnClickListen
                     if (op.getUniqueIps() >= 0) {
                         String ips = op.getUniqueIps() + "P";
                         finalText = TextUtils.concat(finalText, " / " + ips);
+                    }
+
+                    if (!op.isArchived() && op.board.site.getClass() == Chan4.class) {
+                        finalText = TextUtils.concat(finalText, Chan4PagePositionFooter.getPage(chanThread.op.boardId, chanThread.op.no));
                     }
                 }
             }

@@ -1,30 +1,14 @@
-# Clover - imageboard browser for Android  
+# Blue Clover - imageboard browser for Android  
 
-[![Build Status](https://travis-ci.org/Floens/Clover.svg?branch=dev)](https://travis-ci.org/Floens/Clover)
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/clover/localized.svg)](https://crowdin.com/project/clover)
+Blue Clover is a fast Android app for browsing 4chan on Android. It adds inline replying, thread watching, notifications, themes, pass support, filters and a whole lot more. Blue Clover is licensed under the GPL and will always be free.
 
-[Website](http://chandevel.github.io/Clover/)  
-[APK releases](https://chandevel.github.io/Clover/#releases) | [Development APK releases](https://chandevel.github.io/Clover/#dev) | [F-Droid](https://chandevel.github.io/Clover/#fdroid)  
-[Donate](https://chandevel.github.io/Clover/#donate)  
+The app is based on [Clover-dev 3.0.2 0e32fb7](https://github.com/chandevel/Clover/commit/0e32fb74d5ea4fbfe3248e559e64037bdf9acf17) and some of its more relevant [changes](https://raw.githubusercontent.com/nnuudev/BlueClover/dev/CHANGES.txt) are:
+- *New captcha support!*
+- Page counter on thread view
+- Partial flag support
 
-Clover is a fast Android app for browsing imageboards, such as 4chan and 8chan. It adds inline replying, thread watching, notifications, themes, pass support, filters and a whole lot more. Clover is licensed under the GPL and will always be free.
-
-## Issues and features
-Issues can be reported at one of the contact places noted above or here at the [Issues page](https://github.com/chandevel/Clover/issues). Please search before reporting an issue to avoid duplicates!    
-
-
-## Contributing
-For first-time contributors, the issues with the label [good first issue](https://github.com/chandevel/Clover/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) are a great place to start.  
-
-See the [Clover setup guide](https://github.com/chandevel/Clover/wiki/Building-Clover) for a guide on building Clover.  
-
-We have a special guide for [making new themes.](https://github.com/chandevel/Clover/wiki/Adding-a-new-theme)
-
-
-## Translations
-We use crowdin for crowdsourcing translations of the English strings to other languages.  
-[Help us with translating at crowdin.com here](https://crowdin.com/project/clover)  
+This was originally created as a private fork that wasn't meant to be shared, expect some changes you won't like and a lot of weirdness in the code. If you're interested in a more professional fork, please check [Kuroba](https://github.com/Adamantcheese/Kuroba) or [KurobaEx](https://github.com/K1rakishou/Kuroba-Experimental), or just [contribute to the original Clover](https://github.com/chandevel/Clover).
 
 
 ## License
-Clover is [GPLv3](https://github.com/chandevel/Clover/blob/master/COPYING.txt), [licenses of the used libraries](https://github.com/chandevel/Clover/blob/dev/Clover/app/src/main/assets/html/licenses.html).
+Blue Clover is [GPLv3](https://github.com/nnuudev/BlueClover/blob/dev/COPYING.txt), [licenses of the used libraries](https://github.com/nnuudev/BlueClover/blob/dev/Clover/app/src/main/assets/html/licenses.html).

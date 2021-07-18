@@ -17,10 +17,11 @@
  */
 package org.floens.chan.ui.captcha;
 
+import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.site.Site;
 
 public interface AuthenticationLayoutInterface {
-    void initialize(Site site, AuthenticationLayoutCallback callback);
+    void initialize(Loadable loadable, AuthenticationLayoutCallback callback);
 
     void reset();
 

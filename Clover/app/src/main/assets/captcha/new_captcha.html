@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id="t-root" style="width: 300px; margin: 2px auto; position: relative;">
+    <div id="t-cnt" style="height: 80px; margin: 2px auto 0; position: relative;">
+        <div id="t-bg" style="width: 100%; height: 100%; position: absolute; background-repeat: no-repeat; background-position: left top;"></div>
+        <div id="t-fg" style="width: 100%; height: 100%; position: absolute; background-repeat: no-repeat; background-position: left top;"></div>
+    </div>
+    <input id="t-slider" autocomplete="off" type="range" style="width: 100%; height: 25px; margin: 5px 0; position: relative; display: none;" min="0" max="100" value="0" tabindex="-1">
+    <input id="t-challenge" type="hidden" value="">
+    <input id="t-resp" placeholder="Type the CAPTCHA here" autocomplete="off" type="text" style="width: 220px; text-transform: uppercase; font-size: 16px; height: 28px; margin: 0px; padding: 0px 2px; font-family: monospace; vertical-align: middle; display: none;"><button id="t-submit" type="button" style="font-size: 16px; padding: 0px; width: 65px; margin: 0 0 0 5px; vertical-align: middle; height: 28px; display: none;" tabindex="-1">POST</button>
+    <div id="t-msg" style="width: 100%; position: absolute; top: 50%; text-align: center; font-size: 14px; filter: inherit;">Loading...</div>
+</div>
+<script>
+
+function buildFromJson(data) {
+    if (data.error) {
+        var error = data.error + '\n(try again in ' + data.cd + 's)';
+        document.getElementById('t-msg').textContent = error;
+        return;
+    } else {
+        document.getElementById('t-msg').style.display = 'none';
+    }
+    document.getElementById('t-challenge').value = data.challenge;
+    if (data.challenge == "noop") {
+        globalOnCaptchaEntered();
+        return;
+    }
+    var imgCntNode = document.getElementById('t-cnt');
+    imgCntNode.style.width = data.img_width + 'px';
+    imgCntNode.style.height = data.img_height + 'px';
+    var respNode = document.getElementById('t-resp');
+    respNode.style.display = 'inline';
+    respNode.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            globalOnCaptchaEntered();
+        }
+    });
+    var submitNode = document.getElementById('t-submit');
+    submitNode.style.display = 'inline';
+    submitNode.addEventListener('click', globalOnCaptchaEntered, false);
+    document.getElementById('t-fg').style.backgroundImage = 'url(data:image/png;base64,' + data.img + ')';
+    if (data.bg) {
+        var bgNode = document.getElementById('t-bg');
+        bgNode.style.backgroundImage = 'url(data:image/png;base64,' + data.bg + ')';
+        var sliderNode = document.getElementById('t-slider');
+        sliderNode.style.display = 'block';
+        sliderNode.twisterDelta = data.bg_width - data.img_width;
+        sliderNode.addEventListener('input', function() {
+            var m = -Math.floor((+this.value) / 100 * this.twisterDelta);
+            bgNode.style.backgroundPositionX = m + 'px';
+        }, false);
+    }
+    document.getElementById("t-resp").focus();
+    CaptchaCallback.onCaptchaLoaded();
+}
+
+function requestCaptcha(board, thread_id) {
+    var domain = (location.host.indexOf('.4channel.org') !== -1) ? '4channel' : '4chan';
+    var params = '?board=' + board;
+    if (thread_id > 0)
+        params += '&thread_id=' + thread_id;
+
+    var req = new XMLHttpRequest();
+    req.addEventListener("load", function() { buildFromJson(JSON.parse(req.responseText)); });
+    req.open("GET", 'https://sys.' + domain + '.org/captcha' + params);
+    req.withCredentials = true;
+    req.send();
+}
+
+
+window.globalOnCaptchaEntered = function() {
+    CaptchaCallback.onCaptchaEntered(document.getElementById("t-challenge").value, document.getElementById("t-resp").value);
+};
+
+window.addEventListener("load", function(event) {
+    document.body.style.zoom = window.innerWidth / 400.;
+    requestCaptcha("__board__", "__thread_id__");
+});
+
+</script>
+</body>
+</html>

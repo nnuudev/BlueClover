@@ -18,6 +18,9 @@
 package org.floens.chan;
 
 import org.floens.chan.core.settings.ChanSettings;
+import org.floens.chan.utils.TLSSocketFactory;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import io.sentry.android.core.SentryAndroid;
 
@@ -41,6 +44,12 @@ public class ChanApplication extends Chan {
             });
         } else {
             SentryAndroid.init(this, options -> options.setDsn(""));
+        }
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+            try {
+                HttpsURLConnection.setDefaultSSLSocketFactory(TLSSocketFactory.getInstance());
+            } catch (Exception ignored) { }
         }
     }
 }

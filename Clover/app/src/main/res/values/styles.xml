@@ -16,9 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    <color name="primary">#ff4caf50</color>
-    <color name="primary_dark">#ff388e3c</color>
-    <color name="accent">#ff009688</color>
+    <color name="primary">#ff9BDBF5</color>
+    <color name="primary_dark">#ff8CC7E7</color>
+    <color name="accent">#ff1B98D1</color>
 
     <!-- Main light theme -->
     <style name="Chan.Theme" parent="Theme.AppCompat.Light.NoActionBar">

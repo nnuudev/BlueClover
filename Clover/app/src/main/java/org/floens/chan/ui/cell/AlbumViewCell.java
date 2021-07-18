@@ -53,7 +53,7 @@ public class AlbumViewCell extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         thumbnailView = findViewById(R.id.thumbnail_view);
-        thumbnailView.setRounding(dp(8));
+        //thumbnailView.setRounding(dp(8));
         text = findViewById(R.id.text);
     }
 

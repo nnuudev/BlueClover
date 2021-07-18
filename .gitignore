@@ -47,3 +47,7 @@ $RECYCLE.BIN/
 # Mac crap
 .DS_Store
 
+#############
+
+# Internal testing stuff
+Clover/app/src/dev

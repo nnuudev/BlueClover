@@ -23,7 +23,8 @@ public class SiteAuthentication {
         CAPTCHA1,
         CAPTCHA2,
         CAPTCHA2_NOJS,
-        GENERIC_WEBVIEW
+        GENERIC_WEBVIEW,
+        NEW_CAPTCHA
     }
 
     public static SiteAuthentication fromNone() {
@@ -47,6 +48,12 @@ public class SiteAuthentication {
     public static SiteAuthentication fromCaptcha2nojs(String siteKey, String baseUrl) {
         SiteAuthentication a = new SiteAuthentication(Type.CAPTCHA2_NOJS);
         a.siteKey = siteKey;
+        a.baseUrl = baseUrl;
+        return a;
+    }
+
+    public static SiteAuthentication fromNewCaptcha(String baseUrl) {
+        SiteAuthentication a = new SiteAuthentication(Type.NEW_CAPTCHA);
         a.baseUrl = baseUrl;
         return a;
     }

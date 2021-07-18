@@ -34,6 +34,13 @@ public class Chan4ReplyCall extends CommonReplyHttpCall {
 
     @Override
     public void addParameters(MultipartBody.Builder formBuilder) {
+        // TODO this should be a separate option
+        if (reply.options.contains("[")) {
+            String flag = reply.options.split("\\[")[1].split("\\]")[0].toUpperCase();
+            formBuilder.addFormDataPart("flag", flag);
+            reply.options = reply.options.replaceAll("\\[[^\\]]+\\]", "");
+        }
+
         formBuilder.addFormDataPart("mode", "regist");
         formBuilder.addFormDataPart("pwd", replyResponse.password);
 
@@ -52,8 +59,10 @@ public class Chan4ReplyCall extends CommonReplyHttpCall {
 
         if (reply.captchaResponse != null) {
             if (reply.captchaChallenge != null) {
-                formBuilder.addFormDataPart("recaptcha_challenge_field", reply.captchaChallenge);
-                formBuilder.addFormDataPart("recaptcha_response_field", reply.captchaResponse);
+                //formBuilder.addFormDataPart("recaptcha_challenge_field", reply.captchaChallenge);
+                //formBuilder.addFormDataPart("recaptcha_response_field", reply.captchaResponse);
+                formBuilder.addFormDataPart("t-challenge", reply.captchaChallenge);
+                formBuilder.addFormDataPart("t-response", reply.captchaResponse);
             } else {
                 formBuilder.addFormDataPart("g-recaptcha-response", reply.captchaResponse);
             }

@@ -1,3 +1,5 @@
+import java.time.format.DateTimeFormatter
+
 apply plugin: 'com.android.application'
 
 if (project.sentryMappingUploadingEnabled) {
@@ -26,32 +28,20 @@ afterEvaluate {
     tasks.findByName('check').dependsOn('checkstyle')
 }
 
-/**
- * Gets the version name from the latest Git tag
- */
-def getCommitHash = { ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
-        commandLine 'git', 'rev-parse', '--short=8', 'HEAD'
-        standardOutput = stdout
-    }
-    return stdout.toString().trim()
-}
-
 android {
     compileSdkVersion 29
     // update the travis config when changing this
-    buildToolsVersion '29.0.3'
+    buildToolsVersion '30.0.2'
 
     defaultConfig {
-        applicationId "org.floens.chan"
+        applicationId "bluehorse.clover"
         minSdkVersion 17
         targetSdkVersion 29
 
-        versionName "v3.0.2"
+        versionName "v3.20"
         // of the format XXYYZZ, where XX is major, YY is minor, ZZ is patch
         // (watch out for octal notation, never start with a 0)
-        versionCode 30002
+        versionCode 32000
     }
 
     compileOptions {
@@ -63,6 +53,10 @@ android {
         abortOnError false
     }
 
+    def user_agent = "Kuroba-dev/v4.13.6-1d48096"
+    def formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmm").withZone(ZoneId.from(ZoneOffset.UTC));
+    def timestamp = formatter.format(Instant.now())
+
     /*
     If you want to sign releases, make a file in app/keys.properties with the following content:
     keystoreFile=yourkey.store
@@ -70,8 +64,6 @@ android {
     keyAlias=alias
     keyPass=pass
     */
-
-    def hash = getCommitHash()
 
     File f = file('keys.properties')
     boolean doSign = f.exists()
@@ -96,39 +88,25 @@ android {
     defaultPublishConfig "default"
     flavorDimensions "default"
     productFlavors {
-        // NOTE: the file provider authority names append to the package name.
-        // When changing this also update the authority in the manifest files.
-
         // The app name refers to the name as displayed on the launcher.
-        // the flavor name is appended to the name in the settings.
         "default" {
             dimension "default"
-            resValue "string", "app_name", "Clover"
-            resValue "string", "app_flavor_name", ""
-            buildConfigField "String", "BUILD_HASH", "\"$hash\""
-            buildConfigField "String", "UPDATE_API_ENDPOINT", "\"https://build.floens.org/api/update\""
-            buildConfigField "String", "CRASH_REPORT_TOKEN", "\"https://d453201738b8469da2113a922c543a3b@sentry.io/1413946\""
+            resValue "string", "app_name", "Blue Clover"
+            resValue "string", "app_flavor_name", "(build $timestamp)"
+            buildConfigField "String", "BUILD_HASH", "\"\""
+            buildConfigField "String", "UPDATE_API_ENDPOINT", "\"\""
+            buildConfigField "String", "CRASH_REPORT_TOKEN", "\"\""
+            buildConfigField "String", "USER_AGENT", "\"$user_agent\""
         }
 
         dev {
             dimension "default"
-            applicationIdSuffix ".dev"
-            resValue "string", "app_name", "Clover dev"
-            resValue "string", "app_flavor_name", ""
-            buildConfigField "String", "BUILD_HASH", "\"$hash\""
-            buildConfigField "String", "UPDATE_API_ENDPOINT", "\"https://build.floens.org/api/update_dev\""
-            buildConfigField "String", "CRASH_REPORT_TOKEN", "\"https://d453201738b8469da2113a922c543a3b@sentry.io/1413946\""
-
-            versionNameSuffix "-" + hash
-        }
-
-        fdroid {
-            dimension "default"
-            resValue "string", "app_name", "Clover"
-            resValue "string", "app_flavor_name", "F-Droid"
-            buildConfigField "String", "BUILD_HASH", "\"$hash\""
-            buildConfigField "String", "UPDATE_API_ENDPOINT", "\"https://chandevel.github.io/Clover/api/update\""
-            buildConfigField "String", "CRASH_REPORT_TOKEN", "\"https://d453201738b8469da2113a922c543a3b@sentry.io/1413946\""
+            resValue "string", "app_name", "Blue Clover"
+            resValue "string", "app_flavor_name", "(build $timestamp-dev)"
+            buildConfigField "String", "BUILD_HASH", "\"\""
+            buildConfigField "String", "UPDATE_API_ENDPOINT", "\"\""
+            buildConfigField "String", "CRASH_REPORT_TOKEN", "\"\""
+            buildConfigField "String", "USER_AGENT", "\"$user_agent\""
         }
     }
 
@@ -146,6 +124,18 @@ android {
 //            minifyEnabled true
 //            proguardFiles 'proguard.cfg'
             buildConfigField "boolean", "DEVELOPER_MODE", "true"
+        }
+    }
+
+    applicationVariants.all { variant ->
+        if (variant.buildType.name == "release") {
+            variant.outputs.all {
+                if (variant.flavorName == "default") {
+                    outputFileName = new File("BlueClover-" + timestamp + ".apk")
+                } else {
+                    outputFileName = new File("BlueClover-" + timestamp + "-" + variant.flavorName + ".apk")
+                }
+            }
         }
     }
 }

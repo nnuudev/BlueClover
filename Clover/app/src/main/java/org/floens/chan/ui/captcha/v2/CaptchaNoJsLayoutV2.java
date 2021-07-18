@@ -38,6 +38,7 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.floens.chan.R;
+import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.ui.captcha.AuthenticationLayoutCallback;
@@ -116,10 +117,10 @@ public class CaptchaNoJsLayoutV2 extends FrameLayout
     }
 
     @Override
-    public void initialize(Site site, AuthenticationLayoutCallback callback) {
+    public void initialize(Loadable loadable, AuthenticationLayoutCallback callback) {
         this.callback = callback;
 
-        SiteAuthentication authentication = site.actions().postAuthenticate();
+        SiteAuthentication authentication = loadable.site.actions().postAuthenticate();
         if (authentication.type != SiteAuthentication.Type.CAPTCHA2_NOJS) {
             callback.onFallbackToV1CaptchaView();
             return;

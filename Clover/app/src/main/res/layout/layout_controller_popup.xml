@@ -26,6 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         android:layout_width="600dp"
         android:layout_height="600dp"
         android:layout_gravity="center"
-        android:background="@drawable/dialog_full_light" />
+        android:background="?backcolor" />
 
 </org.floens.chan.ui.layout.PopupControllerContainer>

@@ -32,6 +32,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.ui.captcha.AuthenticationLayoutCallback;
@@ -77,10 +78,10 @@ public class CaptchaNojsLayoutV1 extends WebView implements AuthenticationLayout
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     @Override
-    public void initialize(Site site, AuthenticationLayoutCallback callback) {
+    public void initialize(Loadable loadable, AuthenticationLayoutCallback callback) {
         this.callback = callback;
 
-        SiteAuthentication authentication = site.actions().postAuthenticate();
+        SiteAuthentication authentication = loadable.site.actions().postAuthenticate();
 
         this.siteKey = authentication.siteKey;
         this.baseUrl = authentication.baseUrl;

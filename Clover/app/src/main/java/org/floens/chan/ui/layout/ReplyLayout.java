@@ -19,8 +19,11 @@ package org.floens.chan.ui.layout;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -42,25 +45,30 @@ import org.floens.chan.R;
 import org.floens.chan.core.model.ChanThread;
 import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.presenter.ReplyPresenter;
-import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.core.site.http.Reply;
+import org.floens.chan.ui.activity.ImagePickDelegate;
 import org.floens.chan.ui.activity.StartActivity;
 import org.floens.chan.ui.captcha.AuthenticationLayoutCallback;
 import org.floens.chan.ui.captcha.AuthenticationLayoutInterface;
 import org.floens.chan.ui.captcha.CaptchaLayout;
 import org.floens.chan.ui.captcha.GenericWebViewAuthenticationLayout;
 import org.floens.chan.ui.captcha.LegacyCaptchaLayout;
+import org.floens.chan.ui.captcha.NewCaptchaLayout;
 import org.floens.chan.ui.captcha.v1.CaptchaNojsLayoutV1;
 import org.floens.chan.ui.captcha.v2.CaptchaNoJsLayoutV2;
 import org.floens.chan.ui.drawable.DropdownArrowDrawable;
-import org.floens.chan.ui.activity.ImagePickDelegate;
 import org.floens.chan.ui.view.LoadView;
 import org.floens.chan.ui.view.SelectionListeningEditText;
 import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.ImageDecoder;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import javax.inject.Inject;
 
@@ -73,6 +81,7 @@ import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
 
 public class ReplyLayout extends LoadView implements
         View.OnClickListener,
+        View.OnLongClickListener,
         ReplyPresenter.ReplyPresenterCallback,
         TextWatcher,
         ImageDecoder.ImageDecoderCallback,
@@ -178,6 +187,7 @@ public class ReplyLayout extends LoadView implements
         theme().imageDrawable.apply(attach);
         setRoundItemBackground(attach);
         attach.setOnClickListener(this);
+        attach.setOnLongClickListener(this);
 
         theme().sendDrawable.apply(submit);
         setRoundItemBackground(submit);
@@ -252,6 +262,68 @@ public class ReplyLayout extends LoadView implements
         }
     }
 
+    @Override
+    public boolean onLongClick(View v) {
+        try {
+            Context context = getContext();
+            ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData primary = clipboardManager.getPrimaryClip();
+            String clipboardContent = primary != null ? primary.getItemAt(0).coerceToText(context).toString() : "";
+            final URL clipboardURL = new URL(clipboardContent);
+            final File cacheFile = new File(context.getCacheDir(), "picked_file_dl");
+
+            new AsyncTask<Void, Void, Void>() {
+
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    try {
+                        final int timeout_connect = 1000;
+                        final int timeout_read = 5000;
+                        HttpURLConnection con = (HttpURLConnection) clipboardURL.openConnection();
+                        con.setConnectTimeout(timeout_connect);
+                        con.setReadTimeout(timeout_read);
+                        InputStream is = con.getInputStream();
+                        OutputStream os = new FileOutputStream(cacheFile);
+
+                        int total = 0;
+                        int read;
+                        byte[] buffer = new byte[8192];
+                        while ((read = is.read(buffer)) != -1) {
+                            total += read;
+                            if (total > 4194304) { // 4 MB
+                                this.cancel(true);
+                                break;
+                            }
+                            os.write(buffer, 0, read);
+                        }
+
+                        os.close();
+                        con.disconnect();
+                    } catch (Exception ignored) { }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void result) {
+                    try {
+                        String[] filenameParts = clipboardURL.getFile().split("/");
+                        String filename = filenameParts[filenameParts.length-1].trim();
+                        if (filename.length() == 0) {
+                            filename = "file";
+                        }
+                        presenter.onFilePicked(filename, cacheFile);
+                    } catch (Exception ignored) { }
+                }
+
+            }.execute();
+            Toast.makeText(getContext(), "Downloading url...", Toast.LENGTH_SHORT).show();
+            return true;
+        } catch (Exception e) {
+            //XposedBridge.log(e);
+            return false;
+        }
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -259,7 +331,7 @@ public class ReplyLayout extends LoadView implements
     }
 
     @Override
-    public void initializeAuthentication(Site site,
+    public void initializeAuthentication(Loadable loadable,
                                          SiteAuthentication authentication,
                                          AuthenticationLayoutCallback callback,
                                          boolean useV2NoJsCaptcha) {
@@ -309,6 +381,10 @@ public class ReplyLayout extends LoadView implements
                     authenticationLayout = view;
                     break;
                 }
+                case NEW_CAPTCHA: {
+                    authenticationLayout = new NewCaptchaLayout(getContext());
+                    break;
+                }
                 case NONE:
                 default: {
                     throw new IllegalArgumentException();
@@ -322,7 +398,7 @@ public class ReplyLayout extends LoadView implements
             AndroidUtils.hideKeyboard(this);
         }
 
-        authenticationLayout.initialize(site, callback);
+        authenticationLayout.initialize(loadable, callback);
         authenticationLayout.reset();
     }
 
@@ -366,7 +442,7 @@ public class ReplyLayout extends LoadView implements
         }
 
         authenticationLayout.onDestroy();
-        captchaContainer.removeView((CaptchaNoJsLayoutV2) authenticationLayout);
+        captchaContainer.removeView((View) authenticationLayout);
         authenticationLayout = null;
     }
 

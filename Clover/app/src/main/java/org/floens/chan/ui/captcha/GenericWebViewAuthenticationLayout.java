@@ -26,6 +26,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.utils.AndroidUtils;
@@ -57,11 +58,11 @@ public class GenericWebViewAuthenticationLayout extends WebView implements Authe
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     @Override
-    public void initialize(Site site, AuthenticationLayoutCallback callback) {
+    public void initialize(Loadable loadable, AuthenticationLayoutCallback callback) {
         this.site = site;
         this.callback = callback;
 
-        authentication = site.actions().postAuthenticate();
+        authentication = loadable.site.actions().postAuthenticate();
 
         // Older versions just have to manually go back or something.
         if (Build.VERSION.SDK_INT >= 17) {

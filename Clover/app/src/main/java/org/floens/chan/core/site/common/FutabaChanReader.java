@@ -108,8 +108,8 @@ public class FutabaChanReader implements ChanReader {
 
         // Country flag
         String countryCode = null;
-        String trollCountryCode = null;
-        String countryName = null;
+        String boardFlagCode = null;
+        String flagName = null;
 
         // 4chan pass leaf
         int since4pass = 0;
@@ -161,11 +161,12 @@ public class FutabaChanReader implements ChanReader {
                 case "country":
                     countryCode = reader.nextString();
                     break;
-                case "troll_country":
-                    trollCountryCode = reader.nextString();
+                case "board_flag":
+                    boardFlagCode = reader.nextString();
                     break;
                 case "country_name":
-                    countryName = reader.nextString();
+                case "flag_name":
+                    flagName = reader.nextString();
                     break;
                 case "spoiler":
                     fileSpoiler = reader.nextInt() == 1;
@@ -267,17 +268,17 @@ public class FutabaChanReader implements ChanReader {
             return;
         }
 
-        if (countryCode != null && countryName != null) {
+        if (countryCode != null && flagName != null) {
             Map<String, String> arg = new HashMap<>(1);
             HttpUrl countryUrl = endpoints.icon(builder, "country",
                     makeArgument("country_code", countryCode));
-            builder.addHttpIcon(new PostHttpIcon(countryUrl, countryName));
+            builder.addHttpIcon(new PostHttpIcon(countryUrl, flagName));
         }
 
-        if (trollCountryCode != null && countryName != null) {
-            HttpUrl countryUrl = endpoints.icon(builder, "troll_country",
-                    makeArgument("troll_country_code", trollCountryCode));
-            builder.addHttpIcon(new PostHttpIcon(countryUrl, countryName));
+        if (boardFlagCode != null && flagName != null) {
+            HttpUrl countryUrl = endpoints.icon(builder, "board_flag",
+                    makeArgument("board_flag_code", boardFlagCode));
+            builder.addHttpIcon(new PostHttpIcon(countryUrl, flagName));
         }
 
         if (since4pass != 0) {

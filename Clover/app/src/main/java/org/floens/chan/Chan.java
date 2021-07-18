@@ -188,15 +188,7 @@ public class Chan extends Application implements
     }
 
     private String createUserAgent() {
-        // User agent is <appname>/<version>
-        String version = "Unknown";
-        try {
-            version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            Logger.e(TAG, "Error getting app version", e);
-        }
-        version = version.toLowerCase(Locale.ENGLISH).replace(" ", "_");
-        return getString(R.string.app_name) + "/" + version;
+        return BuildConfig.USER_AGENT;
     }
 
     public RuntimePermissionsHelper getRuntimePermissionsHelper() {

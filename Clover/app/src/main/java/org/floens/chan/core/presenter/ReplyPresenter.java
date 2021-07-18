@@ -433,7 +433,7 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
 
                     // cleanup resources tied to the new captcha layout/presenter
                     callback.destroyCurrentAuthentication();
-                    callback.initializeAuthentication(loadable.site, authentication, this, useV2NoJsCaptcha);
+                    callback.initializeAuthentication(loadable, authentication, this, useV2NoJsCaptcha);
                     callback.setPage(Page.AUTHENTICATION, true);
 
                     break;
@@ -494,7 +494,7 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
 
         void setPage(Page page, boolean animate);
 
-        void initializeAuthentication(Site site,
+        void initializeAuthentication(Loadable loadable,
                                       SiteAuthentication authentication,
                                       AuthenticationLayoutCallback callback,
                                       boolean useV2NoJsCaptcha);

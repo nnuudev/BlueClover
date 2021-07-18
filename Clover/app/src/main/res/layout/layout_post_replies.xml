@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:background="@drawable/dialog_full_light"
+        android:background="?backcolor"
         android:elevation="8dp"
         android:minWidth="320dp"
         android:orientation="vertical"

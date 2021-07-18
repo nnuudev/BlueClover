@@ -575,7 +575,7 @@ public class PostCell extends LinearLayout implements PostCellInterface {
                 v.setPostImage(image, size, size);
                 v.setClickable(true);
                 v.setOnClickListener(v2 -> callback.onThumbnailClicked(post, image, v));
-                v.setRounding(dp(enableHighEndAnimations() ? 8 : 2));
+                //v.setRounding(dp(enableHighEndAnimations() ? 8 : 2));
 
                 relativeLayoutContainer.addView(v, p);
                 thumbnailViews.add(v);

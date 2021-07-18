@@ -17,6 +17,8 @@
  */
 package org.floens.chan.core.site;
 
+import org.floens.chan.BuildConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +52,36 @@ public abstract class ImageSearch {
             }
 
             public String getName() {
+                return "Yandex";
+            }
+
+            public String getUrl(String imageUrl) {
+                return "https://www.yandex.com/images/search?rpt=imageview&url=" + imageUrl;
+            }
+        });
+
+        if (BuildConfig.FLAVOR.equals("dev")) {
+            engines.add(new ImageSearch() {
+                public int getId() {
+                    return 6;
+                }
+
+                public String getName() {
+                    return "Derpibooru";
+                }
+
+                public String getUrl(String imageUrl) {
+                    return "https://derpibooru.org/search/reverse?url=" + imageUrl;
+                }
+            });
+        }
+
+        engines.add(new ImageSearch() {
+            public int getId() {
+                return 2;
+            }
+
+            public String getName() {
                 return "iqdb";
             }
 
@@ -60,7 +92,7 @@ public abstract class ImageSearch {
 
         engines.add(new ImageSearch() {
             public int getId() {
-                return 2;
+                return 3;
             }
 
             public String getName() {
@@ -74,7 +106,7 @@ public abstract class ImageSearch {
 
         engines.add(new ImageSearch() {
             public int getId() {
-                return 3;
+                return 4;
             }
 
             public String getName() {
@@ -88,7 +120,7 @@ public abstract class ImageSearch {
 
         engines.add(new ImageSearch() {
             public int getId() {
-                return 4;
+                return 5;
             }
 
             public String getName() {
@@ -100,18 +132,5 @@ public abstract class ImageSearch {
             }
         });
 
-        engines.add(new ImageSearch() {
-            public int getId() {
-                return 5;
-            }
-
-            public String getName() {
-                return "Yandex";
-            }
-
-            public String getUrl(String imageUrl) {
-                return "https://www.yandex.com/images/search?rpt=imageview&img_url=" + imageUrl;
-            }
-        });
     }
 }
