@@ -79,7 +79,7 @@ public class Theme {
         this.name = name;
         this.resValue = resValue;
         this.primaryColor = primaryColor;
-        accentColor = ThemeHelper.PrimaryColor.TEAL;
+        accentColor = ThemeHelper.PrimaryColor.BLUE;
 
         resolveSpanColors();
         resolveDrawables();

@@ -51,7 +51,7 @@ public class ThemeHelper {
     private Theme theme;
 
     public ThemeHelper() {
-        themes.add(new Theme("Light", "light", R.style.Chan_Theme, PrimaryColor.GREEN));
+        themes.add(new Theme("Light", "light", R.style.Chan_Theme, PrimaryColor.BLUE));
         themes.add(new DarkTheme("Dark", "dark", R.style.Chan_Theme_Dark, PrimaryColor.DARK));
         themes.add(new DarkTheme("Black", "black", R.style.Chan_Theme_Black, PrimaryColor.BLACK));
         themes.add(new DarkTheme("Tomorrow", "tomorrow", R.style.Chan_Theme_Tomorrow, PrimaryColor.DARK));
@@ -100,7 +100,7 @@ public class ThemeHelper {
             theme.primaryColor = getColor(setting.color, PrimaryColor.BLACK);
         }
         if (setting.accentColor != null) {
-            theme.accentColor = getColor(setting.accentColor, PrimaryColor.TEAL);
+            theme.accentColor = getColor(setting.accentColor, PrimaryColor.BLUE);
         }
     }
 

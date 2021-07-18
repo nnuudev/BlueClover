@@ -167,7 +167,7 @@ public class ChanSettings {
 
         forceEnglishLocale = new BooleanSetting(p, "preference_force_english_locale", false);
 
-        theme = new StringSetting(p, "preference_theme", "yotsuba");
+        theme = new StringSetting(p, "preference_theme", "light");
 
         layoutMode = new OptionsSetting<>(p, "preference_layout_mode", LayoutMode.class, LayoutMode.AUTO);
 
