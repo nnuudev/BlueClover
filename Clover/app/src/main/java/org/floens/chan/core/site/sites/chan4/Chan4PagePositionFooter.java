@@ -1,18 +1,16 @@
 package org.floens.chan.core.site.sites.chan4;
 
-import android.os.AsyncTask;
-import android.text.TextUtils;
 import android.util.Pair;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.floens.chan.Chan;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.net.URL;
 import java.util.Hashtable;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class Chan4PagePositionFooter {
 
@@ -33,47 +31,35 @@ public class Chan4PagePositionFooter {
                 }
             }
 
-            new AsyncTask<String, Void, Void>() {
+            // if we couldn't return a page position, reload the cache
+            RequestQueue requestQueue = Chan.getInstance().injector().instance(RequestQueue.class);
+            requestQueue.add(new JsonArrayRequest("https://a.4cdn.org/" + board + "/threads.json",
+                    new Response.Listener<JSONArray>() {
 
-                @Override
-                protected Void doInBackground(String... params) {
-                    updateCache(params[0]);
-                    return null;
-                }
+                        @Override
+                        public void onResponse(JSONArray jsonArray) {
+                            try {
+                                long now = System.currentTimeMillis();
+                                if (cache.get(board) != null && cache.get(board).second + 30000 > now) {
+                                    return;
+                                }
+                                cache.put(board, new Pair<Hashtable<Integer, String>, Long>(null, now));
+                                Hashtable<Integer, String> pages = new Hashtable<Integer, String>();
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    int page = jsonObject.getInt("page");
+                                    JSONArray threads = jsonObject.getJSONArray("threads");
+                                    for (int j = 0; j < threads.length(); j++) {
+                                        pages.put(threads.getJSONObject(j).getInt("no"), page + " / post " + (j + 1) + "/" + threads.length());
+                                    }
+                                }
+                                cache.put(board, new Pair<Hashtable<Integer, String>, Long>(pages, now));
+                            } catch (Exception ignored) {  }
+                        }
 
-            }.execute(board);
-        } catch (Exception e) {
-        }
+                    }, null));
+        } catch (Exception ignored) {  }
         return "\n[page ? / post ?]";
-    }
-
-    private static void updateCache(String board) {
-        try {
-            long now = System.currentTimeMillis();
-            if (cache.get(board) != null && cache.get(board).second + 30000 > now) {
-                return;
-            }
-            cache.put(board, new Pair<Hashtable<Integer, String>, Long>(null, now));
-            if (cache == null) {
-                cache = new Hashtable<String, Pair<Hashtable<Integer, String>, Long>>();
-            }
-            Hashtable<Integer, String> pages = new Hashtable<Integer, String>();
-            Request request = new Request.Builder()
-                    .url("https://a.4cdn.org/" + board + "/threads.json")
-                    .build();
-            String text = new OkHttpClient().newCall(request).execute().body().string();
-            JSONArray jsonArray = new JSONArray(text);
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                int page = jsonObject.getInt("page");
-                JSONArray threads = jsonObject.getJSONArray("threads");
-                for (int j = 0; j < threads.length(); j++) {
-                    pages.put(threads.getJSONObject(j).getInt("no"), page + " / post " + (j + 1) + "/" + threads.length());
-                }
-            }
-            cache.put(board, new Pair<Hashtable<Integer, String>, Long>(pages, now));
-        } catch (Exception e) {
-        }
     }
 
 }
