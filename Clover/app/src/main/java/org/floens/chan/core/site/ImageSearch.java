@@ -17,13 +17,12 @@
  */
 package org.floens.chan.core.site;
 
-import org.floens.chan.BuildConfig;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ImageSearch {
     public static final List<ImageSearch> engines = new ArrayList<>();
+    public static final int DERPI_ID = 6;
 
     public abstract int getId();
 
@@ -60,21 +59,19 @@ public abstract class ImageSearch {
             }
         });
 
-        if (BuildConfig.FLAVOR.equals("dev")) {
-            engines.add(new ImageSearch() {
-                public int getId() {
-                    return 6;
-                }
+        engines.add(new ImageSearch() {
+            public int getId() {
+                return DERPI_ID;
+            }
 
-                public String getName() {
-                    return "Derpibooru";
-                }
+            public String getName() {
+                return "Derpibooru";
+            }
 
-                public String getUrl(String imageUrl) {
-                    return "https://derpibooru.org/search/reverse?url=" + imageUrl;
-                }
-            });
-        }
+            public String getUrl(String imageUrl) {
+                return "https://derpibooru.org/search/reverse?url=" + imageUrl;
+            }
+        });
 
         engines.add(new ImageSearch() {
             public int getId() {

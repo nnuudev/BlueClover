@@ -44,6 +44,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.davemorrissey.labs.subscaleview.ImageViewState;
 
+import org.floens.chan.BuildConfig;
 import org.floens.chan.R;
 import org.floens.chan.controller.Controller;
 import org.floens.chan.core.model.PostImage;
@@ -195,7 +196,7 @@ public class ImageViewerController extends Controller implements ImageViewerPres
     }
 
     private void searchClicked(ToolbarMenuSubItem item) {
-        showImageSearchOptions();
+        showImageSearchOptions(presenter.getLoadable().board.code);
     }
 
     private void downloadAlbumClicked(ToolbarMenuSubItem item) {
@@ -317,11 +318,15 @@ public class ImageViewerController extends Controller implements ImageViewerPres
                 muted ? R.drawable.ic_volume_off_white_24dp : R.drawable.ic_volume_up_white_24dp);
     }
 
-    private void showImageSearchOptions() {
+    private void showImageSearchOptions(String boardCode) {
         // TODO: move to presenter
         List<FloatingMenuItem> items = new ArrayList<>();
         for (ImageSearch imageSearch : ImageSearch.engines) {
-            items.add(new FloatingMenuItem(imageSearch.getId(), imageSearch.getName()));
+            if (imageSearch.getId() != ImageSearch.DERPI_ID ||
+                    BuildConfig.FLAVOR.equals("dev") ||
+                    boardCode.equals("mlp") || boardCode.equals("trash")) {
+                items.add(new FloatingMenuItem(imageSearch.getId(), imageSearch.getName()));
+            }
         }
         ToolbarMenuItem overflowMenuItem = navigation.findItem(ToolbarMenu.OVERFLOW_ID);
         FloatingMenu menu = new FloatingMenu(context, overflowMenuItem.getView(), items);
