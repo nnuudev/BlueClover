@@ -36,16 +36,20 @@ import org.floens.chan.core.model.orm.ThreadHide;
 import org.floens.chan.core.site.SiteService;
 import org.floens.chan.utils.Logger;
 
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okio.ByteString;
+
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TAG = "DatabaseHelper";
 
     private static final String DATABASE_NAME = "ChanDB";
-    private static final int DATABASE_VERSION = 26;
+    private static final int DATABASE_VERSION = 27;
 
     public Dao<Pin, Integer> pinDao;
     public Dao<Loadable, Integer> loadableDao;
@@ -118,7 +122,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
                 boardsDao.executeRawNoArgs("ALTER TABLE board ADD COLUMN codeTags INTEGER;");
                 boardsDao.executeRawNoArgs("ALTER TABLE board ADD COLUMN preuploadCaptcha INTEGER;");
                 boardsDao.executeRawNoArgs("ALTER TABLE board ADD COLUMN countryFlags INTEGER;");
-                boardsDao.executeRawNoArgs("ALTER TABLE board ADD COLUMN trollFlags INTEGER;");
                 boardsDao.executeRawNoArgs("ALTER TABLE board ADD COLUMN mathTags INTEGER;");
             } catch (SQLException e) {
                 Logger.e(TAG, "Error upgrading to version 12", e);
@@ -264,6 +267,20 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
                 siteDao.executeRawNoArgs("UPDATE site SET userSettings='{}'");
             } catch (SQLException e) {
                 Logger.e(TAG, "Error upgrading to version 26", e);
+            }
+        }
+
+        if (oldVersion < 27) {
+            try {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                ObjectOutputStream stream1 = new ObjectOutputStream(stream);
+                stream1.writeObject(new HashMap<String, String>());
+                stream1.close();
+                ByteString out = ByteString.of(stream.toByteArray());
+                stream.close();
+                boardsDao.executeRawNoArgs("ALTER TABLE board ADD COLUMN boardFlags BLOB NOT NULL default x'" + out.hex() + "'");
+            } catch (Exception e) {
+                Logger.e(TAG, "Error upgrading to version 27", e);
             }
         }
     }

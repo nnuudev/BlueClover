@@ -21,11 +21,14 @@ import androidx.core.util.ObjectsCompat;
 
 import android.text.TextUtils;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import org.floens.chan.core.model.SiteReference;
 import org.floens.chan.core.site.Site;
+
+import java.util.HashMap;
 
 /**
  * A board is something that can be browsed, it is unique by it's site and code.
@@ -124,9 +127,9 @@ public class Board implements SiteReference {
     @DatabaseField
     public boolean countryFlags = false;
 
-    @Deprecated
-    @DatabaseField
-    public boolean trollFlags = false;
+    // flag code, flag name
+    @DatabaseField(dataType = DataType.SERIALIZABLE, canBeNull = false)
+    public HashMap<String, String> boardFlags = new HashMap<>();
 
     @DatabaseField
     public boolean mathTags = false;
@@ -207,7 +210,7 @@ public class Board implements SiteReference {
         codeTags = o.codeTags;
         preuploadCaptcha = o.preuploadCaptcha;
         countryFlags = o.countryFlags;
-        trollFlags = o.trollFlags;
+        boardFlags = o.boardFlags;
         mathTags = o.mathTags;
         description = o.description;
         archive = o.archive;
@@ -246,7 +249,7 @@ public class Board implements SiteReference {
         b.codeTags = codeTags;
         b.preuploadCaptcha = preuploadCaptcha;
         b.countryFlags = countryFlags;
-        b.trollFlags = trollFlags;
+        b.boardFlags = boardFlags;
         b.mathTags = mathTags;
         b.description = description;
         b.archive = archive;
@@ -275,7 +278,7 @@ public class Board implements SiteReference {
                 codeTags == b.codeTags &&
                 preuploadCaptcha == b.preuploadCaptcha &&
                 countryFlags == b.countryFlags &&
-                trollFlags == b.trollFlags &&
+                boardFlags.equals(b.boardFlags) &&
                 mathTags == b.mathTags &&
                 ObjectsCompat.equals(description, b.description) &&
                 archive == b.archive;

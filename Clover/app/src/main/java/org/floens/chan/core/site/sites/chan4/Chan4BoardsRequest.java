@@ -164,6 +164,13 @@ public class Chan4BoardsRequest extends JsonReaderRequest<List<Board>> {
                 case "is_archived":
                     board.archive = reader.nextInt() == 1;
                     break;
+                case "board_flags":
+                    reader.beginObject();
+                    while (reader.hasNext()) {
+                        board.boardFlags.put(reader.nextName(), reader.nextString());
+                    }
+                    reader.endObject();
+                    break;
                 default:
                     reader.skipValue();
                     break;
