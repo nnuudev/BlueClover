@@ -43,6 +43,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.floens.chan.R;
 import org.floens.chan.core.model.ChanThread;
 import org.floens.chan.core.model.orm.Loadable;
@@ -71,9 +74,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -181,18 +189,40 @@ public class ReplyLayout extends LoadView implements
 
         // Setup reply layout views
         flag.setOnClickListener(v -> {
-            List<FloatingMenuItem> items = new ArrayList<>();
-            items.add(new FloatingMenuItem(null, "No Flag"));
             Map<String, String> boardFlags = presenter.getBoardFlags();
+            if (boardFlags.isEmpty()) return;
+            List<String> sorted;
+            if (boardFlags.containsKey("TWI")) {
+                String[] sortedMLP = {"AJ","FL","PI","RD","RAR","TWI",
+                        "4CC","AN","ANF","APB","AU","BS","BP","BM","BB","CL","CHE","CB","CO","CG",
+                        "DD","DAY","DER","DT","DIS","FAU","FLE","GI","LI","LT","LY","MA","MAU",
+                        "MIN","NI","NUR","OCT","PAR","PM","PC","PCE","PLU","QC","RLU","S1L","SCO",
+                        "SHI","SIL","SP","SPI","STA","STL","SUN","SWB","TS","TX","VS","ZE","IZ",
+                        "PP","SS","TFA","TFO","TFP","TP","TFS","TFT","TFV","ADA","AB","SON","SUS",
+                        "EQA","EQF","EQP","EQR","ERA","EQS","EQT","EQI"};
+                sorted = new ArrayList<>(Arrays.asList(sortedMLP));
+                sorted.retainAll(boardFlags.keySet());
+                if (sorted.size() < boardFlags.keySet().size()) {
+                    List<String> temp = new ArrayList<>(boardFlags.keySet());
+                    temp.removeAll(sorted);
+                    sorted.addAll(temp);
+                }
+            } else {
+                String[] keys = boardFlags.keySet().toArray(new String[0]);
+                Arrays.sort(keys);
+                sorted = Arrays.asList(keys);
+            }
+
+            List<FloatingMenuItem> items = new ArrayList<>(boardFlags.size()+1);
+            items.add(new FloatingMenuItem(null, "No flag"));
             FloatingMenuItem selected = null;
-            for (String key : boardFlags.keySet()) {
+            for (String key : sorted) {
                 FloatingMenuItem flagItem = new FloatingMenuItem(key, boardFlags.get(key));
                 if (key.contentEquals(flag.getText())) {
                     selected = flagItem;
                 }
                 items.add(flagItem);
             }
-            if (items.isEmpty()) return;
             FloatingMenu menu = new FloatingMenu(getContext(), flag, items);
             menu.setAnchor(flag, Gravity.CENTER, 0, 0);
             menu.setAdapter(new BaseAdapter() {
