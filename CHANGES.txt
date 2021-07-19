@@ -1,3 +1,10 @@
+New in v3.20 build 20210719_1140
+- Improved board flag support.
+-- Used some code from https://github.com/Adamantcheese/Kuroba.
+- Flags on /mlp/ are sorted like this: Mane 6, rest, G5, TFH, EqG.
+- Added Derpibooru as image search option on /mlp/ and /trash/.
+- Changed default theme for people who are new to Blue Clover.
+
 New in v3.20 build 20210718_0905
 [INITIAL RELEASE, based on Clover-dev 3.0.2 0e32fb7]
 - NEW CAPTCHA SUPPORT!
