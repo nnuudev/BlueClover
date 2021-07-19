@@ -47,4 +47,5 @@ public class Reply {
     public int selectionEnd;
     public boolean spoilerImage = false;
     public String password = "";
+    public String flag = "";
 }

@@ -27,11 +27,13 @@ import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -58,6 +60,8 @@ import org.floens.chan.ui.captcha.NewCaptchaLayout;
 import org.floens.chan.ui.captcha.v1.CaptchaNojsLayoutV1;
 import org.floens.chan.ui.captcha.v2.CaptchaNoJsLayoutV2;
 import org.floens.chan.ui.drawable.DropdownArrowDrawable;
+import org.floens.chan.ui.view.FloatingMenu;
+import org.floens.chan.ui.view.FloatingMenuItem;
 import org.floens.chan.ui.view.LoadView;
 import org.floens.chan.ui.view.SelectionListeningEditText;
 import org.floens.chan.utils.AndroidUtils;
@@ -68,6 +72,9 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -104,6 +111,7 @@ public class ReplyLayout extends LoadView implements
     private TextView message;
     private EditText name;
     private EditText subject;
+    private Button flag;
     private EditText options;
     private EditText fileName;
     private LinearLayout nameOptions;
@@ -155,6 +163,7 @@ public class ReplyLayout extends LoadView implements
         message = replyInputLayout.findViewById(R.id.message);
         name = replyInputLayout.findViewById(R.id.name);
         subject = replyInputLayout.findViewById(R.id.subject);
+        flag = replyInputLayout.findViewById(R.id.flag_button);
         options = replyInputLayout.findViewById(R.id.options);
         fileName = replyInputLayout.findViewById(R.id.file_name);
         nameOptions = replyInputLayout.findViewById(R.id.name_options);
@@ -171,6 +180,60 @@ public class ReplyLayout extends LoadView implements
         submit = replyInputLayout.findViewById(R.id.submit);
 
         // Setup reply layout views
+        flag.setOnClickListener(v -> {
+            List<FloatingMenuItem> items = new ArrayList<>();
+            items.add(new FloatingMenuItem(null, "No Flag"));
+            Map<String, String> boardFlags = presenter.getBoardFlags();
+            FloatingMenuItem selected = null;
+            for (String key : boardFlags.keySet()) {
+                FloatingMenuItem flagItem = new FloatingMenuItem(key, boardFlags.get(key));
+                if (key.contentEquals(flag.getText())) {
+                    selected = flagItem;
+                }
+                items.add(flagItem);
+            }
+            if (items.isEmpty()) return;
+            FloatingMenu menu = new FloatingMenu(getContext(), flag, items);
+            menu.setAnchor(flag, Gravity.CENTER, 0, 0);
+            menu.setAdapter(new BaseAdapter() {
+                @Override
+                public int getCount() {
+                    return items.size();
+                }
+
+                @Override
+                public String getItem(int position) {
+                    return items.get(position).getText();
+                }
+
+                @Override
+                public long getItemId(int position) {
+                    return position;
+                }
+
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    TextView textView = (TextView) (convertView != null
+                            ? convertView
+                            : LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.toolbar_menu_item, parent, false));
+                    textView.setText(getItem(position));
+                    return textView;
+                }
+            });
+            menu.setSelectedItem(selected);
+            menu.setCallback(new FloatingMenu.FloatingMenuCallback() {
+                @Override
+                public void onFloatingMenuItemClicked(FloatingMenu menu, FloatingMenuItem item) {
+                    flag.setText((String) item.getId());
+                }
+
+                @Override
+                public void onFloatingMenuDismissed(FloatingMenu menu) { }
+            });
+            menu.setPopupHeight(dp(300));
+            menu.show();
+        });
         commentQuoteButton.setOnClickListener(this);
         commentSpoilerButton.setOnClickListener(this);
 
@@ -447,6 +510,7 @@ public class ReplyLayout extends LoadView implements
     public void loadDraftIntoViews(Reply draft) {
         name.setText(draft.name);
         subject.setText(draft.subject);
+        flag.setText(draft.flag);
         options.setText(draft.options);
         blockSelectionChange = true;
         comment.setText(draft.comment);
@@ -460,6 +524,7 @@ public class ReplyLayout extends LoadView implements
     public void loadViewsIntoDraft(Reply draft) {
         draft.name = name.getText().toString();
         draft.subject = subject.getText().toString();
+        draft.flag = flag.getText().toString();
         draft.options = options.getText().toString();
         draft.comment = comment.getText().toString();
         draft.selectionStart = comment.getSelectionStart();
@@ -494,6 +559,11 @@ public class ReplyLayout extends LoadView implements
     @Override
     public void showCommentCounter(boolean show) {
         commentCounter.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void showFlag(boolean show) {
+        flag.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     @Override

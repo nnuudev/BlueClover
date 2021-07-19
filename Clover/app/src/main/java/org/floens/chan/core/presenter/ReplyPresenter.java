@@ -42,6 +42,7 @@ import org.floens.chan.utils.Logger;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -112,6 +113,7 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
         callback.updateCommentCount(0, board.maxCommentChars, false);
         callback.setCommentHint(getString(loadable.isThreadMode() ? R.string.reply_comment_thread : R.string.reply_comment_board));
         callback.showCommentCounter(board.maxCommentChars > 0);
+        callback.showFlag(!board.boardFlags.isEmpty());
 
         if (draft.file != null) {
             showPreview(draft.fileName, draft.file);
@@ -128,6 +130,10 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
         replyManager.putReply(loadable, draft);
 
         closeAll();
+    }
+
+    public Map<String, String> getBoardFlags() {
+        return loadable.board.boardFlags;
     }
 
     public void onOpen(boolean open) {
@@ -233,8 +239,10 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
             closeAll();
             highlightQuotes();
             String name = draft.name;
+            String flag = draft.flag;
             draft = new Reply();
             draft.name = name;
+            draft.flag = flag;
             replyManager.putReply(loadable, draft);
             callback.loadDraftIntoViews(draft);
             callback.onPosted();
@@ -508,6 +516,8 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
         void setCommentHint(String hint);
 
         void showCommentCounter(boolean show);
+
+        void showFlag(boolean show);
 
         void setExpanded(boolean expanded);
 
