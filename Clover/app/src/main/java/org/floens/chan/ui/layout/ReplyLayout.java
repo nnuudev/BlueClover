@@ -74,6 +74,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -81,6 +82,8 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -378,7 +381,11 @@ public class ReplyLayout extends LoadView implements
                         Request request = new Request.Builder().url(clipboardURL).build();
                         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
                         if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT < 22) {
-                            okHttpClientBuilder.sslSocketFactory(TLSSocketFactory.getInstance());
+                            TrustManagerFactory trustManagerFactory = TrustManagerFactory.
+                                    getInstance(TrustManagerFactory.getDefaultAlgorithm());
+                            trustManagerFactory.init((KeyStore) null);
+                            okHttpClientBuilder.sslSocketFactory(TLSSocketFactory.getInstance(),
+                                    (X509TrustManager) trustManagerFactory.getTrustManagers()[0]);
                         }
                         InputStream is = okHttpClientBuilder.build().newCall(request).execute().body().byteStream();
                         OutputStream os = new FileOutputStream(cacheFile);
