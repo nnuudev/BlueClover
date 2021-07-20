@@ -24,6 +24,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -66,6 +67,7 @@ import org.floens.chan.ui.view.LoadView;
 import org.floens.chan.ui.view.SelectionListeningEditText;
 import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.ImageDecoder;
+import org.floens.chan.utils.TLSSocketFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -374,7 +376,11 @@ public class ReplyLayout extends LoadView implements
                 protected Void doInBackground(Void... voids) {
                     try {
                         Request request = new Request.Builder().url(clipboardURL).build();
-                        InputStream is = new OkHttpClient().newCall(request).execute().body().byteStream();
+                        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+                        if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT < 22) {
+                            okHttpClientBuilder.sslSocketFactory(TLSSocketFactory.getInstance());
+                        }
+                        InputStream is = okHttpClientBuilder.build().newCall(request).execute().body().byteStream();
                         OutputStream os = new FileOutputStream(cacheFile);
 
                         int total = 0;

@@ -17,6 +17,8 @@
  */
 package org.floens.chan;
 
+import android.os.Build;
+
 import org.floens.chan.core.settings.ChanSettings;
 import org.floens.chan.utils.TLSSocketFactory;
 
@@ -46,7 +48,7 @@ public class ChanApplication extends Chan {
             SentryAndroid.init(this, options -> options.setDsn(""));
         }
 
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT < 22) {
             try {
                 HttpsURLConnection.setDefaultSSLSocketFactory(TLSSocketFactory.getInstance());
             } catch (Exception ignored) { }
