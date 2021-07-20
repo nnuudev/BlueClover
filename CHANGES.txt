@@ -1,3 +1,11 @@
+New in v3.20 build 20210720_1140
+- Added Furbooru as image search option on /trash/.
+- Image uploading progress.
+-- Merged from https://github.com/chandevel/Clover/pull/670.
+- DNS Over HTTP setting.
+-- Merged from https://github.com/chandevel/Clover/pull/799.
+- Minor fixes for Android 4.
+
 New in v3.20 build 20210719_1140
 - Improved board flag support.
 -- Used some code from https://github.com/Adamantcheese/Kuroba.
