@@ -40,6 +40,8 @@ public interface SiteActions {
 
         void onPostComplete(HttpCall httpCall, ReplyResponse replyResponse);
 
+        void onUploadingProgress(int percent);
+
         void onPostError(HttpCall httpCall, Exception exception);
     }
 

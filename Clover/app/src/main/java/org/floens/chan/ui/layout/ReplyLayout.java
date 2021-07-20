@@ -43,9 +43,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import org.floens.chan.R;
 import org.floens.chan.core.model.ChanThread;
 import org.floens.chan.core.model.orm.Loadable;
@@ -74,14 +71,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -113,6 +107,10 @@ public class ReplyLayout extends LoadView implements
     private boolean openingName;
 
     private boolean blockSelectionChange = false;
+
+    // Progress view (when sending request to the server)
+    private View progressLayout;
+    private TextView currentProgress;
 
     // Reply views:
     private View replyInputLayout;
@@ -186,6 +184,9 @@ public class ReplyLayout extends LoadView implements
         attach = replyInputLayout.findViewById(R.id.attach);
         more = replyInputLayout.findViewById(R.id.more);
         submit = replyInputLayout.findViewById(R.id.submit);
+
+        progressLayout = inflater.inflate(R.layout.layout_reply_progress, this, false);
+        currentProgress = progressLayout.findViewById(R.id.current_progress);
 
         // Setup reply layout views
         flag.setOnClickListener(v -> {
@@ -497,8 +498,11 @@ public class ReplyLayout extends LoadView implements
         switch (page) {
             case LOADING:
                 setWrap(true);
-                View progressBar = setView(null);
+                View progressBar = setView(progressLayout);
                 progressBar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, dp(100)));
+
+                //reset progress to 0 upon uploading start
+                currentProgress.setVisibility(View.INVISIBLE);
                 break;
             case INPUT:
                 setView(replyInputLayout);
@@ -755,6 +759,17 @@ public class ReplyLayout extends LoadView implements
     @Override
     public ChanThread getThread() {
         return callback.getThread();
+    }
+
+    @Override
+    public void onUploadingProgress(int percent) {
+        if (currentProgress != null) {
+            if (percent <= 0) {
+                currentProgress.setVisibility(View.VISIBLE);
+            }
+
+            currentProgress.setText(String.format(Locale.getDefault(), "%d", percent));
+        }
     }
 
     public interface ReplyLayoutCallback {

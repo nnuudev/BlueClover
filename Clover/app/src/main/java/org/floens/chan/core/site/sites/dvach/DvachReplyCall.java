@@ -19,8 +19,11 @@ package org.floens.chan.core.site.sites.dvach;
 
 import android.text.TextUtils;
 
+import androidx.annotation.Nullable;
+
 import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.common.CommonReplyHttpCall;
+import org.floens.chan.core.site.http.ProgressRequestBody;
 import org.floens.chan.core.site.http.Reply;
 import org.jsoup.Jsoup;
 
@@ -44,7 +47,10 @@ public class DvachReplyCall extends CommonReplyHttpCall {
     }
 
     @Override
-    public void addParameters(MultipartBody.Builder formBuilder) {
+    public void addParameters(
+            MultipartBody.Builder formBuilder,
+            @Nullable ProgressRequestBody.ProgressRequestListener progressListener
+    ) {
         formBuilder.addFormDataPart("task", "post");
         formBuilder.addFormDataPart("board", reply.loadable.boardCode);
         formBuilder.addFormDataPart("comment", reply.comment);
@@ -71,10 +77,32 @@ public class DvachReplyCall extends CommonReplyHttpCall {
         }
 
         if (reply.file != null) {
-            formBuilder.addFormDataPart("image", reply.fileName, RequestBody.create(
-                    MediaType.parse("application/octet-stream"), reply.file
-            ));
+            attachFile(formBuilder, progressListener);
         }
+    }
+
+    private void attachFile(
+            MultipartBody.Builder formBuilder,
+            @Nullable ProgressRequestBody.ProgressRequestListener progressListener
+    ) {
+        RequestBody requestBody;
+
+        if (progressListener == null) {
+            requestBody = RequestBody.create(
+                    MediaType.parse("application/octet-stream"), reply.file
+            );
+        } else {
+            requestBody = new ProgressRequestBody(RequestBody.create(
+                    MediaType.parse("application/octet-stream"), reply.file
+            ), progressListener);
+
+        }
+
+        formBuilder.addFormDataPart(
+                "image",
+                reply.fileName,
+                requestBody
+        );
     }
 
     @Override

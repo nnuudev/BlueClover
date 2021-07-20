@@ -38,6 +38,7 @@ import org.floens.chan.core.site.http.ReplyResponse;
 import org.floens.chan.ui.captcha.AuthenticationLayoutCallback;
 import org.floens.chan.ui.captcha.AuthenticationLayoutInterface;
 import org.floens.chan.ui.activity.ImagePickDelegate;
+import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.Logger;
 
 import java.io.File;
@@ -264,6 +265,13 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
             switchPage(Page.INPUT, true);
             callback.openMessage(true, false, errorMessage, true);
         }
+    }
+
+    @Override
+    public void onUploadingProgress(int percent) {
+        //called on a background thread!
+
+        AndroidUtils.runOnUiThread(() -> callback.onUploadingProgress(percent));
     }
 
     @Override
@@ -554,6 +562,8 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
         ChanThread getThread();
 
         void focusComment();
+
+        void onUploadingProgress(int percent);
 
         void onFallbackToV1CaptchaView();
 

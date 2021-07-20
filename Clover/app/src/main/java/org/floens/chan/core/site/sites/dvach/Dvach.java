@@ -158,7 +158,7 @@ public class Dvach extends CommonSite {
                     public void onHttpFail(CommonReplyHttpCall httpPost, Exception e) {
                         postListener.onPostError(httpPost, e);
                     }
-                });
+                }, postListener::onUploadingProgress);
             }
 
             @Override
