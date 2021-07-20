@@ -17,18 +17,23 @@
  */
 package org.floens.chan.core.site;
 
+import org.floens.chan.BuildConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ImageSearch {
     public static final List<ImageSearch> engines = new ArrayList<>();
-    public static final int DERPI_ID = 6;
 
     public abstract int getId();
 
     public abstract String getName();
 
     public abstract String getUrl(String imageUrl);
+
+    public boolean showFor(String boardCode) {
+        return true;
+    }
 
     static {
         engines.add(new ImageSearch() {
@@ -61,7 +66,7 @@ public abstract class ImageSearch {
 
         engines.add(new ImageSearch() {
             public int getId() {
-                return DERPI_ID;
+                return 6;
             }
 
             public String getName() {
@@ -70,6 +75,30 @@ public abstract class ImageSearch {
 
             public String getUrl(String imageUrl) {
                 return "https://derpibooru.org/search/reverse?url=" + imageUrl;
+            }
+
+            @Override
+            public boolean showFor(String boardCode) {
+                return BuildConfig.FLAVOR.equals("dev") || boardCode.equals("mlp") || boardCode.equals("trash");
+            }
+        });
+
+        engines.add(new ImageSearch() {
+            public int getId() {
+                return 7;
+            }
+
+            public String getName() {
+                return "Furbooru";
+            }
+
+            public String getUrl(String imageUrl) {
+                return "https://furbooru.org/search/reverse?url=" + imageUrl;
+            }
+
+            @Override
+            public boolean showFor(String boardCode) {
+                return boardCode.equals("trash");
             }
         });
 

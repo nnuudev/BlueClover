@@ -322,9 +322,7 @@ public class ImageViewerController extends Controller implements ImageViewerPres
         // TODO: move to presenter
         List<FloatingMenuItem> items = new ArrayList<>();
         for (ImageSearch imageSearch : ImageSearch.engines) {
-            if (imageSearch.getId() != ImageSearch.DERPI_ID ||
-                    BuildConfig.FLAVOR.equals("dev") ||
-                    boardCode.equals("mlp") || boardCode.equals("trash")) {
+            if (imageSearch.showFor(boardCode)) {
                 items.add(new FloatingMenuItem(imageSearch.getId(), imageSearch.getName()));
             }
         }

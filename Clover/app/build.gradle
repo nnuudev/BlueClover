@@ -31,7 +31,7 @@ afterEvaluate {
 android {
     compileSdkVersion 29
     // update the travis config when changing this
-    buildToolsVersion '30.0.2'
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "bluehorse.clover"
