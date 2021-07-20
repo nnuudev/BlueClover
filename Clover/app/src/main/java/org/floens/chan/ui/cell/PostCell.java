@@ -28,9 +28,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Build;
-
-import androidx.annotation.NonNull;
-
 import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -52,6 +49,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
@@ -86,7 +85,6 @@ import static android.text.TextUtils.isEmpty;
 import static org.floens.chan.Chan.injector;
 import static org.floens.chan.utils.AndroidUtils.ROBOTO_CONDENSED_REGULAR;
 import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.enableHighEndAnimations;
 import static org.floens.chan.utils.AndroidUtils.getString;
 import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
 import static org.floens.chan.utils.AndroidUtils.sp;
@@ -469,7 +467,7 @@ public class PostCell extends LinearLayout implements PostCellInterface {
 
                     @Override
                     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                        if (item == quoteMenuItem) {
+                        if (item.getItemId() == quoteMenuItem.getItemId()) {
                             CharSequence selection = comment.getText().subSequence(
                                     comment.getSelectionStart(), comment.getSelectionEnd());
                             callback.onPostSelectionQuoted(post, selection);
