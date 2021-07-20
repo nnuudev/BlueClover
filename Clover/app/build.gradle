@@ -54,7 +54,7 @@ android {
     }
 
     def user_agent = "Kuroba-dev/v4.13.6-1d48096"
-    def formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmm").withZone(ZoneId.from(ZoneOffset.UTC));
+    def formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmm").withZone(ZoneId.from(ZoneOffset.UTC))
     def timestamp = formatter.format(Instant.now())
 
     /*
