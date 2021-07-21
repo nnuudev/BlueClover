@@ -48,7 +48,7 @@ public class ChanApplication extends Chan {
             SentryAndroid.init(this, options -> options.setDsn(""));
         }
 
-        if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT < 22) {
+        if (Build.VERSION.SDK_INT < 22) {
             try {
                 HttpsURLConnection.setDefaultSSLSocketFactory(TLSSocketFactory.getInstance());
             } catch (Exception ignored) { }

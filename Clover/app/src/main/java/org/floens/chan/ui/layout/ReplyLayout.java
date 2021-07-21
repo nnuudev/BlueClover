@@ -23,8 +23,9 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -73,6 +74,7 @@ import org.floens.chan.utils.TLSSocketFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
@@ -87,8 +89,11 @@ import javax.inject.Inject;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 
 import static org.floens.chan.Chan.inject;
 import static org.floens.chan.ui.theme.ThemeHelper.theme;
@@ -379,54 +384,61 @@ public class ReplyLayout extends LoadView implements
             final URL clipboardURL = new URL(clipboardContent);
             final File cacheFile = new File(context.getCacheDir(), "picked_file_dl");
 
-            new AsyncTask<Void, Void, Void>() {
+            Request request = new Request.Builder().url(clipboardURL).build();
+            OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+            if (Build.VERSION.SDK_INT < 22) {
+                TrustManagerFactory trustManagerFactory = TrustManagerFactory.
+                        getInstance(TrustManagerFactory.getDefaultAlgorithm());
+                trustManagerFactory.init((KeyStore) null);
+                okHttpClientBuilder.sslSocketFactory(TLSSocketFactory.getInstance(),
+                        (X509TrustManager) trustManagerFactory.getTrustManagers()[0]);
+            }
+
+            final Handler handler = new Handler(Looper.getMainLooper());
+            okHttpClientBuilder.build().newCall(request).enqueue(new Callback() {
 
                 @Override
-                protected Void doInBackground(Void... voids) {
-                    try {
-                        Request request = new Request.Builder().url(clipboardURL).build();
-                        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
-                        if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT < 22) {
-                            TrustManagerFactory trustManagerFactory = TrustManagerFactory.
-                                    getInstance(TrustManagerFactory.getDefaultAlgorithm());
-                            trustManagerFactory.init((KeyStore) null);
-                            okHttpClientBuilder.sslSocketFactory(TLSSocketFactory.getInstance(),
-                                    (X509TrustManager) trustManagerFactory.getTrustManagers()[0]);
-                        }
-                        InputStream is = okHttpClientBuilder.build().newCall(request).execute().body().byteStream();
-                        OutputStream os = new FileOutputStream(cacheFile);
+                public void onFailure(Call call, IOException e) {
+                    handler.post(() -> Toast.makeText(getContext(), "URL download failed", Toast.LENGTH_SHORT).show());
+                }
 
-                        int total = 0;
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    int total = 0;
+                    if (response.isSuccessful()) {
+                        InputStream is = response.body().byteStream();
+                        OutputStream os = new FileOutputStream(cacheFile);
                         int read;
                         byte[] buffer = new byte[8192];
                         while ((read = is.read(buffer)) != -1) {
                             total += read;
                             if (total > 4194304) { // 4 MB
-                                this.cancel(true);
+                                total = -1;
                                 break;
+                            } else {
+                                os.write(buffer, 0, read);
                             }
-                            os.write(buffer, 0, read);
                         }
-
                         os.close();
-                        is.close();
-                    } catch (Exception ignored) { }
-                    return null;
+                    }
+                    response.close();
+
+                    if (total > 0) {
+                        handler.post(() -> {
+                            String[] filenameParts = clipboardURL.getFile().split("/");
+                            String filename = filenameParts[filenameParts.length - 1].trim();
+                            if (filename.length() == 0) {
+                                filename = "file";
+                            }
+                            presenter.onFilePicked(filename, cacheFile);
+                            //Toast.makeText(getContext(), "URL download succeeded", Toast.LENGTH_SHORT).show();
+                        });
+                    } else {
+                        handler.post(() -> Toast.makeText(getContext(), "URL download failed", Toast.LENGTH_SHORT).show());
+                    }
                 }
 
-                @Override
-                protected void onPostExecute(Void result) {
-                    try {
-                        String[] filenameParts = clipboardURL.getFile().split("/");
-                        String filename = filenameParts[filenameParts.length-1].trim();
-                        if (filename.length() == 0) {
-                            filename = "file";
-                        }
-                        presenter.onFilePicked(filename, cacheFile);
-                    } catch (Exception ignored) { }
-                }
-
-            }.execute();
+            });
             Toast.makeText(getContext(), "Downloading URL...", Toast.LENGTH_SHORT).show();
             return true;
         } catch (Exception ignored) {
