@@ -208,7 +208,7 @@ public class ChanSettings {
         showAnonymousName = new BooleanSetting(p, "preference_show_anonymous_name", false);
         revealImageSpoilers = new BooleanSetting(p, "preference_reveal_image_spoilers", false);
         revealTextSpoilers = new BooleanSetting(p, "preference_reveal_text_spoilers", false);
-        repliesButtonsBottom = new BooleanSetting(p, "preference_buttons_bottom", false);
+        repliesButtonsBottom = new BooleanSetting(p, "preference_buttons_bottom", true);
         confirmExit = new BooleanSetting(p, "preference_confirm_exit", false);
         tapNoReply = new BooleanSetting(p, "preference_tap_no_reply", false);
         volumeKeysScrolling = new BooleanSetting(p, "preference_volume_key_scrolling", false);
