@@ -43,6 +43,7 @@ import org.floens.chan.ui.cell.PostCellInterface;
 import org.floens.chan.ui.helper.PostPopupHelper;
 import org.floens.chan.ui.view.LoadView;
 import org.floens.chan.ui.view.ThumbnailView;
+import org.floens.chan.utils.AndroidUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -88,7 +89,7 @@ public class PostRepliesController extends Controller {
         if (Build.VERSION.SDK_INT >= 21) {
             statusBarColorPrevious = getWindow().getStatusBarColor();
             if (statusBarColorPrevious != 0) {
-                animateStatusBar(true, statusBarColorPrevious);
+                AndroidUtils.animateStatusBar(getWindow(), true, statusBarColorPrevious, TRANSITION_DURATION);
             }
         }
     }
@@ -98,7 +99,7 @@ public class PostRepliesController extends Controller {
         super.stopPresenting();
         if (Build.VERSION.SDK_INT >= 21) {
             if (statusBarColorPrevious != 0) {
-                animateStatusBar(false, statusBarColorPrevious);
+                AndroidUtils.animateStatusBar(getWindow(), true, statusBarColorPrevious, TRANSITION_DURATION);
             }
         }
     }
@@ -259,28 +260,6 @@ public class PostRepliesController extends Controller {
     public boolean onBack() {
         postPopupHelper.pop();
         return true;
-    }
-
-    private void animateStatusBar(boolean in, final int originalColor) {
-        ValueAnimator statusBar = ValueAnimator.ofFloat(in ? 0f : 0.5f, in ? 0.5f : 0f);
-        statusBar.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                if (Build.VERSION.SDK_INT >= 21) { // Make lint happy
-                    float progress = (float) animation.getAnimatedValue();
-                    if (progress == 0f) {
-                        getWindow().setStatusBarColor(originalColor);
-                    } else {
-                        int r = (int) ((1f - progress) * Color.red(originalColor));
-                        int g = (int) ((1f - progress) * Color.green(originalColor));
-                        int b = (int) ((1f - progress) * Color.blue(originalColor));
-                        getWindow().setStatusBarColor(Color.argb(255, r, g, b));
-                    }
-                }
-            }
-        });
-        statusBar.setDuration(TRANSITION_DURATION).setInterpolator(new LinearInterpolator());
-        statusBar.start();
     }
 
     private Window getWindow() {

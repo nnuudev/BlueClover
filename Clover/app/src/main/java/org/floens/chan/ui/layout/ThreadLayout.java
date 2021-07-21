@@ -56,7 +56,9 @@ import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.model.orm.ThreadHide;
 import org.floens.chan.core.presenter.ThreadPresenter;
 import org.floens.chan.core.settings.ChanSettings;
+import org.floens.chan.core.site.http.Reply;
 import org.floens.chan.ui.adapter.PostsFilter;
+import org.floens.chan.ui.helper.ImageOptionsHelper;
 import org.floens.chan.ui.helper.PostPopupHelper;
 import org.floens.chan.ui.toolbar.Toolbar;
 import org.floens.chan.ui.view.HidingFloatingActionButton;
@@ -80,6 +82,7 @@ import static org.floens.chan.utils.AndroidUtils.getString;
 public class ThreadLayout extends CoordinatorLayout implements
         ThreadPresenter.ThreadPresenterCallback,
         PostPopupHelper.PostPopupHelperCallback,
+        ImageOptionsHelper.ImageReencodingHelperCallback,
         View.OnClickListener,
         ThreadListLayout.ThreadListLayoutCallback {
     private enum Visible {
@@ -107,6 +110,7 @@ public class ThreadLayout extends CoordinatorLayout implements
     private TextView errorText;
     private Button errorRetryButton;
     private PostPopupHelper postPopupHelper;
+    private ImageOptionsHelper imageReencodingHelper;
     private Visible visible;
     private ProgressDialog deletingDialog;
     private boolean refreshedFromSwipe;
@@ -155,6 +159,7 @@ public class ThreadLayout extends CoordinatorLayout implements
         // View setup
         threadListLayout.setCallbacks(presenter, presenter, presenter, presenter, this);
         postPopupHelper = new PostPopupHelper(getContext(), presenter, this);
+        imageReencodingHelper = new ImageOptionsHelper(getContext(), this);
         errorText.setTypeface(AndroidUtils.ROBOTO_MEDIUM);
         errorRetryButton.setOnClickListener(this);
 
@@ -232,6 +237,11 @@ public class ThreadLayout extends CoordinatorLayout implements
     @Override
     public boolean shouldToolbarCollapse() {
         return callback.shouldToolbarCollapse();
+    }
+
+    @Override
+    public void showImageReencodingWindow() {
+        presenter.showImageReencodingWindow();
     }
 
     @Override
@@ -510,6 +520,11 @@ public class ThreadLayout extends CoordinatorLayout implements
         }
     }
 
+    @Override
+    public void showImageReencodingWindow(Loadable loadable) {
+        imageReencodingHelper.showController(loadable);
+    }
+
     public ThumbnailView getThumbnail(PostImage postImage) {
         if (postPopupHelper.isOpen()) {
             return postPopupHelper.getThumbnail(postImage);
@@ -607,6 +622,16 @@ public class ThreadLayout extends CoordinatorLayout implements
         callback.presentRepliesController(controller);
     }
 
+    @Override
+    public void presentController(Controller controller) {
+        callback.presentImageReencodingController(controller);
+    }
+
+    @Override
+    public void onImageOptionsApplied(Reply reply) {
+        threadListLayout.onImageOptionsApplied(reply);
+    }
+
     public interface ThreadLayoutCallback {
         void showThread(Loadable threadLoadable);
 
@@ -617,6 +642,8 @@ public class ThreadLayout extends CoordinatorLayout implements
         void onShowPosts();
 
         void presentRepliesController(Controller controller);
+
+        void presentImageReencodingController(Controller controller);
 
         void openReportController(Post post);
 

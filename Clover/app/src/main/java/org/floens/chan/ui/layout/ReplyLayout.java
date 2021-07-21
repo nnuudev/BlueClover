@@ -48,6 +48,7 @@ import org.floens.chan.R;
 import org.floens.chan.core.model.ChanThread;
 import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.presenter.ReplyPresenter;
+import org.floens.chan.core.settings.ChanSettings;
 import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.core.site.http.Reply;
 import org.floens.chan.ui.activity.ImagePickDelegate;
@@ -61,6 +62,7 @@ import org.floens.chan.ui.captcha.NewCaptchaLayout;
 import org.floens.chan.ui.captcha.v1.CaptchaNojsLayoutV1;
 import org.floens.chan.ui.captcha.v2.CaptchaNoJsLayoutV2;
 import org.floens.chan.ui.drawable.DropdownArrowDrawable;
+import org.floens.chan.ui.helper.HintPopup;
 import org.floens.chan.ui.view.FloatingMenu;
 import org.floens.chan.ui.view.FloatingMenuItem;
 import org.floens.chan.ui.view.LoadView;
@@ -132,6 +134,7 @@ public class ReplyLayout extends LoadView implements
     private SelectionListeningEditText comment;
     private TextView commentCounter;
     private CheckBox spoiler;
+    private LinearLayout previewHolder;
     private ImageView preview;
     private TextView previewMessage;
     private ImageView attach;
@@ -185,6 +188,7 @@ public class ReplyLayout extends LoadView implements
         commentCounter = replyInputLayout.findViewById(R.id.comment_counter);
         spoiler = replyInputLayout.findViewById(R.id.spoiler);
         preview = replyInputLayout.findViewById(R.id.preview);
+        previewHolder = replyInputLayout.findViewById(R.id.preview_holder);
         previewMessage = replyInputLayout.findViewById(R.id.preview_message);
         attach = replyInputLayout.findViewById(R.id.attach);
         more = replyInputLayout.findViewById(R.id.more);
@@ -276,7 +280,7 @@ public class ReplyLayout extends LoadView implements
         comment.addTextChangedListener(this);
         comment.setSelectionChangedListener(this);
 
-        preview.setOnClickListener(this);
+        previewHolder.setOnClickListener(this);
 
         moreDropdown = new DropdownArrowDrawable(dp(16), dp(16), true,
                 getAttrColor(getContext(), R.attr.dropdown_dark_color),
@@ -352,6 +356,8 @@ public class ReplyLayout extends LoadView implements
             presenter.onAttachClicked();
         } else if (v == submit) {
             presenter.onSubmitClicked();
+        } else if (v == previewHolder) {
+            callback.showImageReencodingWindow();
         } else if (v == captchaHardReset) {
             if (authenticationLayout != null) {
                 authenticationLayout.hardReset();
@@ -619,7 +625,7 @@ public class ReplyLayout extends LoadView implements
 
         comment.setMaxLines(expanded ? 500 : 6);
 
-        preview.setLayoutParams(new LinearLayout.LayoutParams(
+        previewHolder.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 expanded ? dp(150) : dp(100)
         ));
@@ -694,7 +700,7 @@ public class ReplyLayout extends LoadView implements
             ImageDecoder.decodeFileOnBackgroundThread(previewFile, dp(400), dp(300), this);
         } else {
             spoiler.setVisibility(View.GONE);
-            preview.setVisibility(View.GONE);
+            previewHolder.setVisibility(View.GONE);
             previewMessage.setVisibility(View.GONE);
         }
         // the delay is taken from LayoutTransition, as this class is set to automatically animate layout changes
@@ -718,7 +724,9 @@ public class ReplyLayout extends LoadView implements
     public void onImageBitmap(File file, Bitmap bitmap) {
         if (bitmap != null) {
             preview.setImageBitmap(bitmap);
-            preview.setVisibility(View.VISIBLE);
+            previewHolder.setVisibility(View.VISIBLE);
+
+            showReencodeImageHint();
         } else {
             openPreviewMessage(true, getString(R.string.reply_no_preview));
         }
@@ -785,6 +793,24 @@ public class ReplyLayout extends LoadView implements
         }
     }
 
+    public void onImageOptionsApplied(Reply reply) {
+        // Update the filename EditText. Otherwise it will change back the image name upon changing
+        // the message comment (because of the textwatcher)
+        fileName.setText(reply.fileName);
+
+        presenter.onImageOptionsApplied(reply);
+    }
+
+    private void showReencodeImageHint() {
+        if (!ChanSettings.reencodeHintShown.get()) {
+            String message = getContext().getString(R.string.click_image_for_extra_options);
+            HintPopup hintPopup = HintPopup.show(getContext(), preview, message, dp(-32), dp(16));
+            hintPopup.wiggle();
+
+            ChanSettings.reencodeHintShown.set(true);
+        }
+    }
+
     public interface ReplyLayoutCallback {
         void highlightPostNo(int no);
 
@@ -795,5 +821,7 @@ public class ReplyLayout extends LoadView implements
         void requestNewPostLoad();
 
         ChanThread getThread();
+
+        void showImageReencodingWindow();
     }
 }

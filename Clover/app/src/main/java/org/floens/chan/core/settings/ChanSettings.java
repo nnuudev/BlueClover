@@ -161,6 +161,7 @@ public class ChanSettings {
 
     public static final BooleanSetting crashReporting;
     public static final BooleanSetting useNewCaptchaWindow;
+    public static final BooleanSetting reencodeHintShown;
 
     public static final BooleanSetting dnsOverHttps;
 
@@ -254,6 +255,7 @@ public class ChanSettings {
 
         crashReporting = new BooleanSetting(p, "preference_crash_reporting", true);
         useNewCaptchaWindow = new BooleanSetting(p, "use_new_captcha_window", true);
+        reencodeHintShown = new BooleanSetting(p, "preference_reencode_hint_already_shown", false);
 
         dnsOverHttps = new BooleanSetting(p, "dns_over_https", false);
 
