@@ -349,7 +349,6 @@ public class ReplyLayout extends LoadView implements
 
     @Override
     public void onClick(View v) {
-        // TODO handle preview
         if (v == more) {
             presenter.onMoreClicked();
         } else if (v == attach) {
@@ -357,6 +356,7 @@ public class ReplyLayout extends LoadView implements
         } else if (v == submit) {
             presenter.onSubmitClicked();
         } else if (v == previewHolder) {
+            AndroidUtils.hideKeyboard(this);
             callback.showImageReencodingWindow();
         } else if (v == captchaHardReset) {
             if (authenticationLayout != null) {
@@ -689,7 +689,6 @@ public class ReplyLayout extends LoadView implements
 
     @Override
     public void openPreview(boolean show, File previewFile) {
-        preview.setClickable(false);
         if (show) {
             theme().clearDrawable.apply(attach);
         } else {
@@ -703,9 +702,6 @@ public class ReplyLayout extends LoadView implements
             previewHolder.setVisibility(View.GONE);
             previewMessage.setVisibility(View.GONE);
         }
-        // the delay is taken from LayoutTransition, as this class is set to automatically animate layout changes
-        // only allow the preview to be clicked if it is fully visible
-        postDelayed(() -> preview.setClickable(true), 300);
     }
 
     @Override
