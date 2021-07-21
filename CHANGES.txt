@@ -1,3 +1,9 @@
+New in v3.20 build 20210721_1120
+- Implement thread activity sort order.
+-- Merged from https://github.com/chandevel/Clover/pull/717.
+- Image re encoding.
+-- Merged from https://github.com/chandevel/Clover/pull/669.
+
 New in v3.20 build 20210720_1140
 - Added Furbooru as image search option on /trash/.
 - Image uploading progress.
