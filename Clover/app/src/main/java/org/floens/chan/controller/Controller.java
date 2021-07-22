@@ -29,6 +29,7 @@ import org.floens.chan.controller.transition.FadeInTransition;
 import org.floens.chan.controller.transition.FadeOutTransition;
 import org.floens.chan.ui.activity.StartActivity;
 import org.floens.chan.ui.controller.DoubleNavigationController;
+import org.floens.chan.ui.controller.ImageViewerNavigationController;
 import org.floens.chan.ui.toolbar.NavigationItem;
 import org.floens.chan.ui.toolbar.Toolbar;
 import org.floens.chan.utils.AndroidUtils;
@@ -218,6 +219,10 @@ public abstract class Controller {
         ((StartActivity) context).addController(controller);
     }
 
+    public boolean isAlreadyPresenting() {
+        return ((StartActivity) context).isControllerAdded(c -> c instanceof ImageViewerNavigationController);
+    }
+
     public void stopPresenting() {
         stopPresenting(true);
     }
@@ -279,5 +284,9 @@ public abstract class Controller {
         } else {
             parentView.addView(view, 0, view.getLayoutParams());
         }
+    }
+
+    public interface ControllerPredicate {
+        boolean test(Controller controller);
     }
 }

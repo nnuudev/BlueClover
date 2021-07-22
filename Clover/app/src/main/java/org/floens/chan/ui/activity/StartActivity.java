@@ -443,6 +443,16 @@ public class StartActivity extends AppCompatActivity implements
         stack.add(controller);
     }
 
+    public boolean isControllerAdded(Controller.ControllerPredicate predicate) {
+        for (Controller controller : stack) {
+            if (predicate.test(controller)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void removeController(Controller controller) {
         stack.remove(controller);
     }
