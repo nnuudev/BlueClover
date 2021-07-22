@@ -315,4 +315,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <attr name="singleLine" format="boolean" />
     </declare-styleable>
 
+    <!-- Hide Previous and Next on ExoPlayer -->
+    <style name="ExoMediaButton.Previous">
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="ExoMediaButton.Next">
+        <item name="android:visibility">gone</item>
+    </style>
+
 </resources>
