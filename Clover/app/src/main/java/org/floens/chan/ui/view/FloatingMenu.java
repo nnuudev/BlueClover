@@ -18,9 +18,6 @@
 package org.floens.chan.ui.view;
 
 import android.content.Context;
-
-import androidx.appcompat.widget.ListPopupWindow;
-
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +27,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.ListPopupWindow;
 
 import org.floens.chan.R;
 import org.floens.chan.utils.AndroidUtils;

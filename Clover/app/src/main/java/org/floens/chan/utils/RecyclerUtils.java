@@ -17,9 +17,9 @@
  */
 package org.floens.chan.utils;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.reflect.Field;
 

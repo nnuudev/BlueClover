@@ -21,10 +21,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
-
-import android.view.View;
 
 import org.floens.chan.R;
 import org.floens.chan.controller.Controller;

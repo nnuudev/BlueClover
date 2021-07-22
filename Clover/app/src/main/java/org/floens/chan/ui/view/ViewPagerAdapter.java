@@ -17,10 +17,10 @@
  */
 package org.floens.chan.ui.view;
 
-import androidx.viewpager.widget.PagerAdapter;
-
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.viewpager.widget.PagerAdapter;
 
 public abstract class ViewPagerAdapter extends PagerAdapter {
     @Override

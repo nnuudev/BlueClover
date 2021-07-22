@@ -19,15 +19,6 @@ package org.floens.chan.ui.controller;
 
 import android.content.Context;
 import android.content.DialogInterface;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.ItemTouchHelper;
-
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -35,6 +26,14 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.floens.chan.R;
 import org.floens.chan.controller.Controller;

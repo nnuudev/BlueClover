@@ -44,13 +44,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-
-import androidx.browser.customtabs.CustomTabsIntent;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.core.app.ActivityManagerCompat;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -59,6 +52,11 @@ import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.app.ActivityManagerCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.floens.chan.R;
 

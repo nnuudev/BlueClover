@@ -18,11 +18,10 @@
 package org.floens.chan.ui.controller;
 
 import android.content.Context;
-
-import androidx.slidingpanelayout.widget.SlidingPaneLayout;
-
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.slidingpanelayout.widget.SlidingPaneLayout;
 
 import org.floens.chan.R;
 import org.floens.chan.controller.Controller;

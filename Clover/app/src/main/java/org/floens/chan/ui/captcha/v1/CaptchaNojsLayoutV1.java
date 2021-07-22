@@ -20,9 +20,6 @@ package org.floens.chan.ui.captcha.v1;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
-
-import androidx.annotation.NonNull;
-
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.webkit.ConsoleMessage;
@@ -32,8 +29,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.annotation.NonNull;
+
 import org.floens.chan.core.model.orm.Loadable;
-import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.ui.captcha.AuthenticationLayoutCallback;
 import org.floens.chan.ui.captcha.AuthenticationLayoutInterface;

@@ -35,7 +35,6 @@ import android.widget.TextView;
 
 import org.floens.chan.R;
 import org.floens.chan.core.model.orm.Loadable;
-import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.ui.view.FixedRatioThumbnailView;
 import org.floens.chan.utils.AndroidUtils;

@@ -21,9 +21,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
-
-import androidx.appcompat.app.AlertDialog;
-
 import android.text.Editable;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
@@ -40,6 +37,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import org.floens.chan.R;
 import org.floens.chan.core.manager.BoardManager;

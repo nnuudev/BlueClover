@@ -18,15 +18,14 @@
 package org.floens.chan.ui.view;
 
 import android.content.Context;
+import android.util.AttributeSet;
+import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-
-import android.util.AttributeSet;
-import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 
 import org.floens.chan.ui.toolbar.Toolbar;
 

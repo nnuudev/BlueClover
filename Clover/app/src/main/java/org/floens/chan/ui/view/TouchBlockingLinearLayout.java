@@ -18,12 +18,11 @@
 package org.floens.chan.ui.view;
 
 import android.content.Context;
-
-import androidx.annotation.NonNull;
-
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
 
 public class TouchBlockingLinearLayout extends LinearLayout {
     public TouchBlockingLinearLayout(Context context) {

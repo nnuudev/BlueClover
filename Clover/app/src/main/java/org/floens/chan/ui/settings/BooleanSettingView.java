@@ -17,10 +17,10 @@
  */
 package org.floens.chan.ui.settings;
 
-import androidx.appcompat.widget.SwitchCompat;
-
 import android.view.View;
 import android.widget.CompoundButton;
+
+import androidx.appcompat.widget.SwitchCompat;
 
 import org.floens.chan.R;
 import org.floens.chan.core.settings.Setting;

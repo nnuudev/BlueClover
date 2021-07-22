@@ -20,9 +20,6 @@ package org.floens.chan.ui.toolbar;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -31,6 +28,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.floens.chan.R;
 import org.floens.chan.ui.drawable.ArrowMenuDrawable;

@@ -18,11 +18,10 @@
 package org.floens.chan.ui.layout;
 
 import android.content.Context;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import org.floens.chan.R;
 

@@ -2,12 +2,11 @@ package org.floens.chan.ui.layout;
 
 import android.app.Dialog;
 import android.content.Context;
-
-import com.google.android.material.textfield.TextInputLayout;
-
 import android.util.AttributeSet;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.floens.chan.R;
 import org.floens.chan.core.presenter.SitesSetupPresenter;

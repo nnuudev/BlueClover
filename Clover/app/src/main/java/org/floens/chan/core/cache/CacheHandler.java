@@ -17,11 +17,11 @@
  */
 package org.floens.chan.core.cache;
 
+import android.util.Pair;
+
 import androidx.annotation.AnyThread;
 import androidx.annotation.MainThread;
 import androidx.annotation.WorkerThread;
-
-import android.util.Pair;
 
 import org.floens.chan.utils.Logger;
 

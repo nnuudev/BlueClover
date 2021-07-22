@@ -29,15 +29,14 @@ import org.floens.chan.core.model.orm.Board;
 import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.model.orm.SavedReply;
 import org.floens.chan.core.settings.ChanSettings;
-import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.SiteActions;
 import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.core.site.http.HttpCall;
 import org.floens.chan.core.site.http.Reply;
 import org.floens.chan.core.site.http.ReplyResponse;
+import org.floens.chan.ui.activity.ImagePickDelegate;
 import org.floens.chan.ui.captcha.AuthenticationLayoutCallback;
 import org.floens.chan.ui.captcha.AuthenticationLayoutInterface;
-import org.floens.chan.ui.activity.ImagePickDelegate;
 import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.Logger;
 

@@ -18,11 +18,10 @@
 package org.floens.chan.ui.view;
 
 import android.content.Context;
+import android.util.AttributeSet;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.AttributeSet;
 
 /**
  * A RecyclerView with a GridLayoutManager that manages the span count by dividing the width of the

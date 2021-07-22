@@ -17,11 +17,11 @@
  */
 package org.floens.chan.core.model;
 
-import androidx.annotation.NonNull;
-
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 import org.floens.chan.core.settings.ChanSettings;
 import org.floens.chan.ui.cell.PostCell;

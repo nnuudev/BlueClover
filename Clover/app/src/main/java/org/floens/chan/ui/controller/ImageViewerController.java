@@ -40,11 +40,12 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.davemorrissey.labs.subscaleview.ImageViewState;
 
-import org.floens.chan.BuildConfig;
 import org.floens.chan.R;
 import org.floens.chan.controller.Controller;
 import org.floens.chan.core.model.PostImage;
@@ -73,7 +74,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import androidx.appcompat.app.AlertDialog;
 import okhttp3.HttpUrl;
 
 import static org.floens.chan.Chan.inject;

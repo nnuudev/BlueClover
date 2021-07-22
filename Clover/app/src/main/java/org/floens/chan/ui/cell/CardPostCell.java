@@ -20,14 +20,13 @@ package org.floens.chan.ui.cell;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-
-import androidx.cardview.widget.CardView;
-
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
 
 import org.floens.chan.R;
 import org.floens.chan.core.model.Post;

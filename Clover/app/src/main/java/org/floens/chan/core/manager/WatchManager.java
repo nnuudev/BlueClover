@@ -26,10 +26,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
+import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
-
-import android.text.TextUtils;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;

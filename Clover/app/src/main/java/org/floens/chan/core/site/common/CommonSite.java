@@ -19,11 +19,10 @@ package org.floens.chan.core.site.common;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import android.webkit.WebView;
 
 import org.floens.chan.core.model.Post;
 import org.floens.chan.core.model.json.site.SiteConfig;

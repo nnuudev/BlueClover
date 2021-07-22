@@ -18,13 +18,12 @@
 package org.floens.chan.core.site.parser;
 
 import android.graphics.Typeface;
-
-import androidx.annotation.AnyThread;
-
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
+
+import androidx.annotation.AnyThread;
 
 import org.floens.chan.core.model.Post;
 import org.floens.chan.core.model.PostLinkable;

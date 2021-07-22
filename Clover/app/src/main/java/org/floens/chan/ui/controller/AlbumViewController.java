@@ -18,13 +18,12 @@
 package org.floens.chan.ui.controller;
 
 import android.content.Context;
-
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.floens.chan.R;
 import org.floens.chan.controller.Controller;

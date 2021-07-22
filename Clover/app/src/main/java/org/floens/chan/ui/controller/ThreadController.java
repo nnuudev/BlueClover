@@ -22,11 +22,10 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
-
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.floens.chan.Chan;
 import org.floens.chan.R;

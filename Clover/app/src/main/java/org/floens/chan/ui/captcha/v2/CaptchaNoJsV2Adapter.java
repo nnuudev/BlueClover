@@ -2,16 +2,15 @@ package org.floens.chan.ui.captcha.v2;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.appcompat.widget.AppCompatImageView;
-
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.BaseAdapter;
+
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.floens.chan.R;
 

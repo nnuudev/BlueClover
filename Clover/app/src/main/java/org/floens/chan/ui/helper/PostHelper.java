@@ -20,12 +20,11 @@ package org.floens.chan.ui.helper;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-
-import androidx.annotation.Nullable;
-
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
+
+import androidx.annotation.Nullable;
 
 import org.floens.chan.R;
 import org.floens.chan.core.model.Post;

@@ -21,10 +21,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
+import android.widget.CompoundButton;
 
 import androidx.appcompat.widget.SwitchCompat;
-
-import android.widget.CompoundButton;
 
 import org.floens.chan.R;
 import org.floens.chan.core.settings.ChanSettings;

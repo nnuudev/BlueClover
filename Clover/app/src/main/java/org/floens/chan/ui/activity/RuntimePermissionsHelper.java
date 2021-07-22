@@ -26,9 +26,9 @@ import android.net.Uri;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AlertDialog;
 
 import org.floens.chan.R;
 import org.floens.chan.utils.AndroidUtils;

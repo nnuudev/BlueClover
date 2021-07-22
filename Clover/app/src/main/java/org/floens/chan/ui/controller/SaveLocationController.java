@@ -19,18 +19,17 @@ package org.floens.chan.ui.controller;
 
 import android.Manifest;
 import android.content.Context;
+import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import android.view.View;
 
 import org.floens.chan.R;
 import org.floens.chan.controller.Controller;
 import org.floens.chan.core.saver.FileWatcher;
 import org.floens.chan.core.settings.ChanSettings;
+import org.floens.chan.ui.activity.RuntimePermissionsHelper;
 import org.floens.chan.ui.activity.StartActivity;
 import org.floens.chan.ui.adapter.FilesAdapter;
-import org.floens.chan.ui.activity.RuntimePermissionsHelper;
 import org.floens.chan.ui.layout.FilesLayout;
 
 import java.io.File;
