@@ -726,6 +726,8 @@ public class ThreadPresenter implements
                     text.append("\nTroll Country: ").append(icon.name);
                 } else if (icon.url.toString().contains("country")) {
                     text.append("\nCountry: ").append(icon.name);
+                } else if (icon.url.toString().contains("flags")) {
+                    text.append("\nFlag: ").append(icon.name);
                 } else if (icon.url.toString().contains("minileaf")) {
                     text.append("\n4chan Pass Year: ").append(icon.name);
                 }
