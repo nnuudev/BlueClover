@@ -47,6 +47,7 @@ import java.util.List;
 
 import static org.floens.chan.utils.AndroidUtils.dp;
 import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
+import static org.floens.chan.utils.AndroidUtils.sp;
 
 public class CardPostCell extends CardView implements PostCellInterface, View.OnClickListener {
     private static final int COMMENT_MAX_LENGTH = 200;
@@ -62,6 +63,7 @@ public class CardPostCell extends CardView implements PostCellInterface, View.On
     private TextView title;
     private FastTextView comment;
     private TextView replies;
+    private PostIcons icons;
     private ImageView options;
     private View filterMatchColor;
 
@@ -89,6 +91,7 @@ public class CardPostCell extends CardView implements PostCellInterface, View.On
         title = findViewById(R.id.title);
         comment = findViewById(R.id.comment);
         replies = findViewById(R.id.replies);
+        icons = findViewById(R.id.icons);
         options = findViewById(R.id.options);
         setRoundItemBackground(options);
         filterMatchColor = findViewById(R.id.filter_match_color);
@@ -233,10 +236,25 @@ public class CardPostCell extends CardView implements PostCellInterface, View.On
         comment.setTextColor(theme.textPrimary);
 
         replies.setText(getResources().getString(R.string.card_stats, post.getReplies(), post.getImagesCount()));
+
+        icons.edit();
+        icons.set(PostIcons.STICKY, post.isSticky());
+        icons.set(PostIcons.CLOSED, post.isClosed());
+        icons.set(PostIcons.DELETED, post.deleted.get());
+        icons.set(PostIcons.ARCHIVED, post.isArchived());
+        icons.set(PostIcons.HTTP_ICONS_COMPACT, post.httpIcons != null);
+
+        if (post.httpIcons != null) {
+            icons.setHttpIcons(post.httpIcons, theme, icons.getHeight());
+        }
+
+        icons.apply();
     }
 
     private void unbindPost(Post post) {
         bound = false;
+
+        icons.cancelRequests();
     }
 
     private void setCompact(boolean compact) {
@@ -245,6 +263,9 @@ public class CardPostCell extends CardView implements PostCellInterface, View.On
         title.setTextSize(textSizeSp);
         comment.setTextSize(textSizeSp);
         replies.setTextSize(textSizeSp);
+        icons.setHeight(sp(textSizeSp));
+        icons.setSpacing(dp(4));
+        icons.setPadding(0, 0, 0, dp(4));
 
         int p = compact ? dp(3) : dp(8);
 

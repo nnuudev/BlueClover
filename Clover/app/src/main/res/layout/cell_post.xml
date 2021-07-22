@@ -53,9 +53,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:layout_toRightOf="@+id/thumbnail_view"
             android:paddingRight="25dp" />
 
-        <view
+        <org.floens.chan.ui.cell.PostIcons
             android:id="@+id/icons"
-            class="org.floens.chan.ui.cell.PostCell$PostIcons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

@@ -78,16 +78,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:paddingTop="8dp"
             android:textColor="?attr/text_color_primary" />
 
-        <TextView
-            android:id="@+id/replies"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="4dp"
-            android:singleLine="true"
-            android:textColor="?attr/text_color_secondary" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/replies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="4dp"
+                android:singleLine="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textColor="?attr/text_color_secondary" />
+
+            <org.floens.chan.ui.cell.PostIcons
+                android:id="@+id/icons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/replies" />
+
+        </RelativeLayout>
 
     </org.floens.chan.ui.layout.FixedRatioLinearLayout>
 
