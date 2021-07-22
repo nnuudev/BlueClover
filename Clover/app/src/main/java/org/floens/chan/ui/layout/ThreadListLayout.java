@@ -389,6 +389,8 @@ public class ThreadListLayout extends FrameLayout implements ReplyLayout.ReplyLa
             setRecyclerViewPadding();
             if (open) {
                 searchStatus.setText(R.string.search_empty);
+            } else {
+                threadListLayoutCallback.getToolbar().closeSearch();
             }
 
             attachToolbarScroll(!(open || replyOpen));
@@ -405,7 +407,7 @@ public class ThreadListLayout extends FrameLayout implements ReplyLayout.ReplyLa
         }
 
         if (query != null) {
-            int size = postAdapter.getDisplayList().size();
+            int size = getDisplayingPosts().size();
             searchStatus.setText(getContext().getString(R.string.search_results,
                     getContext().getResources().getQuantityString(R.plurals.posts, size, size),
                     query));

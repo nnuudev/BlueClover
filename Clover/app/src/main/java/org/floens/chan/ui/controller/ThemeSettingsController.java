@@ -21,12 +21,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.view.ContextThemeWrapper;
-
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -38,6 +32,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.floens.chan.R;
 import org.floens.chan.controller.Controller;
@@ -328,11 +327,6 @@ public class ThemeSettingsController extends Controller implements View.OnClickL
 
                 @Override
                 public void onSearchVisibilityChanged(NavigationItem item, boolean visible) {
-                }
-
-                @Override
-                public String getSearchHint(NavigationItem item) {
-                    return null;
                 }
 
                 @Override

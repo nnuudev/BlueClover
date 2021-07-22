@@ -18,10 +18,6 @@
 package org.floens.chan.ui.layout;
 
 import android.content.Context;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -33,14 +29,14 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.floens.chan.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class SelectLayout<T> extends LinearLayout implements SearchLayout.SearchLayoutCallback, View.OnClickListener {
     private SearchLayout searchLayout;
@@ -74,10 +70,6 @@ public class SelectLayout<T> extends LinearLayout implements SearchLayout.Search
 
         searchLayout = findViewById(R.id.search_layout);
         searchLayout.setCallback(this);
-        searchLayout.setHint(getString(R.string.search_hint));
-        searchLayout.setTextColor(getAttrColor(getContext(), R.attr.text_color_primary));
-        searchLayout.setHintColor(getAttrColor(getContext(), R.attr.text_color_hint));
-        searchLayout.setClearButtonImage(R.drawable.ic_clear_black_24dp);
 
         checkAllButton = findViewById(R.id.select_all);
         checkAllButton.setOnClickListener(this);
@@ -100,17 +92,6 @@ public class SelectLayout<T> extends LinearLayout implements SearchLayout.Search
 
     public List<SelectItem<T>> getItems() {
         return items;
-    }
-
-    public List<SelectItem<T>> getSelectedItems() {
-        List<SelectItem<T>> result = new ArrayList<>(items.size());
-        for (int i = 0; i < items.size(); i++) {
-            SelectItem<T> item = items.get(i);
-            if (item.checked) {
-                result.add(item);
-            }
-        }
-        return result;
     }
 
     @Override

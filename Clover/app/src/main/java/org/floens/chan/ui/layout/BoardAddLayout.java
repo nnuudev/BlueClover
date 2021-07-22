@@ -18,11 +18,6 @@
 package org.floens.chan.ui.layout;
 
 import android.content.Context;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,11 +28,12 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.floens.chan.R;
 import org.floens.chan.core.presenter.BoardSetupPresenter;
-
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class BoardAddLayout extends LinearLayout implements SearchLayout.SearchLayoutCallback, BoardSetupPresenter.AddCallback, View.OnClickListener {
     private BoardSetupPresenter presenter;
@@ -76,10 +72,7 @@ public class BoardAddLayout extends LinearLayout implements SearchLayout.SearchL
 
         // View setup
         search.setCallback(this);
-        search.setHint(getString(R.string.search_hint));
-        search.setTextColor(getAttrColor(getContext(), R.attr.text_color_primary));
-        search.setHintColor(getAttrColor(getContext(), R.attr.text_color_hint));
-        search.setClearButtonImage(R.drawable.ic_clear_black_24dp);
+
         checkAllButton.setOnClickListener(this);
         suggestionsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         suggestionsRecycler.setAdapter(suggestionsAdapter);

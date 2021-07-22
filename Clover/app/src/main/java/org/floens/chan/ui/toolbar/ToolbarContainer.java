@@ -141,14 +141,12 @@ public class ToolbarContainer extends FrameLayout {
             }
         }
 
-        if (animation == ToolbarPresenter.AnimationStyle.NONE) {
-            setArrowProgress(1f, !currentView.item.hasArrow());
-        }
+        setArrowProgress(1f, !currentView.item.hasArrow());
 
         itemView.attach();
     }
 
-    public void update(NavigationItem item, boolean current) {
+    public void update(NavigationItem item) {
         // TODO
         View view = viewForItem(item);
         if (view != null) {
@@ -168,10 +166,7 @@ public class ToolbarContainer extends FrameLayout {
 
     public View viewForItem(NavigationItem item) {
         ItemView itemView = itemViewForItem(item);
-        if (itemView == null) {
-            return null;
-        }
-        return itemView.view;
+        return itemView == null ? null : itemView.view;
     }
 
     private ItemView itemViewForItem(NavigationItem item) {
@@ -425,7 +420,7 @@ public class ToolbarContainer extends FrameLayout {
         }
 
         public void attach() {
-            if (item.menu != null) {
+            if (item.menu != null && menuView != null) {
                 menuView.attach(item.menu);
             }
         }
@@ -536,8 +531,9 @@ public class ToolbarContainer extends FrameLayout {
                 searchLayout.setText(item.searchText);
             }
 
-            searchLayout.setHint(callback.searchHint(item));
+            searchLayout.setCatalogSearchColors();
             searchLayout.setPadding(dp(16), searchLayout.getPaddingTop(), searchLayout.getPaddingRight(), searchLayout.getPaddingBottom());
+            searchLayout.openKeyboard();
 
             return searchLayout;
         }
@@ -545,7 +541,5 @@ public class ToolbarContainer extends FrameLayout {
 
     public interface Callback {
         void searchInput(String input);
-
-        String searchHint(NavigationItem item);
     }
 }

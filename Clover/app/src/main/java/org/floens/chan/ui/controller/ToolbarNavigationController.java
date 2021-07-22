@@ -20,7 +20,6 @@ package org.floens.chan.ui.controller;
 import android.content.Context;
 import android.widget.FrameLayout;
 
-import org.floens.chan.R;
 import org.floens.chan.controller.Controller;
 import org.floens.chan.controller.ControllerTransition;
 import org.floens.chan.controller.NavigationController;
@@ -97,11 +96,6 @@ public abstract class ToolbarNavigationController extends NavigationController i
     @Override
     public boolean onBack() {
         return toolbar.closeSearch() || super.onBack();
-    }
-
-    @Override
-    public String getSearchHint(NavigationItem item) {
-        return context.getString(R.string.search_hint);
     }
 
     @Override
