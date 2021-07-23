@@ -109,6 +109,10 @@ public class ImageViewerController extends Controller implements ImageViewerPres
     private OptionalSwipeViewPager pager;
     private LoadingBar loadingBar;
 
+    private static final int SUBITEM_TRANSPARENCY_TOGGLE_ID = 220;
+    private static final int SUBITEM_ROTATE_IMAGE_ID = 221;
+    private ToolbarMenu toolbarMenu;
+
     public ImageViewerController(Context context, Toolbar toolbar) {
         super(context);
         inject(this);
@@ -139,10 +143,10 @@ public class ImageViewerController extends Controller implements ImageViewerPres
         overflowBuilder.withSubItem(R.string.action_share, this::shareClicked);
         overflowBuilder.withSubItem(R.string.action_search_image, this::searchClicked);
         overflowBuilder.withSubItem(R.string.action_download_album, this::downloadAlbumClicked);
-        overflowBuilder.withSubItem(R.string.action_transparency_toggle, this::toggleTransparency);
-        overflowBuilder.withSubItem(R.string.action_rotate_image, this::setOrientation);
+        overflowBuilder.withSubItem(SUBITEM_TRANSPARENCY_TOGGLE_ID, R.string.action_transparency_toggle, this::toggleTransparency);
+        overflowBuilder.withSubItem(SUBITEM_ROTATE_IMAGE_ID, R.string.action_rotate_image, this::setOrientation);
 
-        overflowBuilder.build().build();
+        toolbarMenu = overflowBuilder.build().build();
 
         // View setup
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -227,13 +231,13 @@ public class ImageViewerController extends Controller implements ImageViewerPres
     }
 
     private void setOrientation(ToolbarMenuSubItem item) {
-        if (presenter.getCurrentPostImage().type == PostImage.Type.MOVIE)
-            return;
         List<FloatingMenuItem> orientations = Arrays.asList(
-                new FloatingMenuItem(0, "No rotation"),
+                new FloatingMenuItem(0, "Reset view"),
                 new FloatingMenuItem(90, "Rotate 90 deg."),
                 new FloatingMenuItem(180, "Rotate 180 deg."),
-                new FloatingMenuItem(270, "Rotate 270 deg.")
+                new FloatingMenuItem(270, "Rotate 270 deg."),
+                new FloatingMenuItem(-1, "Flip horizontally"),
+                new FloatingMenuItem(-2, "Flip vertically")
         );
         FloatingMenu menu = new FloatingMenu(context, view, orientations);
         menu.setAdapter(new BaseAdapter() {
@@ -336,6 +340,13 @@ public class ImageViewerController extends Controller implements ImageViewerPres
         }
         navigation.subtitle = (index + 1) + "/" + count;
         ((ToolbarNavigationController) navigationController).toolbar.updateTitle(navigation);
+
+        // TODO this probably should be a separate function
+        if (toolbarMenu == null) return;
+        MultiImageView.Mode imageMode = getImageMode(postImage);
+        boolean enabled = !spoiler && (imageMode == MultiImageView.Mode.BIGIMAGE || imageMode == MultiImageView.Mode.GIF);
+        toolbarMenu.findSubItem(SUBITEM_TRANSPARENCY_TOGGLE_ID).enabled = enabled;
+        toolbarMenu.findSubItem(SUBITEM_ROTATE_IMAGE_ID).enabled = enabled;
     }
 
     public void scrollToImage(PostImage postImage) {

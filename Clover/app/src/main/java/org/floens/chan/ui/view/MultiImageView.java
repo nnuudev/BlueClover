@@ -591,37 +591,61 @@ public class MultiImageView extends FrameLayout implements View.OnClickListener,
         GifImageView gifView = findGifImageView();
         if (imageView == null && gifView == null) return;
         boolean isImage = imageView != null && gifView == null;
-        if (isImage && imageView.getOrientation() != orientation) {
-            imageView.setOrientation(orientation);
+        if (isImage) {
+            if (orientation < 0) {
+                if (orientation == -1) {
+                    imageView.setScaleX(-1f);
+                    imageView.setScaleY(1f);
+                } else {
+                    imageView.setScaleX(1f);
+                    imageView.setScaleY(-1f);
+                }
+            } else {
+                imageView.setScaleX(1f);
+                imageView.setScaleY(1f);
+                imageView.setOrientation(orientation);
 
-            float scale;
-            if (orientation == 0 || orientation == 180)
-                scale = Math.min(getWidth() / (float) imageView.getSWidth(), getHeight() / (float) imageView.getSHeight());
-            else
-                scale = Math.min(getWidth() / (float) imageView.getSHeight(), getHeight() / (float) imageView.getSWidth());
-            imageView.setMinScale(scale);
+                float scale;
+                if (orientation == 0 || orientation == 180)
+                    scale = Math.min(getWidth() / (float) imageView.getSWidth(), getHeight() / (float) imageView.getSHeight());
+                else
+                    scale = Math.min(getWidth() / (float) imageView.getSHeight(), getHeight() / (float) imageView.getSWidth());
+                imageView.setMinScale(scale);
 
-            if (imageView.getMaxScale() < scale * 2f) {
-                imageView.setMaxScale(scale * 2f);
+                if (imageView.getMaxScale() < scale * 2f) {
+                    imageView.setMaxScale(scale * 2f);
+                }
             }
         } else if (gifView != null) {
-            if (orientation == 0) {
-                gifView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            } else {
-                gifView.setScaleType(ImageView.ScaleType.MATRIX);
-                int iw = gifView.getDrawable().getIntrinsicWidth();
-                int ih = gifView.getDrawable().getIntrinsicHeight();
-                RectF dstRect = new RectF(0, 0, gifView.getWidth(), gifView.getHeight());
-                Matrix matrix = new Matrix();
-                if (orientation == 90 || orientation == 270) {
-                    matrix.setRectToRect(new RectF(0, 0, ih, iw), dstRect, Matrix.ScaleToFit.CENTER);
-                    matrix.preRotate(90f, ih/2, ih/2);
+            if (orientation < 0) {
+                if (orientation == -1) {
+                    gifView.setScaleX(-1f);
+                    gifView.setScaleY(1f);
                 } else {
-                    matrix.setRectToRect(new RectF(0, 0, iw, ih), dstRect, Matrix.ScaleToFit.CENTER);
+                    gifView.setScaleX(1f);
+                    gifView.setScaleY(-1f);
                 }
-                if (orientation >= 180)
-                    matrix.preRotate(180f, iw/2, ih/2);
-                gifView.setImageMatrix(matrix);
+            } else {
+                gifView.setScaleX(1f);
+                gifView.setScaleY(1f);
+                if (orientation == 0) {
+                    gifView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                } else {
+                    gifView.setScaleType(ImageView.ScaleType.MATRIX);
+                    int iw = gifView.getDrawable().getIntrinsicWidth();
+                    int ih = gifView.getDrawable().getIntrinsicHeight();
+                    RectF dstRect = new RectF(0, 0, gifView.getWidth(), gifView.getHeight());
+                    Matrix matrix = new Matrix();
+                    if (orientation == 90 || orientation == 270) {
+                        matrix.setRectToRect(new RectF(0, 0, ih, iw), dstRect, Matrix.ScaleToFit.CENTER);
+                        matrix.preRotate(90f, ih / 2, ih / 2);
+                    } else {
+                        matrix.setRectToRect(new RectF(0, 0, iw, ih), dstRect, Matrix.ScaleToFit.CENTER);
+                    }
+                    if (orientation >= 180)
+                        matrix.preRotate(180f, iw / 2, ih / 2);
+                    gifView.setImageMatrix(matrix);
+                }
             }
         }
     }
