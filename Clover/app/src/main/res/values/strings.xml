@@ -279,6 +279,7 @@ If the pattern matches then the post can be hidden or highlighted.<br>
     <string name="post_text_copied">Text copied to clipboard</string>
     <string name="url_text_copied">URL copied to clipboard</string>
     <string name="post_quote">Quote</string>
+    <string name="post_web_search">Web search</string>
     <string name="post_quote_text">Quote text</string>
     <string name="post_info">Info</string>
     <string name="post_info_title">Post info</string>

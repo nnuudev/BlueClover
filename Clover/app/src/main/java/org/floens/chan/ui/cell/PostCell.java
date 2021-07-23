@@ -18,7 +18,9 @@
 package org.floens.chan.ui.cell;
 
 import android.annotation.TargetApi;
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.text.Layout;
 import android.text.Spannable;
@@ -71,6 +73,7 @@ import static android.text.TextUtils.isEmpty;
 import static org.floens.chan.utils.AndroidUtils.ROBOTO_CONDENSED_REGULAR;
 import static org.floens.chan.utils.AndroidUtils.dp;
 import static org.floens.chan.utils.AndroidUtils.getString;
+import static org.floens.chan.utils.AndroidUtils.openIntent;
 import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
 import static org.floens.chan.utils.AndroidUtils.sp;
 
@@ -437,11 +440,20 @@ public class PostCell extends LinearLayout implements PostCellInterface {
 
                 comment.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
                     private MenuItem quoteMenuItem;
+                    private MenuItem webSearchItem;
 
                     @Override
                     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                        quoteMenuItem = menu.add(Menu.NONE, R.id.post_selection_action_quote,
-                                0, R.string.post_quote);
+                        quoteMenuItem = menu.add(Menu.NONE, R.id.post_selection_action_quote, 0, R.string.post_quote);
+                        webSearchItem = menu.add(Menu.NONE, R.id.post_selection_action_search, 1, R.string.post_web_search);
+                        if (Build.VERSION.SDK_INT < 23) {
+                            // SDK 23 (Android 6.0) introduced the floating toolbar, old versions
+                            // use the old one, and the buttons DON'T work if they're hidden
+                            // under the three dots, because we lose the selection
+                            quoteMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                            webSearchItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                        }
+
                         return true;
                     }
 
@@ -452,11 +464,19 @@ public class PostCell extends LinearLayout implements PostCellInterface {
 
                     @Override
                     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                        if (item == null) return false;
+                        // ensure that the start and end are in the right order, in case the selection start/end are flipped
+                        int start = Math.min(comment.getSelectionEnd(), comment.getSelectionStart());
+                        int end = Math.max(comment.getSelectionEnd(), comment.getSelectionStart());
+                        CharSequence selection = comment.getText().subSequence(start, end);
                         if (item.getItemId() == quoteMenuItem.getItemId()) {
-                            CharSequence selection = comment.getText().subSequence(
-                                    comment.getSelectionStart(), comment.getSelectionEnd());
                             callback.onPostSelectionQuoted(post, selection);
                             mode.finish();
+                            return true;
+                        } else if (item.getItemId() == webSearchItem.getItemId()) {
+                            Intent searchIntent = new Intent(Intent.ACTION_WEB_SEARCH);
+                            searchIntent.putExtra(SearchManager.QUERY, selection.toString());
+                            openIntent(searchIntent);
                             return true;
                         }
 
