@@ -24,6 +24,8 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -34,10 +36,13 @@ import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -70,6 +75,7 @@ import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.Logger;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -129,10 +135,12 @@ public class ImageViewerController extends Controller implements ImageViewerPres
 
         NavigationItem.MenuOverflowBuilder overflowBuilder = menuBuilder.withOverflow();
         overflowBuilder.withSubItem(R.string.action_open_browser, this::openBrowserClicked);
+        overflowBuilder.withSubItem(R.string.action_copy_url, this::clipboardURL);
         overflowBuilder.withSubItem(R.string.action_share, this::shareClicked);
         overflowBuilder.withSubItem(R.string.action_search_image, this::searchClicked);
         overflowBuilder.withSubItem(R.string.action_download_album, this::downloadAlbumClicked);
         overflowBuilder.withSubItem(R.string.action_transparency_toggle, this::toggleTransparency);
+        overflowBuilder.withSubItem(R.string.action_rotate_image, this::setOrientation);
 
         overflowBuilder.build().build();
 
@@ -191,6 +199,14 @@ public class ImageViewerController extends Controller implements ImageViewerPres
         }
     }
 
+    private void clipboardURL(ToolbarMenuSubItem item) {
+        PostImage postImage = presenter.getCurrentPostImage();
+        ClipboardManager clipboard = (ClipboardManager) AndroidUtils.getAppContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("File URL", postImage.imageUrl.toString());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(context, R.string.post_text_copied, Toast.LENGTH_SHORT).show();
+    }
+
     private void shareClicked(ToolbarMenuSubItem item) {
         presenter.shareClicked(presenter.getCurrentPostImage());
     }
@@ -208,6 +224,54 @@ public class ImageViewerController extends Controller implements ImageViewerPres
 
     private void toggleTransparency(ToolbarMenuSubItem item) {
         ((ImageViewerAdapter) pager.getAdapter()).toggleTransparency(presenter.getCurrentPostImage());
+    }
+
+    private void setOrientation(ToolbarMenuSubItem item) {
+        if (presenter.getCurrentPostImage().type == PostImage.Type.MOVIE)
+            return;
+        List<FloatingMenuItem> orientations = Arrays.asList(
+                new FloatingMenuItem(0, "No rotation"),
+                new FloatingMenuItem(90, "Rotate 90 deg."),
+                new FloatingMenuItem(180, "Rotate 180 deg."),
+                new FloatingMenuItem(270, "Rotate 270 deg.")
+        );
+        FloatingMenu menu = new FloatingMenu(context, view, orientations);
+        menu.setAdapter(new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return orientations.size();
+            }
+
+            @Override
+            public String getItem(int position) {
+                return orientations.get(position).getText();
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return position;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView textView = (TextView) (convertView != null
+                        ? convertView
+                        : LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.toolbar_menu_item, parent, false));
+                textView.setText(getItem(position));
+                return textView;
+            }
+        });
+        menu.setCallback(new FloatingMenu.FloatingMenuCallback() {
+            @Override
+            public void onFloatingMenuItemClicked(FloatingMenu menu, FloatingMenuItem item) {
+                ((ImageViewerAdapter) pager.getAdapter()).setOrientation(presenter.getCurrentPostImage(), (int) item.getId());
+            }
+
+            @Override
+            public void onFloatingMenuDismissed(FloatingMenu menu) { }
+        });
+        menu.show();
     }
 
     @Override

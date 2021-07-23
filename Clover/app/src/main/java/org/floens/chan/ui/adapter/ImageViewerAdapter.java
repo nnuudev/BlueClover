@@ -121,6 +121,11 @@ public class ImageViewerAdapter extends ViewPagerAdapter {
         view.toggleTransparency();
     }
 
+    public void setOrientation(PostImage postImage, int orientation) {
+        MultiImageView view = find(postImage);
+        view.setOrientation(orientation);
+    }
+
     private static class ModeChange {
         public MultiImageView.Mode mode;
         public PostImage postImage;

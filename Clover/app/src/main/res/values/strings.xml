@@ -96,9 +96,11 @@ Re-enable this permission in the app settings if you permanently disabled it."</
     <string name="action_reload">Reload</string>
     <string name="action_pin">Bookmark</string>
     <string name="action_open_browser">Open in a browser</string>
+    <string name="action_copy_url">Copy URL</string>
     <string name="action_share">Share</string>
     <string name="action_download_album">Download album</string>
     <string name="action_transparency_toggle">Toggle opacity</string>
+    <string name="action_rotate_image">Rotate image</string>
     <string name="action_search">Search</string>
     <string name="action_search_image">Image search</string>
     <string name="action_switch_catalog">Catalog mode</string>
@@ -274,6 +276,7 @@ If the pattern matches then the post can be hidden or highlighted.<br>
     <string name="post_highlight_tripcode">Highlight tripcode</string>
     <string name="post_filter_tripcode">Filter tripcode</string>
     <string name="post_text_copied">Text copied to clipboard</string>
+    <string name="url_text_copied">URL copied to clipboard</string>
     <string name="post_quote">Quote</string>
     <string name="post_quote_text">Quote text</string>
     <string name="post_info">Info</string>

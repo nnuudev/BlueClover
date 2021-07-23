@@ -22,7 +22,9 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.PorterDuff;
+import android.graphics.RectF;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -582,6 +584,46 @@ public class MultiImageView extends FrameLayout implements View.OnClickListener,
             gifView.getDrawable().setColorFilter(backgroundColor, PorterDuff.Mode.DST_OVER);
         }
         backgroundToggle = !backgroundToggle;
+    }
+
+    public void setOrientation(int orientation) {
+        CustomScaleImageView imageView = findScaleImageView();
+        GifImageView gifView = findGifImageView();
+        if (imageView == null && gifView == null) return;
+        boolean isImage = imageView != null && gifView == null;
+        if (isImage && imageView.getOrientation() != orientation) {
+            imageView.setOrientation(orientation);
+
+            float scale;
+            if (orientation == 0 || orientation == 180)
+                scale = Math.min(getWidth() / (float) imageView.getSWidth(), getHeight() / (float) imageView.getSHeight());
+            else
+                scale = Math.min(getWidth() / (float) imageView.getSHeight(), getHeight() / (float) imageView.getSWidth());
+            imageView.setMinScale(scale);
+
+            if (imageView.getMaxScale() < scale * 2f) {
+                imageView.setMaxScale(scale * 2f);
+            }
+        } else if (gifView != null) {
+            if (orientation == 0) {
+                gifView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            } else {
+                gifView.setScaleType(ImageView.ScaleType.MATRIX);
+                int iw = gifView.getDrawable().getIntrinsicWidth();
+                int ih = gifView.getDrawable().getIntrinsicHeight();
+                RectF dstRect = new RectF(0, 0, gifView.getWidth(), gifView.getHeight());
+                Matrix matrix = new Matrix();
+                if (orientation == 90 || orientation == 270) {
+                    matrix.setRectToRect(new RectF(0, 0, ih, iw), dstRect, Matrix.ScaleToFit.CENTER);
+                    matrix.preRotate(90f, ih/2, ih/2);
+                } else {
+                    matrix.setRectToRect(new RectF(0, 0, iw, ih), dstRect, Matrix.ScaleToFit.CENTER);
+                }
+                if (orientation >= 180)
+                    matrix.preRotate(180f, iw/2, ih/2);
+                gifView.setImageMatrix(matrix);
+            }
+        }
     }
 
     private void setBitImageFileInternal(File file, boolean tiling, final Mode forMode) {
