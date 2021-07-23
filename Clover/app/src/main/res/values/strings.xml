@@ -26,6 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="undo">Undo</string>
     <string name="save">Save</string>
 
+    <string name="mark_as_my_post">Mark as my post</string>
+    <string name="unmark_as_my_post">Unmark post</string>
+
     <string name="permission_app_settings">App settings</string>
     <string name="permission_grant">Grant</string>
 

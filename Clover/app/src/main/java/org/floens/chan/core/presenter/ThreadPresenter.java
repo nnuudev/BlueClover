@@ -82,6 +82,7 @@ public class ThreadPresenter implements
     private static final int POST_OPTION_OPEN_BROWSER = 13;
     private static final int POST_OPTION_FILTER_TRIPCODE = 14;
     private static final int POST_OPTION_EXTRA = 15;
+    private static final int POST_OPTION_UNSAVE = 16;
 
     private ThreadPresenterCallback threadPresenterCallback;
     private WatchManager watchManager;
@@ -482,8 +483,8 @@ public class ThreadPresenter implements
             }
         }
 
-        if (loadable.site.feature(Site.Feature.POST_DELETE) &&
-                databaseManager.getDatabaseSavedReplyManager().isSaved(post.board, post.no)) {
+        boolean isSaved = databaseManager.getDatabaseSavedReplyManager().isSaved(post.board, post.no);
+        if (loadable.site.feature(Site.Feature.POST_DELETE) && isSaved) {
             menu.add(new FloatingMenuItem(POST_OPTION_DELETE, R.string.post_delete));
         }
 
@@ -502,9 +503,8 @@ public class ThreadPresenter implements
         extraMenu.add(new FloatingMenuItem(POST_OPTION_SHARE, R.string.post_share));
         extraMenu.add(new FloatingMenuItem(POST_OPTION_COPY_TEXT, R.string.post_copy_text));
 
-        if (ChanSettings.developer.get()) {
-            extraMenu.add(new FloatingMenuItem(POST_OPTION_SAVE, "Save"));
-        }
+        extraMenu.add(new FloatingMenuItem(isSaved ? POST_OPTION_UNSAVE : POST_OPTION_SAVE,
+                isSaved ? R.string.unmark_as_my_post : R.string.mark_as_my_post));
 
         return POST_OPTION_EXTRA;
     }
@@ -548,7 +548,15 @@ public class ThreadPresenter implements
             case POST_OPTION_SAVE:
                 SavedReply savedReply = SavedReply.fromSiteBoardNoPassword(
                         post.board.site, post.board, post.no, "");
-                databaseManager.runTaskAsync(databaseManager.getDatabaseSavedReplyManager().saveReply(savedReply));
+                databaseManager.runTask(databaseManager.getDatabaseSavedReplyManager().saveReply(savedReply));
+                requestData();
+                break;
+            case POST_OPTION_UNSAVE:
+                SavedReply result = databaseManager.runTask(databaseManager.getDatabaseSavedReplyManager().findSavedReply(post.board, post.no));
+                if (result != null) {
+                    databaseManager.runTask(databaseManager.getDatabaseSavedReplyManager().unsaveReply(result));
+                    requestData();
+                }
                 break;
             case POST_OPTION_PIN:
                 Loadable pinLoadable = databaseManager.getDatabaseLoadableManager().get(Loadable.forThread(loadable.site, post.board, post.no));
