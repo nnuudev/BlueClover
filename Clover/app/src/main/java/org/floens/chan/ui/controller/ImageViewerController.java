@@ -42,9 +42,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -252,32 +250,6 @@ public class ImageViewerController extends Controller implements ImageViewerPres
                 new FloatingMenuItem(-2, "Flip vertically")
         );
         FloatingMenu menu = new FloatingMenu(context, view, orientations);
-        menu.setAdapter(new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return orientations.size();
-            }
-
-            @Override
-            public String getItem(int position) {
-                return orientations.get(position).getText();
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return position;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                TextView textView = (TextView) (convertView != null
-                        ? convertView
-                        : LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.toolbar_menu_item, parent, false));
-                textView.setText(getItem(position));
-                return textView;
-            }
-        });
         menu.setCallback(new FloatingMenu.FloatingMenuCallback() {
             @Override
             public void onFloatingMenuItemClicked(FloatingMenu menu, FloatingMenuItem item) {
