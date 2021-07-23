@@ -1,3 +1,10 @@
+New in v3.20 build 20210723_1110
+- Added board flags to catalog view.
+- Added Copy URL and Rotate options to images.
+- External archive quick access (opens in the browser).
+- Immersive image view (enable in Settings > Appearance).
+-- Used some code from https://github.com/Adamantcheese/Kuroba.
+
 New in v3.20 build 20210721_1120
 - Implement thread activity sort order.
 -- Merged from https://github.com/chandevel/Clover/pull/717.
