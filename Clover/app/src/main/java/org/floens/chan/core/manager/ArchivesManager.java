@@ -19,6 +19,10 @@ package org.floens.chan.core.manager;
 import android.annotation.SuppressLint;
 import android.util.Pair;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.floens.chan.Chan;
 import org.floens.chan.core.model.orm.Board;
 import org.floens.chan.core.site.sites.chan4.Chan4;
 import org.floens.chan.utils.IOUtils;
@@ -51,12 +55,10 @@ public class ArchivesManager {
         } catch (Exception ignored) { }
 
         // fresh copy request, in case of updates (infrequent)
-        //NetUtils.makeJsonRequest(
-        //        HttpUrl.get("https://4chenz.github.io/archives.json/archives.json"),
-        //        this,
-        //        this,
-        //        NetUtilsClasses.ONE_DAY_CACHE
-        //);
+        // TODO response should be cached, instead of downloading it every time
+        RequestQueue requestQueue = Chan.getInstance().injector().instance(RequestQueue.class);
+        requestQueue.add(new JsonArrayRequest("https://4chenz.github.io/archives.json/archives.json",
+                jsonArray -> archivesList = jsonArray, null));
     }
 
     public List<Pair<String, String>> archivesForBoard(Board b) {
