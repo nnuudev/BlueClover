@@ -294,18 +294,6 @@ public class ThreadListLayout extends FrameLayout implements ReplyLayout.ReplyLa
     }
 
     public void openReply(boolean open) {
-        // TODO find a better way to add the reply window to the navegation
-        // this dirty workaround allows to close the reply window (and the non-swippable captcha)
-        // by forcing an arrow when opening the reply window; since we also want the hamburger
-        // thingy, we need to restore it if we're on the catalog
-        // it's not a good solution because if you open a thread when you're writing the reply and
-        // you return to the reply window, the navigation will restore the hamburger
-        // then again, it's not much of a critical error
-        if (open) {
-            threadListLayoutCallback.getToolbar().getArrowMenuDrawable().setProgress(1.0f);
-        } else if (!searchOpen && (showingThread == null || showingThread.loadable == null || showingThread.loadable.isCatalogMode())) {
-            threadListLayoutCallback.getToolbar().getArrowMenuDrawable().setProgress(0.0f);
-        }
         if (showingThread != null && replyOpen != open) {
             this.replyOpen = open;
 
