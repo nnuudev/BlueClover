@@ -220,7 +220,7 @@ public class ImageViewerController extends Controller implements ImageViewerPres
         ClipboardManager clipboard = (ClipboardManager) AndroidUtils.getAppContext().getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("File URL", postImage.imageUrl.toString());
         clipboard.setPrimaryClip(clip);
-        Toast.makeText(context, R.string.post_text_copied, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.url_text_copied, Toast.LENGTH_SHORT).show();
     }
 
     private void shareClicked(ToolbarMenuSubItem item) {
