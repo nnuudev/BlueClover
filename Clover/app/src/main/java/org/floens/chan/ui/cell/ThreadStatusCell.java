@@ -150,7 +150,7 @@ public class ThreadStatusCell extends LinearLayout implements View.OnClickListen
                         finalText = TextUtils.concat(finalText, " / " + ips);
                     }
 
-                    if (!op.isArchived() && op.board.site.getClass() == Chan4.class) {
+                    if (!op.isArchived() && op.board.site instanceof Chan4) {
                         finalText = TextUtils.concat(finalText, Chan4PagePositionFooter.getPage(chanThread.op.boardId, chanThread.op.no));
                     }
                 }
