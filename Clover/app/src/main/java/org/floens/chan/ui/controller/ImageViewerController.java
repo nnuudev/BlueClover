@@ -660,6 +660,8 @@ public class ImageViewerController extends Controller implements ImageViewerPres
         ViewGroup.LayoutParams params = navigationController.getToolbar().getLayoutParams();
         params.height = 0;
         navigationController.getToolbar().setLayoutParams(params);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+            navigationController.getToolbar().bringToFront();
     }
 
     @Override
