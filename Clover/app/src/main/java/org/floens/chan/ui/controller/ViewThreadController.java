@@ -21,7 +21,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -33,7 +35,9 @@ import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.model.orm.Pin;
 import org.floens.chan.core.presenter.ThreadPresenter;
 import org.floens.chan.core.settings.ChanSettings;
+import org.floens.chan.core.site.sites.chan4.Chan4;
 import org.floens.chan.ui.helper.HintPopup;
+import org.floens.chan.ui.layout.ArchivesLayout;
 import org.floens.chan.ui.layout.ThreadLayout;
 import org.floens.chan.ui.toolbar.NavigationItem;
 import org.floens.chan.ui.toolbar.ToolbarMenu;
@@ -87,7 +91,11 @@ public class ViewThreadController extends ThreadController implements ThreadLayo
         menuOverflowBuilder
                 .withSubItem(R.string.action_search, this::searchClicked)
                 .withSubItem(R.string.action_reload, this::reloadClicked)
-                .withSubItem(R.string.action_open_browser, this::openBrowserClicked)
+                .withSubItem(R.string.action_open_browser, this::openBrowserClicked);
+        if (loadable.site instanceof Chan4) { //archives are 4chan only
+            menuOverflowBuilder.withSubItem(R.string.thread_open_external_archive, this::openExternalArchiveClicked);
+        }
+        menuOverflowBuilder
                 .withSubItem(R.string.action_share, this::shareClicked)
                 .withSubItem(R.string.action_scroll_to_top, this::upClicked)
                 .withSubItem(R.string.action_scroll_to_bottom, this::downClicked)
@@ -117,6 +125,24 @@ public class ViewThreadController extends ThreadController implements ThreadLayo
 
     private void reloadClicked(ToolbarMenuSubItem item) {
         threadLayout.getPresenter().requestData();
+    }
+
+    private void openExternalArchiveClicked(ToolbarMenuSubItem item) {
+        Loadable loadable = threadLayout.getPresenter().getLoadable();
+        final ArchivesLayout dialogView = (ArchivesLayout) LayoutInflater.from(context).inflate(R.layout.layout_archives, null);
+        boolean hasContents = dialogView.setLoadable(loadable);
+        dialogView.setCallback(link -> AndroidUtils.openLinkInBrowser((Activity) context, link));
+
+        if (hasContents) {
+            AlertDialog dialog = new AlertDialog.Builder(context).setView(dialogView)
+                    .setTitle(R.string.thread_open_external_archive)
+                    .create();
+            dialog.setCanceledOnTouchOutside(true);
+            dialogView.attachToDialog(dialog);
+            dialog.show();
+        } else {
+            Toast.makeText(context, "No archives for this board or site.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void openBrowserClicked(ToolbarMenuSubItem item) {
