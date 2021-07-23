@@ -297,7 +297,11 @@ public class ImageViewerPresenter implements MultiImageView.Callback, ViewPager.
                 if (postImage.type == PostImage.Type.MOVIE) {
                     callback.setImageMode(postImage, MultiImageView.Mode.MOVIE, true);
                 } else {
-                    onExit();
+                    if (callback.isImmersive()) {
+                        callback.showSystemUI(true);
+                    } else {
+                        onExit();
+                    }
                 }
             } else {
                 MultiImageView.Mode currentMode = callback.getImageMode(postImage);
@@ -310,7 +314,11 @@ public class ImageViewerPresenter implements MultiImageView.Callback, ViewPager.
                 } else if (postImage.type == PostImage.Type.SWF && currentMode != MultiImageView.Mode.OTHER) {
                     callback.setImageMode(postImage, MultiImageView.Mode.OTHER, true);
                 } else {
-                    onExit();
+                    if (callback.isImmersive()) {
+                        callback.showSystemUI(true);
+                    } else {
+                        onExit();
+                    }
                 }
             }
         }
@@ -446,5 +454,9 @@ public class ImageViewerPresenter implements MultiImageView.Callback, ViewPager.
         void onVideoError(MultiImageView multiImageView);
 
         void showVolumeMenuItem(boolean show, boolean muted);
+
+        boolean isImmersive();
+
+        void showSystemUI(boolean show);
     }
 }
