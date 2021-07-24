@@ -86,6 +86,24 @@ public class ChanSettings {
         }
     }
 
+    public enum DestinationFolderMode implements  OptionSettingItem {
+        ROOT("root"),
+        SITE("site"),
+        BOARD("board"),
+        THREAD("thread");
+
+        String name;
+
+        DestinationFolderMode(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String getKey() {
+            return name;
+        }
+    }
+
     private static Proxy proxy;
 
     public static final BooleanSetting forceEnglishLocale;
@@ -114,6 +132,8 @@ public class ChanSettings {
 
     public static final StringSetting saveLocation;
     public static final StringSetting saveLocationTreeUri;
+    public static final OptionsSetting<DestinationFolderMode> saveImageFolder;
+    public static final OptionsSetting<DestinationFolderMode> saveAlbumFolder;
     public static final BooleanSetting saveOriginalFilename;
     public static final BooleanSetting shareUrl;
     public static final BooleanSetting enableReplyFab;
@@ -200,6 +220,8 @@ public class ChanSettings {
 
         saveLocation = new StringSetting(p, "preference_image_save_location", "");
         saveLocationTreeUri = new StringSetting(p, "preference_image_save_tree_uri", "");
+        saveImageFolder = new OptionsSetting<>(p, "preference_save_image_folder", DestinationFolderMode.class, DestinationFolderMode.ROOT);
+        saveAlbumFolder = new OptionsSetting<>(p, "preference_save_album_folder", DestinationFolderMode.class, DestinationFolderMode.ROOT);
         saveOriginalFilename = new BooleanSetting(p, "preference_image_save_original", false);
         shareUrl = new BooleanSetting(p, "preference_image_share_url", false);
         accessibleInfo = new BooleanSetting(p, "preference_enable_accessible_info", false);

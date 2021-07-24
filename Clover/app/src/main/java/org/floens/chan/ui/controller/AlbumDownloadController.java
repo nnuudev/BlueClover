@@ -39,12 +39,15 @@ import org.floens.chan.core.model.PostImage;
 import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.saver.ImageSaveTask;
 import org.floens.chan.core.saver.ImageSaver;
+import org.floens.chan.core.settings.ChanSettings;
+import org.floens.chan.core.storage.Storage;
 import org.floens.chan.ui.theme.ThemeHelper;
 import org.floens.chan.ui.toolbar.ToolbarMenuItem;
 import org.floens.chan.ui.view.GridRecyclerView;
 import org.floens.chan.ui.view.PostImageThumbnailView;
 import org.floens.chan.utils.RecyclerUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,11 +112,30 @@ public class AlbumDownloadController extends Controller implements View.OnClickL
                         .setPositiveButton(R.string.ok, null)
                         .show();
             } else {
-                final String folderForAlbum = imageSaver.getSafeNameForFolder(loadable.title);
+                ArrayList<String> subfolders = new ArrayList<>();
+                int ordinal = ChanSettings.saveAlbumFolder.get().ordinal();
+                if (ordinal > ChanSettings.DestinationFolderMode.ROOT.ordinal()) {
+                    subfolders.add(loadable.site.name());
+                    if (ordinal > ChanSettings.DestinationFolderMode.SITE.ordinal()) {
+                        subfolders.add(loadable.boardCode);
+                        if (ordinal > ChanSettings.DestinationFolderMode.BOARD.ordinal()) {
+                            if (loadable.no == 0)
+                                subfolders.add("Catalog");
+                            else
+                                subfolders.add(loadable.no + "_" + imageSaver.getSafeNameForFolder(loadable.title));
+                        }
+                    }
+                }
 
+                StringBuilder sb = new StringBuilder();
+                for (String folder : subfolders) {
+                    if (sb.length() > 0)
+                        sb.append(File.separator);
+                    sb.append(folder);
+                }
                 String message = context.getString(R.string.album_download_confirm,
                         context.getResources().getQuantityString(R.plurals.image, checkCount, checkCount),
-                        folderForAlbum);
+                        sb.length() > 0 ? sb.toString() : imageSaver.currentStorageName());
 
                 new AlertDialog.Builder(context)
                         .setMessage(message)
@@ -128,7 +150,7 @@ public class AlbumDownloadController extends Controller implements View.OnClickL
                                     }
                                 }
 
-                                imageSaver.addTasks(tasks, folderForAlbum,
+                                imageSaver.addTasks(tasks, subfolders.toArray(new String[0]),
                                         () -> navigationController.popController());
                             }
                         })

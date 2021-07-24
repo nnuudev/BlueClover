@@ -520,12 +520,13 @@ Crash reports do not collect any personally identifiable information."
 
     <!-- Media general group -->
     <string name="settings_group_media">Media</string>
-
-    <string name="setting_save_board_folder">Save images in board folders</string>
-    <string name="setting_save_board_folder_description">Create a folder for each board when saving</string>
-    <string name="setting_save_thread_folder">Save images in thread folders</string>
-    <string name="setting_save_thread_folder_description">Create a folder for each thread when saving</string>
-    <string name="setting_save_original_filename">Save original filename</string>
+    <string name="setting_save_image_folder">Destination for individual images</string>
+    <string name="setting_save_album_folder">Destination for image albums</string>
+    <string name="setting_save_mode_root">Use the base folder for everything</string>
+    <string name="setting_save_mode_site">Use a subfolder for each site</string>
+    <string name="setting_save_mode_board">Use a subfolder for each board</string>
+    <string name="setting_save_mode_thread">Use a subfolder for each thread</string>
+    <string name="setting_save_original_filename">Save server filename</string>
     <string name="setting_save_original_filename_description">
 "Save the image with the filename the site assigned.
 If disabled, save the image with the filename the uploader assigned."

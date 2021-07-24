@@ -52,8 +52,6 @@ public class MediaSettingsController extends SettingsController implements
     private StorageSetupPresenter presenter;
 
     // Special setting views
-    private BooleanSettingView boardFolderSetting;
-    private BooleanSettingView threadFolderSetting;
     private LinkSettingView saveLocation;
     private ListSettingView<ChanSettings.MediaAutoLoadMode> imageAutoLoadView;
     private ListSettingView<ChanSettings.MediaAutoLoadMode> videoAutoLoadView;
@@ -135,6 +133,15 @@ public class MediaSettingsController extends SettingsController implements
             SettingsGroup media = new SettingsGroup(R.string.settings_group_media);
 
             setupSaveLocationSetting(media);
+
+            //Save modifications
+            media.add(new ListSettingView<>(this,
+                    ChanSettings.saveImageFolder,
+                    R.string.setting_save_image_folder, createDestinationFolderList()));
+
+            media.add(new ListSettingView<>(this,
+                    ChanSettings.saveAlbumFolder,
+                    R.string.setting_save_album_folder, createDestinationFolderList()));
 
             media.add(new BooleanSettingView(this,
                     ChanSettings.saveOriginalFilename,
@@ -251,5 +258,28 @@ public class MediaSettingsController extends SettingsController implements
                 });
             }
         });
+    }
+
+    private List<ListSettingView.Item> createDestinationFolderList() {
+        List<ListSettingView.Item> folderModes = new ArrayList<>();
+        for (ChanSettings.DestinationFolderMode mode : ChanSettings.DestinationFolderMode.values()) {
+            int name = 0;
+            switch (mode) {
+                case ROOT:
+                    name = R.string.setting_save_mode_root;
+                    break;
+                case SITE:
+                    name = R.string.setting_save_mode_site;
+                    break;
+                case BOARD:
+                    name = R.string.setting_save_mode_board;
+                    break;
+                case THREAD:
+                    name = R.string.setting_save_mode_thread;
+                    break;
+            }
+            folderModes.add(new ListSettingView.Item<>(getString(name), mode));
+        }
+        return folderModes;
     }
 }

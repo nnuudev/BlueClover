@@ -17,18 +17,19 @@
  */
 package org.floens.chan.ui.view;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Toast;
 
-import org.floens.chan.Chan;
 import org.floens.chan.R;
 import org.floens.chan.core.model.PostImage;
-import org.floens.chan.core.saver.ImageSaveTask;
-import org.floens.chan.core.saver.ImageSaver;
+import org.floens.chan.utils.AndroidUtils;
 
 public class PostImageThumbnailView extends ThumbnailView implements View.OnLongClickListener {
     private PostImage postImage;
@@ -104,8 +105,10 @@ public class PostImageThumbnailView extends ThumbnailView implements View.OnLong
             return false;
         }
 
-        ImageSaver imageSaver = Chan.injector().instance(ImageSaver.class);
-        imageSaver.addTask(ImageSaveTask.fromPostImage(postImage, false));
+        ClipboardManager clipboard = (ClipboardManager) AndroidUtils.getAppContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("File URL", postImage.imageUrl.toString());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(getContext(), R.string.url_text_copied, Toast.LENGTH_SHORT).show();
 
         return true;
     }
