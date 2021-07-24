@@ -277,6 +277,8 @@ public class MediaSettingsController extends SettingsController implements
                 case THREAD:
                     name = R.string.setting_save_mode_thread;
                     break;
+                case LEGACY:
+                    name = R.string.setting_save_mode_legacy;
             }
             folderModes.add(new ListSettingView.Item<>(getString(name), mode));
         }

@@ -522,10 +522,11 @@ Crash reports do not collect any personally identifiable information."
     <string name="settings_group_media">Media</string>
     <string name="setting_save_image_folder">Destination for individual images</string>
     <string name="setting_save_album_folder">Destination for image albums</string>
-    <string name="setting_save_mode_root">Use the base folder for everything</string>
-    <string name="setting_save_mode_site">Use a subfolder for each site</string>
-    <string name="setting_save_mode_board">Use a subfolder for each board</string>
-    <string name="setting_save_mode_thread">Use a subfolder for each thread</string>
+    <string name="setting_save_mode_root">Base folder</string>
+    <string name="setting_save_mode_site">Base folder/site</string>
+    <string name="setting_save_mode_board">Base folder/site/board</string>
+    <string name="setting_save_mode_thread">Base folder/site/board/thread</string>
+    <string name="setting_save_mode_legacy">Base folder/thread (legacy album)</string>
     <string name="setting_save_original_filename">Save server filename</string>
     <string name="setting_save_original_filename_description">
 "Save the image with the filename the site assigned.

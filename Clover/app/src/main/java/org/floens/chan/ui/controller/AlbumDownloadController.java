@@ -114,7 +114,10 @@ public class AlbumDownloadController extends Controller implements View.OnClickL
             } else {
                 ArrayList<String> subfolders = new ArrayList<>();
                 int ordinal = ChanSettings.saveAlbumFolder.get().ordinal();
-                if (ordinal > ChanSettings.DestinationFolderMode.ROOT.ordinal()) {
+                if (ordinal == ChanSettings.DestinationFolderMode.LEGACY.ordinal()) {
+                    // actually, legacy did not include the thread number
+                    subfolders.add((loadable.no > 0 ? loadable.no + "_" : "") + imageSaver.getSafeNameForFolder(loadable.title));
+                } else if (ordinal > ChanSettings.DestinationFolderMode.ROOT.ordinal()) {
                     subfolders.add(loadable.site.name());
                     if (ordinal > ChanSettings.DestinationFolderMode.SITE.ordinal()) {
                         subfolders.add(loadable.boardCode);

@@ -90,7 +90,8 @@ public class ChanSettings {
         ROOT("root"),
         SITE("site"),
         BOARD("board"),
-        THREAD("thread");
+        THREAD("thread"),
+        LEGACY("legacy");
 
         String name;
 
@@ -221,7 +222,7 @@ public class ChanSettings {
         saveLocation = new StringSetting(p, "preference_image_save_location", "");
         saveLocationTreeUri = new StringSetting(p, "preference_image_save_tree_uri", "");
         saveImageFolder = new OptionsSetting<>(p, "preference_save_image_folder", DestinationFolderMode.class, DestinationFolderMode.ROOT);
-        saveAlbumFolder = new OptionsSetting<>(p, "preference_save_album_folder", DestinationFolderMode.class, DestinationFolderMode.ROOT);
+        saveAlbumFolder = new OptionsSetting<>(p, "preference_save_album_folder", DestinationFolderMode.class, DestinationFolderMode.LEGACY);
         saveOriginalFilename = new BooleanSetting(p, "preference_image_save_original", false);
         shareUrl = new BooleanSetting(p, "preference_image_share_url", false);
         accessibleInfo = new BooleanSetting(p, "preference_enable_accessible_info", false);
