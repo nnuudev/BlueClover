@@ -524,8 +524,10 @@ Crash reports do not collect any personally identifiable information."
     <string name="setting_save_album_folder">Destination for image albums</string>
     <string name="setting_save_mode_root">Base folder</string>
     <string name="setting_save_mode_site">Base folder/site</string>
-    <string name="setting_save_mode_board">Base folder/site/board</string>
-    <string name="setting_save_mode_thread">Base folder/site/board/thread</string>
+    <string name="setting_save_mode_siteboard">Base folder/site/board</string>
+    <string name="setting_save_mode_siteboardthread">Base folder/site/board/thread</string>
+    <string name="setting_save_mode_board">Base folder/board</string>
+    <string name="setting_save_mode_boardthread">Base folder/board/thread</string>
     <string name="setting_save_mode_legacy">Base folder/thread (legacy album)</string>
     <string name="setting_save_original_filename">Save server filename</string>
     <string name="setting_save_original_filename_description">

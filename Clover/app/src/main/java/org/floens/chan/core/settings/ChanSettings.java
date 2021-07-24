@@ -86,22 +86,34 @@ public class ChanSettings {
         }
     }
 
-    public enum DestinationFolderMode implements  OptionSettingItem {
-        ROOT("root"),
-        SITE("site"),
-        BOARD("board"),
-        THREAD("thread"),
-        LEGACY("legacy");
+    public enum DestinationFolderMode implements OptionSettingItem {
+        ROOT("root", 0x0),
+        SITE("site", DestinationFolderMode.site),
+        SITE_BOARD("siteboard", DestinationFolderMode.site | DestinationFolderMode.board),
+        SITE_BOARD_THREAD("siteboardthread", DestinationFolderMode.site | DestinationFolderMode.board | DestinationFolderMode.thread),
+        BOARD("board", DestinationFolderMode.board),
+        BOARD_THREAD("boardthread", DestinationFolderMode.board | DestinationFolderMode.thread),
+        LEGACY("legacy", DestinationFolderMode.thread);
+
+        public static final int site = 0x01;
+        public static final int board = 0x02;
+        public static final int thread = 0x04;
 
         String name;
+        int bitmask;
 
-        DestinationFolderMode(String name) {
+        DestinationFolderMode(String name, int bitmask) {
             this.name = name;
+            this.bitmask = bitmask;
         }
 
         @Override
         public String getKey() {
             return name;
+        }
+
+        public int getBitmask() {
+            return bitmask;
         }
     }
 

@@ -271,11 +271,17 @@ public class MediaSettingsController extends SettingsController implements
                 case SITE:
                     name = R.string.setting_save_mode_site;
                     break;
+                case SITE_BOARD:
+                    name = R.string.setting_save_mode_siteboard;
+                    break;
+                case SITE_BOARD_THREAD:
+                    name = R.string.setting_save_mode_siteboardthread;
+                    break;
                 case BOARD:
                     name = R.string.setting_save_mode_board;
                     break;
-                case THREAD:
-                    name = R.string.setting_save_mode_thread;
+                case BOARD_THREAD:
+                    name = R.string.setting_save_mode_boardthread;
                     break;
                 case LEGACY:
                     name = R.string.setting_save_mode_legacy;

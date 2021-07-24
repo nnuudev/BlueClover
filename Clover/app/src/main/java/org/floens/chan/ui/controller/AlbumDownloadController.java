@@ -40,7 +40,6 @@ import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.saver.ImageSaveTask;
 import org.floens.chan.core.saver.ImageSaver;
 import org.floens.chan.core.settings.ChanSettings;
-import org.floens.chan.core.storage.Storage;
 import org.floens.chan.ui.theme.ThemeHelper;
 import org.floens.chan.ui.toolbar.ToolbarMenuItem;
 import org.floens.chan.ui.view.GridRecyclerView;
@@ -113,21 +112,17 @@ public class AlbumDownloadController extends Controller implements View.OnClickL
                         .show();
             } else {
                 ArrayList<String> subfolders = new ArrayList<>();
-                int ordinal = ChanSettings.saveAlbumFolder.get().ordinal();
-                if (ordinal == ChanSettings.DestinationFolderMode.LEGACY.ordinal()) {
+                int bitmask = ChanSettings.saveImageFolder.get().getBitmask();
+                if (bitmask == ChanSettings.DestinationFolderMode.thread) {
                     // actually, legacy did not include the thread number
                     subfolders.add((loadable.no > 0 ? loadable.no + "_" : "") + imageSaver.getSafeNameForFolder(loadable.title));
-                } else if (ordinal > ChanSettings.DestinationFolderMode.ROOT.ordinal()) {
-                    subfolders.add(loadable.site.name());
-                    if (ordinal > ChanSettings.DestinationFolderMode.SITE.ordinal()) {
+                } else {
+                    if ((bitmask & ChanSettings.DestinationFolderMode.site) != 0)
+                        subfolders.add(loadable.site.name());
+                    if ((bitmask & ChanSettings.DestinationFolderMode.board) != 0)
                         subfolders.add(loadable.boardCode);
-                        if (ordinal > ChanSettings.DestinationFolderMode.BOARD.ordinal()) {
-                            if (loadable.no == 0)
-                                subfolders.add("Catalog");
-                            else
-                                subfolders.add(loadable.no + "_" + imageSaver.getSafeNameForFolder(loadable.title));
-                        }
-                    }
+                    if ((bitmask & ChanSettings.DestinationFolderMode.thread) != 0)
+                        subfolders.add(loadable.no == 0 ? "Catalog" : loadable.no + "_" + imageSaver.getSafeNameForFolder(loadable.title));
                 }
 
                 StringBuilder sb = new StringBuilder();
