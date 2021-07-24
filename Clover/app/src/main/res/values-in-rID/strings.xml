@@ -413,8 +413,6 @@ Laporan kerusakan tidak mengumpulkan informasi identitas pribadi apa pun."
     <string name="settings_screen_media">Media</string>
     <!-- Media general group -->
     <string name="settings_group_media">Media</string>
-    <string name="setting_save_board_folder">Menyimpan gambar dalam folder papan</string>
-    <string name="setting_save_board_folder_description">Buat folder untuk setiap papan untuk menyimpan gambar</string>
     <string name="setting_save_original_filename">Simpan nama file asli</string>
     <string name="setting_save_original_filename_description">
 "Simpan gambar dengan nama file yang ditetapkan oleh situs.

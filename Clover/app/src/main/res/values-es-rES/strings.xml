@@ -424,8 +424,6 @@ Los reportes de crash no recolectan información personal."</string>
     <string name="settings_screen_media">Media</string>
     <!-- Media general group -->
     <string name="settings_group_media">Media</string>
-    <string name="setting_save_board_folder">Guardar imágenes en una carpeta dedicada al board</string>
-    <string name="setting_save_board_folder_description">Crear una carpeta para descargar imagenes para cada board</string>
     <string name="setting_save_original_filename">Guardar nombre de archivo original</string>
     <string name="setting_save_original_filename_description">
 "Guardar la imágen con el nombre de archivo asignado por el sitio.

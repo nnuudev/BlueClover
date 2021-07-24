@@ -421,8 +421,6 @@ Crashrapportages verzamelen geen persoonlijk identificeerbare informatie."</stri
     <string name="settings_screen_media">Media</string>
     <!-- Media general group -->
     <string name="settings_group_media">Media</string>
-    <string name="setting_save_board_folder">Sla afbeeldingen op in een boardmap</string>
-    <string name="setting_save_board_folder_description">Maak een map voor elk board om afbeeldingen in op te slaan</string>
     <string name="setting_save_original_filename">Sla originele bestandsnaam op</string>
     <string name="setting_save_original_filename_description">"Sla de afbeelding op met de originele bestandsnaam.
 Wanneer uitgeschakeld wordt de afbeelding opgeslagen met de bestandsnaam van de uploader."</string>

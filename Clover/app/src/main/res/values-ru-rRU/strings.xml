@@ -458,8 +458,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="settings_screen_media">Медиа</string>
   <!-- Media general group -->
   <string name="settings_group_media">Медиа</string>
-  <string name="setting_save_board_folder">Сохранять в папку форума</string>
-  <string name="setting_save_board_folder_description">Создавать для каждого форума свою папку и сохранять туда файлы</string>
   <string name="setting_save_original_filename">Сохранять с исходным именем</string>
   <string name="setting_save_original_filename_description">
 \"Сохранять файлы с именем, присвоенным сайтом.
