@@ -460,7 +460,7 @@ Crash reports do not collect any personally identifiable information."
     <string name="setting_enable_accessible_post_info">Enable accessible post info</string>
     <string name="setting_enable_accessible_post_info_description">Place post info in a more accessible location</string>
     <string name="setting_alternate_layout_mode_title">Alternate layout</string>
-    <string name="setting_alternate_layout_mode_description">Always show text below the thumbnail</string>
+    <string name="setting_alternate_layout_mode_description">Show text below the thumbnail for posts with one image</string>
     <string name="setting_images_immersive_mode_title">Use immersive mode for image gallery</string>
     <string name="setting_images_immersive_mode_description">This will make image gallery view be fullscreen with statusbar/navbar hidden</string>
     <!-- Appearance post group -->
