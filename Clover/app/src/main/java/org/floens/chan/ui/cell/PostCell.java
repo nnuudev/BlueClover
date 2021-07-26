@@ -46,6 +46,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import org.floens.chan.BuildConfig;
 import org.floens.chan.R;
 import org.floens.chan.core.model.Post;
 import org.floens.chan.core.model.PostImage;
@@ -84,6 +85,7 @@ public class PostCell extends LinearLayout implements PostCellInterface {
     private List<PostImageThumbnailView> thumbnailViews = new ArrayList<>(1);
 
     private RelativeLayout relativeLayoutContainer;
+    private RelativeLayout relativeLayoutHelper;
     private FastTextView title;
     private PostIcons icons;
     private TextView comment;
@@ -139,6 +141,7 @@ public class PostCell extends LinearLayout implements PostCellInterface {
         super.onFinishInflate();
 
         relativeLayoutContainer = findViewById(R.id.relative_layout_container);
+        relativeLayoutHelper = findViewById(R.id.relative_layout_helper);
         title = findViewById(R.id.title);
         icons = findViewById(R.id.icons);
         comment = findViewById(R.id.comment);
@@ -426,7 +429,36 @@ public class PostCell extends LinearLayout implements PostCellInterface {
             commentText = post.comment;
         }
 
-        comment.setVisibility(isEmpty(commentText) && post.images == null ? GONE : VISIBLE);
+        if (ChanSettings.layoutTextBelowThumbnails.get()) {
+            comment.setVisibility(isEmpty(commentText) ? GONE : VISIBLE);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) comment.getLayoutParams();
+            int[] rules = layoutParams.getRules();
+            if (thumbnailViews.size() != 1) {
+                comment.setPadding(paddingPx, paddingPx, paddingPx, 0);
+                rules[RelativeLayout.RIGHT_OF] = R.id.thumbnail_view;
+                rules[RelativeLayout.BELOW] = R.id.icons;
+                if (comment.getParent() == relativeLayoutContainer) {
+                    relativeLayoutContainer.removeView(comment);
+                    relativeLayoutContainer.removeView(replies);
+                    relativeLayoutContainer.removeView(repliesAdditionalArea);
+                    relativeLayoutHelper.addView(comment);
+                    relativeLayoutHelper.addView(replies);
+                    relativeLayoutHelper.addView(repliesAdditionalArea);
+                }
+            } else {
+                comment.setPadding(paddingPx, 0, paddingPx, 0);
+                rules[RelativeLayout.RIGHT_OF] = 0;
+                rules[RelativeLayout.BELOW] = R.id.relative_layout_helper;
+                if (comment.getParent() == relativeLayoutHelper) {
+                    relativeLayoutHelper.removeView(comment);
+                    relativeLayoutHelper.removeView(replies);
+                    relativeLayoutHelper.removeView(repliesAdditionalArea);
+                    relativeLayoutContainer.addView(comment);
+                    relativeLayoutContainer.addView(replies);
+                    relativeLayoutContainer.addView(repliesAdditionalArea);
+                }
+            }
+        }
 
         if (threadMode) {
             if (selectable) {
@@ -544,7 +576,7 @@ public class PostCell extends LinearLayout implements PostCellInterface {
 
     private void buildThumbnails() {
         for (PostImageThumbnailView thumbnailView : thumbnailViews) {
-            relativeLayoutContainer.removeView(thumbnailView);
+            relativeLayoutHelper.removeView(thumbnailView);
         }
         thumbnailViews.clear();
 
@@ -580,7 +612,7 @@ public class PostCell extends LinearLayout implements PostCellInterface {
                 v.setOnClickListener(v2 -> callback.onThumbnailClicked(post, image, v));
                 //v.setRounding(dp(enableHighEndAnimations() ? 8 : 2));
 
-                relativeLayoutContainer.addView(v, p);
+                relativeLayoutHelper.addView(v, p);
                 thumbnailViews.add(v);
 
                 lastId = idToSet;

@@ -86,6 +86,11 @@ public class AppearanceSettingsController extends SettingsController {
                     R.string.setting_enable_accessible_post_info_description)));
 
             requiresUiRefresh.add(layout.add(new BooleanSettingView(this,
+                    ChanSettings.layoutTextBelowThumbnails,
+                    R.string.setting_alternate_layout_mode_title,
+                    R.string.setting_alternate_layout_mode_description)));
+
+            requiresUiRefresh.add(layout.add(new BooleanSettingView(this,
                     ChanSettings.useImmersiveModeForGallery,
                     R.string.setting_images_immersive_mode_title,
                     R.string.setting_images_immersive_mode_description)));
