@@ -505,7 +505,7 @@ public class Chan4 extends SiteBase {
                 SiteSetting.forOption(
                         captchaType,
                         "Captcha type",
-                        Arrays.asList("Javascript", "Noscript", "New captcha"))
+                        Arrays.asList("Javascript", "Noscript", "Slider captcha"))
         );
     }
 
