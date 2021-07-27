@@ -596,6 +596,8 @@ public class ThreadPresenter implements
 
                 threadPresenterCallback.showThread(thread);
             }
+        } else if (linkable.type == PostLinkable.Type.DEAD) {
+            threadPresenterCallback.openArchiveForThreadLink((PostLinkable.ThreadLink) linkable.value);
         }
     }
 
@@ -847,5 +849,7 @@ public class ThreadPresenter implements
         void showNewPostsNotification(boolean show, int more);
 
         void showImageReencodingWindow(Loadable loadable);
+
+        void openArchiveForThreadLink(PostLinkable.ThreadLink threadLink);
     }
 }

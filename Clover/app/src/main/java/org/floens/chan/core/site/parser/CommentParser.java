@@ -27,6 +27,7 @@ import androidx.annotation.AnyThread;
 
 import org.floens.chan.core.model.Post;
 import org.floens.chan.core.model.PostLinkable;
+import org.floens.chan.core.site.sites.chan4.Chan4;
 import org.floens.chan.ui.span.AbsoluteSizeSpanHashed;
 import org.floens.chan.ui.span.ForegroundColorSpanHashed;
 import org.floens.chan.ui.theme.Theme;
@@ -66,7 +67,7 @@ public class CommentParser {
     public void addDefaultRules() {
         rule(tagRule("a").action(this::handleAnchor));
 
-        rule(tagRule("span").cssClass("deadlink").color(StyleRule.Color.QUOTE).strikeThrough());
+        rule(tagRule("span").cssClass("deadlink").action(this::handleDeadAnchor).color(StyleRule.Color.QUOTE).strikeThrough());
         rule(tagRule("span").cssClass("spoiler").link(PostLinkable.Type.SPOILER));
         rule(tagRule("span").cssClass("fortune").action(this::handleFortune));
         rule(tagRule("span").cssClass("abbr").nullify());
@@ -176,6 +177,51 @@ public class CommentParser {
             return res;
         } else {
             return null;
+        }
+    }
+
+    private CharSequence handleDeadAnchor(Theme theme,
+                                      PostParser.Callback callback,
+                                      Post.Builder post,
+                                      CharSequence text,
+                                      Element anchor) {
+        if (!(post.board.site instanceof Chan4)) {
+            return text;
+        }
+        Link handlerLink = null;
+        try {
+            String[] spanContent = text.toString().split("/");
+            if (spanContent[0].startsWith(">>>") && spanContent.length == 3) {
+                // >>>/board/post
+                String board = spanContent[1];
+                int postNo = Integer.valueOf(spanContent[2]);
+                handlerLink = new Link();
+                handlerLink.type = PostLinkable.Type.DEAD;
+                handlerLink.key = text;
+                handlerLink.value = new PostLinkable.ThreadLink(board, -1, postNo);
+            } else if (spanContent[0].startsWith(">>") && spanContent.length == 1) {
+                // >>post
+                int postNo = Integer.valueOf(spanContent[0].substring(2));
+                handlerLink = new Link();
+                handlerLink.type = PostLinkable.Type.DEAD;
+                handlerLink.key = text;
+                //if (callback.isSaved(postNo))
+                //    handlerLink.key = TextUtils.concat(text, SAVED_REPLY_SUFFIX);
+                handlerLink.value = new PostLinkable.ThreadLink(post.board.code, -1, postNo);
+            }
+        } catch (Exception ignored) {
+            return text;
+        }
+
+        if (handlerLink != null) {
+            SpannableString res = new SpannableString(handlerLink.key);
+            PostLinkable pl = new PostLinkable(theme, handlerLink.key, handlerLink.value, handlerLink.type);
+            res.setSpan(pl, 0, res.length(), 0);
+            post.addLinkable(pl);
+
+            return res;
+        } else {
+            return text;
         }
     }
 

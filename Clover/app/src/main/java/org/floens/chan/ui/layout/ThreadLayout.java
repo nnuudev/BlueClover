@@ -523,6 +523,24 @@ public class ThreadLayout extends CoordinatorLayout implements
         imageReencodingHelper.showController(loadable);
     }
 
+    @Override
+    public void openArchiveForThreadLink(PostLinkable.ThreadLink threadLink) {
+        final ArchivesLayout dialogView = (ArchivesLayout) LayoutInflater.from(getContext()).inflate(R.layout.layout_archives, null);
+        boolean hasContents = dialogView.setThreadLink(threadLink);
+        dialogView.setCallback(link -> AndroidUtils.openLinkInBrowser((Activity) getContext(), link));
+
+        if (hasContents) {
+            AlertDialog dialog = new AlertDialog.Builder(getContext()).setView(dialogView)
+                    .setTitle(R.string.thread_open_external_archive)
+                    .create();
+            dialog.setCanceledOnTouchOutside(true);
+            dialogView.attachToDialog(dialog);
+            dialog.show();
+        } else {
+            Toast.makeText(getContext(), "No archives for this post.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public ThumbnailView getThumbnail(PostImage postImage) {
         if (postPopupHelper.isOpen()) {
             return postPopupHelper.getThumbnail(postImage);

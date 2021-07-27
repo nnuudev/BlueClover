@@ -35,7 +35,7 @@ import org.floens.chan.ui.theme.Theme;
 @SuppressWarnings("JavadocReference")
 public class PostLinkable extends ClickableSpan {
     public enum Type {
-        QUOTE, LINK, SPOILER, THREAD
+        QUOTE, LINK, SPOILER, THREAD, DEAD
     }
 
     public final Theme theme;
@@ -64,7 +64,7 @@ public class PostLinkable extends ClickableSpan {
 
     @Override
     public void updateDrawState(@NonNull TextPaint ds) {
-        if (type == Type.QUOTE || type == Type.LINK || type == Type.THREAD) {
+        if (type == Type.QUOTE || type == Type.LINK || type == Type.THREAD || type == Type.DEAD) {
             if (type == Type.QUOTE) {
                 if (value instanceof Integer && ((int) value) == markedNo) {
                     ds.setColor(theme.highlightQuoteColor);

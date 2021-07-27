@@ -46,7 +46,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import org.floens.chan.BuildConfig;
 import org.floens.chan.R;
 import org.floens.chan.core.model.Post;
 import org.floens.chan.core.model.PostImage;
