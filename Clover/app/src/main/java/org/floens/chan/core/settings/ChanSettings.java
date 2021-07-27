@@ -115,6 +115,7 @@ public class ChanSettings {
     public static final StringSetting saveLocation;
     public static final StringSetting saveLocationTreeUri;
     public static final BooleanSetting saveOriginalFilename;
+    public static final BooleanSetting longpressToDownload;
     public static final BooleanSetting shareUrl;
     public static final BooleanSetting enableReplyFab;
     public static final BooleanSetting accessibleInfo;
@@ -202,6 +203,7 @@ public class ChanSettings {
         saveLocation = new StringSetting(p, "preference_image_save_location", "");
         saveLocationTreeUri = new StringSetting(p, "preference_image_save_tree_uri", "");
         saveOriginalFilename = new BooleanSetting(p, "preference_image_save_original", false);
+        longpressToDownload = new BooleanSetting(p, "preference_longpress_to_download", false);
         shareUrl = new BooleanSetting(p, "preference_image_share_url", false);
         accessibleInfo = new BooleanSetting(p, "preference_enable_accessible_info", false);
         layoutTextBelowThumbnails = new BooleanSetting(p, "layout_text_below_thumbnails", false);

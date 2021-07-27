@@ -154,6 +154,10 @@ public class MediaSettingsController extends SettingsController implements
                     R.string.setting_video_exoplayer_description));
 
             media.add(new BooleanSettingView(this,
+                    ChanSettings.longpressToDownload,
+                    R.string.setting_longpress_to_download, R.string.setting_longpress_to_download_description));
+
+            media.add(new BooleanSettingView(this,
                     ChanSettings.shareUrl,
                     R.string.setting_share_url, R.string.setting_share_url_description));
 
