@@ -210,7 +210,7 @@ public class CommentParser {
                 handlerLink.value = new PostLinkable.ThreadLink(post.board.code, -1, postNo);
             }
         } catch (Exception ignored) {
-            return text;
+            handlerLink = null;
         }
 
         if (handlerLink != null) {

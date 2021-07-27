@@ -62,13 +62,15 @@ public class ArchivesManager {
     }
 
     public List<Pair<String, String>> archivesForBoard(Board b) {
-        if (archivesList == null || !(b.site instanceof Chan4)) return new ArrayList<>(); //4chan only
-        return archivesFor4ChanBoard(b.code);
+        if (archivesList == null || !(b.site instanceof Chan4))
+            return new ArrayList<>(); // 4chan only
+        else
+            return archivesFor4ChanBoard(b.code);
     }
 
     public List<Pair<String, String>> archivesFor4ChanBoard(String code) {
-        if (archivesList == null) return new ArrayList<>();
         List<Pair<String, String>> result = new ArrayList<>();
+        if (archivesList == null) return result;
         try {
             for (int i = 0; i < archivesList.length(); i++) {
                 JSONObject a = archivesList.getJSONObject(i);
