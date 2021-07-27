@@ -1,3 +1,11 @@
+New in v3.20 build 20210727_1120
+- Added "web search" option to text selection.
+- Added new menu entry to mark or unmark a post as yours.
+- Added option to show the text below the thumbnail to fill the screen width when there's only one image (enable in Settings > Appearance).
+- Links to dead posts can now be opened on an external archive (using the browser).
+- Added option to choose between downloading image (old behavior) or copying its URL (new default) when long-pressing it (enable in Settings > Media).
+- Moved flag selector button thingy to the left.
+
 New in v3.20 build 20210723_1110
 - Added board flags to catalog view.
 - Added Copy URL and Rotate options to images.

@@ -1,14 +1,23 @@
-# Blue Clover - imageboard browser for Android  
+# Blue Clover - imageboard browser for Android
 
 ### Download APK: [ [latest release](https://github.com/nnuudev/BlueClover/releases/latest) | [all releases](https://github.com/nnuudev/BlueClover/releases) ]
+
 Blue Clover is a fast Android app for browsing 4chan on Android. It adds inline replying, thread watching, notifications, themes, pass support, filters and a whole lot more. Blue Clover is licensed under the GPL and will always be free.
 
 The app is based on [Clover-dev 3.0.2 0e32fb7](https://github.com/chandevel/Clover/commit/0e32fb74d5ea4fbfe3248e559e64037bdf9acf17) and some of its more relevant [changes](https://raw.githubusercontent.com/nnuudev/BlueClover/dev/CHANGES.txt) are:
+
 - *New captcha support!*
 - Page counter on thread view
-- Flag support backported from Kuroba
+- Board flag support
+- Quick external image attaching
+- Image renaming and reencoding
+- Immersive mode for image gallery
+- External archive support [partial]
+- Alternate layout mode [experimental]
 
-This was originally created as a private fork that wasn't meant to be shared, expect some changes you won't like and a lot of weirdness in the code. If you're interested in a more professional fork, please check [Kuroba](https://github.com/Adamantcheese/Kuroba) or [KurobaEx](https://github.com/K1rakishou/Kuroba-Experimental), or just [contribute to the original Clover](https://github.com/chandevel/Clover).
+This was originally created as a private fork that wasn't meant to be shared, expect some changes you won't like and a lot of weirdness in the code. Parts of the code were backported from [Kuroba](https://github.com/Adamantcheese/Kuroba) or merged from old [pull requests](https://github.com/chandevel/Clover/pulls?q=is%3Apr), check the [commit log](https://github.com/nnuudev/BlueClover/commits/dev) for proper attribution when applicable.
+
+> *If you're interested in a more professional browser, please check [Kuroba](https://github.com/Adamantcheese/Kuroba) or [KurobaEx](https://github.com/K1rakishou/Kuroba-Experimental), or just [contribute to the original Clover](https://github.com/chandevel/Clover).*
 
 
 ## License
