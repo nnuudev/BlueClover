@@ -242,7 +242,8 @@ If the pattern matches then the post can be hidden or highlighted.<br>
     <string name="post_copy_text">Copiar texto</string>
     <string name="post_report">Reportar</string>
     <string name="post_hide">Ocultar</string>
-    <string name="post_hidden">Hilo Oculto</string>
+    <string name="post_hidden">Post oculto</string>
+    <string name="thread_hidden">Hilo oculto</string>
     <string name="post_delete">Eliminar</string>
     <string name="post_more">Más…</string>
     <string name="reply_name">Nombre</string>
@@ -265,7 +266,7 @@ If the pattern matches then the post can be hidden or highlighted.<br>
     <string name="delete_confirm">¿Eliminar esta publicación?</string>
     <string name="delete_wait">Borrando post&#8230;</string>
     <string name="delete_success">Publicación eliminada</string>
-    <string name="delete_image_only">Solo borra la imágen</string>
+    <string name="delete_image_only">Solo borra la imagen</string>
     <string name="delete_error">Error al eliminar</string>
     <string name="video_playback_warning_title">Error de video WebM</string>
     <string name="video_playback_warning">"El video WebM no se puro reproducir.Este puede ser un problema con el hardware del teléfono.
@@ -297,7 +298,7 @@ Active \"Reproducir videos con reproductor externo\" En las configuraciones"</st
     <string name="album_download_none_checked">Seleccione imágenes para descargar</string>
     <string name="album_download_confirm">%1$s se descargará en la carpeta %2$s</string>
     <string name="report_screen">Reportar a %1$s</string>
-    <string name="image_save_notification_downloading">Descargando imagenes</string>
+    <string name="image_save_notification_downloading">Descargando imágenes</string>
     <string name="image_save_notification_cancel">Pulse para cancelar</string>
     <string name="image_save_saved">Imagen guardada</string>
     <string name="image_save_as">Guardado como %1$s</string>
@@ -311,7 +312,7 @@ Active \"Reproducir videos con reproductor externo\" En las configuraciones"</st
     <string name="settings_watch">Observador de hilos</string>
     <string name="settings_sites">Sitios</string>
     <string name="settings_appearance">Apariencia</string>
-    <string name="settings_appearance_description">Tema, Diseño, tipografía, etc.</string>
+    <string name="settings_appearance_description">Tema, diseño, tipografía, etc.</string>
     <string name="settings_behavior">Comportamiento</string>
     <string name="settings_behavior_description">Hilo, refrescar, captcha, etc.</string>
     <string name="settings_media">Media</string>

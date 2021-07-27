@@ -464,7 +464,7 @@ public class ThreadPresenter implements
             menu.add(new FloatingMenuItem(POST_OPTION_QUOTE_TEXT, R.string.post_quote_text));
         }
 
-        if (!loadable.isThreadMode()) {
+        if (!loadable.isThreadMode() || !post.isOP) {
             menu.add(new FloatingMenuItem(POST_OPTION_HIDE, R.string.post_hide));
         }
 
@@ -573,7 +573,7 @@ public class ThreadPresenter implements
                 break;
             }
             case POST_OPTION_HIDE:
-                threadPresenterCallback.hideThread(post);
+                threadPresenterCallback.hidePost(post);
         }
     }
 
@@ -844,7 +844,7 @@ public class ThreadPresenter implements
 
         void hideDeleting(String message);
 
-        void hideThread(Post post);
+        void hidePost(Post post);
 
         void showNewPostsNotification(boolean show, int more);
 

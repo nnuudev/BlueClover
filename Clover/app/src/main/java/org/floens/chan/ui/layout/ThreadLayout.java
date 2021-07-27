@@ -474,14 +474,14 @@ public class ThreadLayout extends CoordinatorLayout implements
     }
 
     @Override
-    public void hideThread(Post post) {
+    public void hidePost(Post post) {
         final ThreadHide threadHide = ThreadHide.fromPost(post);
         databaseManager.runTask(
                 databaseManager.getDatabaseHideManager().addThreadHide(threadHide));
 
         presenter.refreshUI();
 
-        Snackbar snackbar = Snackbar.make(this, R.string.post_hidden, Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(this, post.isOP ? R.string.thread_hidden : R.string.post_hidden, Snackbar.LENGTH_LONG);
         snackbar.setAction(R.string.undo, new OnClickListener() {
             @Override
             public void onClick(View v) {
