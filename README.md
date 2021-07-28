@@ -8,16 +8,16 @@ The app is based on [Clover-dev 3.0.2 0e32fb7](https://github.com/chandevel/Clov
 
 - *New captcha support!*
 - Page counter on thread view
-- Board flag support
+- Board flags support
 - Quick external image attaching
 - Image renaming and reencoding
 - Immersive mode for image gallery
 - External archive support [partial]
 - Alternate layout mode [experimental]
 
-This was originally created as a private fork that wasn't meant to be shared, expect some changes you won't like and a lot of weirdness in the code. Parts of the code were backported from [Kuroba](https://github.com/Adamantcheese/Kuroba) or merged from old [pull requests](https://github.com/chandevel/Clover/pulls?q=is%3Apr), check the [commit log](https://github.com/nnuudev/BlueClover/commits/dev) for proper attribution when applicable.
+Some parts of the code were backported from [Kuroba](https://github.com/Adamantcheese/Kuroba) or merged from old [pull requests](https://github.com/chandevel/Clover/pulls?q=is%3Apr), check the [commit log](https://github.com/nnuudev/BlueClover/commits/dev) for proper attribution when applicable.
 
-> *If you're interested in a more professional browser, please check [Kuroba](https://github.com/Adamantcheese/Kuroba) or [KurobaEx](https://github.com/K1rakishou/Kuroba-Experimental), or just [contribute to the original Clover](https://github.com/chandevel/Clover).*
+> *The goal of Blue Clover is to add some extra features to Clover while maintaining compatibility with Android 4.4. It is being distributed with the hope that it will be useful, but it is not meant as a replacement for any existing app. If you are interested in a more professional imageboard browser, please check [Kuroba](https://github.com/Adamantcheese/Kuroba) or [KurobaEx](https://github.com/K1rakishou/Kuroba-Experimental), or just [contribute to the original Clover](https://github.com/chandevel/Clover).*
 
 
 ## License
