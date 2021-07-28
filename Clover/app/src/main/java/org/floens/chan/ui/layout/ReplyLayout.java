@@ -412,7 +412,7 @@ public class ReplyLayout extends LoadView implements
                         byte[] buffer = new byte[8192];
                         while ((read = is.read(buffer)) != -1) {
                             total += read;
-                            if (total > 4194304) { // 4 MB
+                            if (total > 26214400) { // 25 MB
                                 total = -1;
                                 break;
                             } else {
