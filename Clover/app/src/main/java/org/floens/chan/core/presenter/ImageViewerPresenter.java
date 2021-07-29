@@ -415,7 +415,20 @@ public class ImageViewerPresenter implements MultiImageView.Callback, ViewPager.
     }
 
     public void saveClicked(PostImage postImage) {
-        imageSaver.addTask(ImageSaveTask.fromPostImage(postImage, false));
+        ArrayList<String> subfolders = new ArrayList<>();
+        int bitmask = ChanSettings.saveImageFolder.get().getBitmask();
+        if (bitmask == ChanSettings.DestinationFolderMode.thread) {
+            // actually, legacy did not include the thread number
+            subfolders.add((loadable.no > 0 ? loadable.no + "_" : "") + imageSaver.getSafeNameForFolder(loadable.title));
+        } else {
+            if ((bitmask & ChanSettings.DestinationFolderMode.site) != 0)
+                subfolders.add(loadable.site.name());
+            if ((bitmask & ChanSettings.DestinationFolderMode.board) != 0)
+                subfolders.add(loadable.boardCode);
+            if ((bitmask & ChanSettings.DestinationFolderMode.thread) != 0)
+                subfolders.add(loadable.no == 0 ? "Catalog" : loadable.no + "_" + imageSaver.getSafeNameForFolder(loadable.title));
+        }
+        imageSaver.addTask(ImageSaveTask.fromPostImage(postImage, false), subfolders.toArray(new String[0]));
     }
 
     public void shareClicked(PostImage postImage) {

@@ -110,21 +110,21 @@ public class ImageSaver implements ImageSaveTask.ImageSaveTaskCallback {
         AndroidUtils.openIntent(Intent.createChooser(intent, null));
     }
 
-    public void addTask(final ImageSaveTask task) {
-        addTasks(Collections.singletonList(task), null, null);
+    public void addTask(final ImageSaveTask task, final String[] folders) {
+        addTasks(Collections.singletonList(task), folders, null);
     }
 
-    public void addTasks(final List<ImageSaveTask> tasks, final String folder, Runnable success) {
-        storage.prepareForSave(folder, () -> {
+    public void addTasks(final List<ImageSaveTask> tasks, final String[] folders, Runnable success) {
+        storage.prepareForSave(folders, () -> {
             if (!needsRequestExternalStoragePermission()) {
-                queueTasks(tasks, folder);
+                queueTasks(tasks, folders);
                 if (success != null) {
                     success.run();
                 }
             } else {
                 requestPermission(granted -> {
                     if (granted) {
-                        queueTasks(tasks, folder);
+                        queueTasks(tasks, folders);
                     } else {
                         showStatusToast(null, false);
                     }
@@ -133,7 +133,7 @@ public class ImageSaver implements ImageSaveTask.ImageSaveTaskCallback {
         });
     }
 
-    private void queueTasks(final List<ImageSaveTask> tasks, final String folder) {
+    private void queueTasks(final List<ImageSaveTask> tasks, final String[] folders) {
         totalTasks = 0;
 
         for (ImageSaveTask task : tasks) {
@@ -142,12 +142,12 @@ public class ImageSaver implements ImageSaveTask.ImageSaveTaskCallback {
 
             StorageFile file;
             if (storage.mode() == Storage.Mode.FILE) {
-                file = storage.obtainLegacyStorageFileForName(folder, name + "." + postImage.extension);
+                file = storage.obtainLegacyStorageFileForName(folders, name + "." + postImage.extension);
             } else {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                     throw new IllegalStateException();
                 }
-                file = storage.obtainStorageFileForName(folder, name + "." + postImage.extension);
+                file = storage.obtainStorageFileForName(folders, name + "." + postImage.extension);
             }
             if (file == null) {
                 throw new IllegalStateException("Failed to obtain a StorageFile");
@@ -237,5 +237,9 @@ public class ImageSaver implements ImageSaveTask.ImageSaveTaskCallback {
 
     private void requestPermission(RuntimePermissionsHelper.Callback callback) {
         Chan.getInstance().getRuntimePermissionsHelper().requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, callback);
+    }
+
+    public String currentStorageName() {
+        return storage.currentStorageName();
     }
 }

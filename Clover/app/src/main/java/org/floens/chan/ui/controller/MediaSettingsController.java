@@ -52,8 +52,6 @@ public class MediaSettingsController extends SettingsController implements
     private StorageSetupPresenter presenter;
 
     // Special setting views
-    private BooleanSettingView boardFolderSetting;
-    private BooleanSettingView threadFolderSetting;
     private LinkSettingView saveLocation;
     private ListSettingView<ChanSettings.MediaAutoLoadMode> imageAutoLoadView;
     private ListSettingView<ChanSettings.MediaAutoLoadMode> videoAutoLoadView;
@@ -136,6 +134,15 @@ public class MediaSettingsController extends SettingsController implements
 
             setupSaveLocationSetting(media);
 
+            //Save modifications
+            media.add(new ListSettingView<>(this,
+                    ChanSettings.saveImageFolder,
+                    R.string.setting_save_image_folder, createDestinationFolderList()));
+
+            media.add(new ListSettingView<>(this,
+                    ChanSettings.saveAlbumFolder,
+                    R.string.setting_save_album_folder, createDestinationFolderList()));
+
             media.add(new BooleanSettingView(this,
                     ChanSettings.saveOriginalFilename,
                     R.string.setting_save_original_filename,
@@ -152,10 +159,6 @@ public class MediaSettingsController extends SettingsController implements
             media.add(new BooleanSettingView(this, ChanSettings.videoUseExoplayer,
                     R.string.setting_video_exoplayer,
                     R.string.setting_video_exoplayer_description));
-
-            media.add(new BooleanSettingView(this,
-                    ChanSettings.longpressToDownload,
-                    R.string.setting_longpress_to_download, R.string.setting_longpress_to_download_description));
 
             media.add(new BooleanSettingView(this,
                     ChanSettings.shareUrl,
@@ -255,5 +258,36 @@ public class MediaSettingsController extends SettingsController implements
                 });
             }
         });
+    }
+
+    private List<ListSettingView.Item> createDestinationFolderList() {
+        List<ListSettingView.Item> folderModes = new ArrayList<>();
+        for (ChanSettings.DestinationFolderMode mode : ChanSettings.DestinationFolderMode.values()) {
+            int name = 0;
+            switch (mode) {
+                case ROOT:
+                    name = R.string.setting_save_mode_root;
+                    break;
+                case SITE:
+                    name = R.string.setting_save_mode_site;
+                    break;
+                case SITE_BOARD:
+                    name = R.string.setting_save_mode_siteboard;
+                    break;
+                case SITE_BOARD_THREAD:
+                    name = R.string.setting_save_mode_siteboardthread;
+                    break;
+                case BOARD:
+                    name = R.string.setting_save_mode_board;
+                    break;
+                case BOARD_THREAD:
+                    name = R.string.setting_save_mode_boardthread;
+                    break;
+                case LEGACY:
+                    name = R.string.setting_save_mode_legacy;
+            }
+            folderModes.add(new ListSettingView.Item<>(getString(name), mode));
+        }
+        return folderModes;
     }
 }

@@ -40,6 +40,7 @@ import org.floens.chan.utils.Logger;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -194,12 +195,12 @@ public class Storage {
         }
     }
 
-    public void prepareForSave(String folder, StoragePreparedCallback callback) {
+    public void prepareForSave(String[] folders, StoragePreparedCallback callback) {
         if (mode() == Mode.FILE) {
             prepareDefaultFileSaveLocation();
             callback.onPrepared();
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (folder == null) {
+            if (folders == null || folders.length == 0) {
                 if (saveLocationTreeUri.get().isEmpty() || !hasPermission(saveLocationTreeUri.get())) {
                     startOpenTreeIntentAndHandle(callback);
                 } else {
@@ -209,14 +210,14 @@ public class Storage {
                 saveLocationTreeUriFolder = null;
                 if (saveLocationTreeUri.get().isEmpty() || !hasPermission(saveLocationTreeUri.get())) {
                     startOpenTreeIntentAndHandle(() -> {
-                        saveLocationTreeUriFolder = createDirectoryForSafUri(Uri.parse(saveLocationTreeUri.get()), folder);
+                        saveLocationTreeUriFolder = createDirectoryForSafUri(Uri.parse(saveLocationTreeUri.get()), folders);
                         if (saveLocationTreeUriFolder == null) {
                             throw new IllegalStateException("Failed to create subdir in normal dir for folder saving");
                         }
                         callback.onPrepared();
                     });
                 } else {
-                    saveLocationTreeUriFolder = createDirectoryForSafUri(Uri.parse(saveLocationTreeUri.get()), folder);
+                    saveLocationTreeUriFolder = createDirectoryForSafUri(Uri.parse(saveLocationTreeUri.get()), folders);
                     if (saveLocationTreeUriFolder == null) {
                         throw new IllegalStateException("Failed to create subdir in normal dir for folder saving");
                     }
@@ -310,47 +311,50 @@ public class Storage {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private String createDirectoryForSafUri(Uri uri, String name) {
-        Logger.i(TAG, "appending base dir");
-        String documentId = DocumentsContract.getTreeDocumentId(uri);
-        Uri treeDocumentUri = DocumentsContract.buildDocumentUriUsingTree(uri, documentId);
+    private String createDirectoryForSafUri(Uri uri, String[] folders) {
         Uri subTree = null;
 
         ContentResolver contentResolver = applicationContext.getContentResolver();
         try {
-            documentId = DocumentsContract.getTreeDocumentId(treeDocumentUri);
-            Uri treeDocUri = DocumentsContract.buildDocumentUriUsingTree(treeDocumentUri, documentId);
-
-            List<Pair<String, String>> files = listTree(treeDocumentUri);
+           List<Pair<String, String>> files = listTree(uri);
             boolean createSubdir = true;
             for (Pair<String, String> file : files) {
-                if (file.second.equals(name)) {
-                    subTree = DocumentsContract.buildDocumentUriUsingTree(treeDocumentUri, file.first);
+                if (file.second.equals(folders[0])) {
+                    subTree = DocumentsContract.buildDocumentUriUsingTree(uri, file.first);
                     createSubdir = false;
                     break;
                 }
             }
             if (createSubdir) {
                 subTree = DocumentsContract.createDocument(
-                        contentResolver, treeDocUri,
-                        DocumentsContract.Document.MIME_TYPE_DIR, name);
+                        contentResolver, uri,
+                        DocumentsContract.Document.MIME_TYPE_DIR, folders[0]);
             }
-
-            Logger.i(TAG, "documentId = " + documentId);
-            Logger.i(TAG, "treeDocumentUri = " + treeDocumentUri);
         } catch (FileNotFoundException e) {
             Logger.e(TAG, "Could not create subdir", e);
         }
 
-        return subTree == null ? null : subTree.toString();
+        if (subTree == null) {
+            return null;
+        } else if (folders.length > 1) {
+            return createDirectoryForSafUri(subTree, Arrays.copyOfRange(folders, 1, folders.length));
+        } else {
+            return subTree.toString();
+        }
     }
 
-    public StorageFile obtainLegacyStorageFileForName(String folder, String name) {
+    public StorageFile obtainLegacyStorageFileForName(String[] folders, String name) {
         File directory;
-        if (folder == null) {
+        if (folders == null || folders.length == 0) {
             directory = new File(ChanSettings.saveLocation.get());
         } else {
-            directory = new File(ChanSettings.saveLocation.get(), folder);
+            StringBuilder sb = new StringBuilder();
+            for (String folder : folders) {
+                if (sb.length() > 0)
+                    sb.append(File.separator);
+                sb.append(folder);
+            }
+            directory = new File(ChanSettings.saveLocation.get(), sb.toString());
         }
 
         String base;
@@ -377,8 +381,8 @@ public class Storage {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public StorageFile obtainStorageFileForName(String folder, String name) {
-        String uriString = folder != null ? saveLocationTreeUriFolder : saveLocationTreeUri.get();
+    public StorageFile obtainStorageFileForName(String[] folders, String name) {
+        String uriString = (folders != null && folders.length > 0) ? saveLocationTreeUriFolder : saveLocationTreeUri.get();
         if (uriString.isEmpty()) {
             return null;
         }
@@ -458,7 +462,7 @@ public class Storage {
     private List<Pair<String, String>> listTree(Uri tree) {
         ContentResolver contentResolver = applicationContext.getContentResolver();
 
-        String documentId = DocumentsContract.getTreeDocumentId(tree);
+        String documentId = DocumentsContract.getDocumentId(tree);
 
         try (Cursor c = contentResolver.query(
                 DocumentsContract.buildChildDocumentsUriUsingTree(tree, documentId),

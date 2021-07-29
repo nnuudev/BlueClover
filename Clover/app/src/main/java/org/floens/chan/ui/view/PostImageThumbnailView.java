@@ -109,15 +109,10 @@ public class PostImageThumbnailView extends ThumbnailView implements View.OnLong
             return false;
         }
 
-        if (ChanSettings.longpressToDownload.get()) {
-            ImageSaver imageSaver = Chan.injector().instance(ImageSaver.class);
-            imageSaver.addTask(ImageSaveTask.fromPostImage(postImage, false));
-        } else {
-            ClipboardManager clipboard = (ClipboardManager) AndroidUtils.getAppContext().getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("File URL", postImage.imageUrl.toString());
-            clipboard.setPrimaryClip(clip);
-            Toast.makeText(getContext(), R.string.url_text_copied, Toast.LENGTH_SHORT).show();
-        }
+        ClipboardManager clipboard = (ClipboardManager) AndroidUtils.getAppContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("File URL", postImage.imageUrl.toString());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(getContext(), R.string.url_text_copied, Toast.LENGTH_SHORT).show();
 
         return true;
     }

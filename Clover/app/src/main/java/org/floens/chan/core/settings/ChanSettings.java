@@ -86,6 +86,37 @@ public class ChanSettings {
         }
     }
 
+    public enum DestinationFolderMode implements OptionSettingItem {
+        ROOT("root", 0x0),
+        SITE("site", DestinationFolderMode.site),
+        SITE_BOARD("siteboard", DestinationFolderMode.site | DestinationFolderMode.board),
+        SITE_BOARD_THREAD("siteboardthread", DestinationFolderMode.site | DestinationFolderMode.board | DestinationFolderMode.thread),
+        BOARD("board", DestinationFolderMode.board),
+        BOARD_THREAD("boardthread", DestinationFolderMode.board | DestinationFolderMode.thread),
+        LEGACY("legacy", DestinationFolderMode.thread);
+
+        public static final int site = 0x01;
+        public static final int board = 0x02;
+        public static final int thread = 0x04;
+
+        String name;
+        int bitmask;
+
+        DestinationFolderMode(String name, int bitmask) {
+            this.name = name;
+            this.bitmask = bitmask;
+        }
+
+        @Override
+        public String getKey() {
+            return name;
+        }
+
+        public int getBitmask() {
+            return bitmask;
+        }
+    }
+
     private static Proxy proxy;
 
     public static final BooleanSetting forceEnglishLocale;
@@ -114,8 +145,9 @@ public class ChanSettings {
 
     public static final StringSetting saveLocation;
     public static final StringSetting saveLocationTreeUri;
+    public static final OptionsSetting<DestinationFolderMode> saveImageFolder;
+    public static final OptionsSetting<DestinationFolderMode> saveAlbumFolder;
     public static final BooleanSetting saveOriginalFilename;
-    public static final BooleanSetting longpressToDownload;
     public static final BooleanSetting shareUrl;
     public static final BooleanSetting enableReplyFab;
     public static final BooleanSetting accessibleInfo;
@@ -202,8 +234,9 @@ public class ChanSettings {
 
         saveLocation = new StringSetting(p, "preference_image_save_location", "");
         saveLocationTreeUri = new StringSetting(p, "preference_image_save_tree_uri", "");
+        saveImageFolder = new OptionsSetting<>(p, "preference_save_image_folder", DestinationFolderMode.class, DestinationFolderMode.ROOT);
+        saveAlbumFolder = new OptionsSetting<>(p, "preference_save_album_folder", DestinationFolderMode.class, DestinationFolderMode.LEGACY);
         saveOriginalFilename = new BooleanSetting(p, "preference_image_save_original", false);
-        longpressToDownload = new BooleanSetting(p, "preference_longpress_to_download", false);
         shareUrl = new BooleanSetting(p, "preference_image_share_url", false);
         accessibleInfo = new BooleanSetting(p, "preference_enable_accessible_info", false);
         layoutTextBelowThumbnails = new BooleanSetting(p, "layout_text_below_thumbnails", false);

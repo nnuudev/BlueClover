@@ -523,12 +523,16 @@ Crash reports do not collect any personally identifiable information."
 
     <!-- Media general group -->
     <string name="settings_group_media">Media</string>
-
-    <string name="setting_save_board_folder">Save images in board folders</string>
-    <string name="setting_save_board_folder_description">Create a folder for each board when saving</string>
-    <string name="setting_save_thread_folder">Save images in thread folders</string>
-    <string name="setting_save_thread_folder_description">Create a folder for each thread when saving</string>
-    <string name="setting_save_original_filename">Save original filename</string>
+    <string name="setting_save_image_folder">Destination for individual images</string>
+    <string name="setting_save_album_folder">Destination for image albums</string>
+    <string name="setting_save_mode_root">Base folder</string>
+    <string name="setting_save_mode_site">Base folder/site</string>
+    <string name="setting_save_mode_siteboard">Base folder/site/board</string>
+    <string name="setting_save_mode_siteboardthread">Base folder/site/board/thread</string>
+    <string name="setting_save_mode_board">Base folder/board</string>
+    <string name="setting_save_mode_boardthread">Base folder/board/thread</string>
+    <string name="setting_save_mode_legacy">Base folder/thread (legacy album)</string>
+    <string name="setting_save_original_filename">Save server filename</string>
     <string name="setting_save_original_filename_description">
 "Save the image with the filename the site assigned.
 If disabled, save the image with the filename the uploader assigned."
@@ -539,8 +543,6 @@ If disabled, save the image with the filename the uploader assigned."
     <string name="setting_video_open_external_description">Play videos in an external media player app</string>
     <string name="setting_video_exoplayer">Enable new ExoPlayer</string>
     <string name="setting_video_exoplayer_description">Use the new ExoPlayer for internal media player</string>
-    <string name="setting_longpress_to_download">Long-press thumbnail to download image</string>
-    <string name="setting_longpress_to_download_description">If disabled, the image URL will be copied to the clipboard instead</string>
     <string name="setting_share_url">Share URL to image</string>
     <string name="setting_share_url_description">Share the URL to the image instead of the image itself</string>
     <string name="settings_reveal_image_spoilers">Reveal image spoilers</string>
