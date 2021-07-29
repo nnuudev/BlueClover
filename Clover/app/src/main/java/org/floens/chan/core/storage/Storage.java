@@ -397,7 +397,7 @@ public class Storage {
         Logger.i(TAG, "saving, documentId = " + documentId + ", treeDocumentUri = " + treeDocumentUri);
 
         Uri docUri;
-        String finalName = filterName(name);
+        String finalName = name;
         try {
             int fileNumberSuffix = 0;
             List<Pair<String, String>> list = listTree(treeDocumentUri);
