@@ -24,8 +24,6 @@ import org.floens.chan.utils.TLSSocketFactory;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import io.sentry.android.core.SentryAndroid;
-
 /**
  * The ChanApplication wrapping our Chan application.
  * For historical reasons the main application class needs to be 'org.floens.chan.ChanApplication'.
@@ -36,17 +34,6 @@ public class ChanApplication extends Chan {
         super.onCreate();
 
         initialize();
-
-        if (!BuildConfig.DEVELOPER_MODE && ChanSettings.isCrashReportingEnabled()) {
-            SentryAndroid.init(this, options -> {
-                options.setDsn(BuildConfig.CRASH_REPORT_TOKEN +
-                        "?release=" + BuildConfig.VERSION_NAME +
-                        "&environment=" + BuildConfig.FLAVOR +
-                        "&extra=commit=" + BuildConfig.BUILD_HASH);
-            });
-        } else {
-            SentryAndroid.init(this, options -> options.setDsn(""));
-        }
 
         if (Build.VERSION.SDK_INT < 22) {
             try {

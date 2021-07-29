@@ -2,16 +2,6 @@ import java.time.format.DateTimeFormatter
 
 apply plugin: 'com.android.application'
 
-if (project.sentryMappingUploadingEnabled) {
-    apply plugin: 'io.sentry.android.gradle'
-
-    sentry {
-        // We'll do this manually because we only enable the sentry plugin on
-        // the build server.
-        autoProguardConfig false
-    }
-}
-
 // Code style
 apply plugin: 'checkstyle'
 task('checkstyle', type: Checkstyle) {
@@ -170,7 +160,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'me.xdrop:fuzzywuzzy:1.3.1'
     implementation 'org.codejargon.feather:feather:1.0'
-    implementation 'io.sentry:sentry-android:2.2.2'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.27.0'
