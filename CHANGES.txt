@@ -1,3 +1,7 @@
+New in v3.20 build 20210729_1950
+- Added options to select download subfolders (adjust in Settings > Media).
+-- Images can no longer be downloaded by pressing their thumbnail.
+
 New in v3.20 build 20210727_1120
 - Added "web search" option to text selection.
 - Added new menu entry to mark or unmark a post as yours.
