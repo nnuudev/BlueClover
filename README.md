@@ -17,7 +17,7 @@ The app is based on [Clover-dev 3.0.2 0e32fb7](https://github.com/chandevel/Clov
 
 Some parts of the code were backported from [Kuroba](https://github.com/Adamantcheese/Kuroba) or merged from old [pull requests](https://github.com/chandevel/Clover/pulls?q=is%3Apr), check the [commit log](https://github.com/nnuudev/BlueClover/commits/dev) for proper attribution when applicable.
 
-> *The goal of Blue Clover is to add some extra features to Clover while maintaining compatibility with Android 4.4. It is being distributed with the hope that it will be useful, but it is not meant as a replacement for any existing app. If you are interested in a more professional imageboard browser, please check [Kuroba](https://github.com/Adamantcheese/Kuroba) or [KurobaEx](https://github.com/K1rakishou/Kuroba-Experimental), or just [contribute to the original Clover](https://github.com/chandevel/Clover).*
+> *The goal of Blue Clover is to add some extra features to Clover while maintaining compatibility with Android 4.4. It is being distributed with the hope that it will be useful, but it is not meant as a replacement for any existing app. If you are interested in a more professional imageboard browser, please check [KurobaEx](https://github.com/K1rakishou/Kuroba-Experimental), or just [contribute to the original Clover](https://github.com/chandevel/Clover).*
 
 
 ## License
