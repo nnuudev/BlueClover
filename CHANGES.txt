@@ -1,3 +1,7 @@
+New in v3.20 build 20210731_1400
+- Removed unused libraries, the apk is ~1 MB smaller now.
+- Albums are now downloaded to the right folder.
+
 New in v3.20 build 20210729_1950
 - Added options to select download subfolders (adjust in Settings > Media).
 -- Images can no longer be downloaded by pressing their thumbnail.
