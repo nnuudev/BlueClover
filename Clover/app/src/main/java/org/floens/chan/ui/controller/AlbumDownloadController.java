@@ -112,7 +112,7 @@ public class AlbumDownloadController extends Controller implements View.OnClickL
                         .show();
             } else {
                 ArrayList<String> subfolders = new ArrayList<>();
-                int bitmask = ChanSettings.saveImageFolder.get().getBitmask();
+                int bitmask = ChanSettings.saveAlbumFolder.get().getBitmask();
                 if (bitmask == ChanSettings.DestinationFolderMode.thread) {
                     // actually, legacy did not include the thread number
                     subfolders.add((loadable.no > 0 ? loadable.no + "_" : "") + imageSaver.getSafeNameForFolder(loadable.title));
