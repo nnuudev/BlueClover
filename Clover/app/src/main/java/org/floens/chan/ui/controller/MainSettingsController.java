@@ -17,12 +17,14 @@
  */
 package org.floens.chan.ui.controller;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import org.floens.chan.R;
@@ -40,6 +42,8 @@ import javax.inject.Inject;
 
 import static org.floens.chan.Chan.inject;
 import static org.floens.chan.utils.AndroidUtils.getString;
+
+import pl.droidsonroids.gif.GifImageView;
 
 public class MainSettingsController extends SettingsController implements SettingsPresenter.Callback {
     @Inject
@@ -259,6 +263,20 @@ public class MainSettingsController extends SettingsController implements Settin
 
                         developerView.view.setVisibility(developer ? View.VISIBLE : View.GONE);
                     }
+                    final GifImageView iv = new GifImageView(context);
+                    iv.setImageResource(R.drawable.trotcycle_rainbow_right);
+                    iv.setX(-iv.getDrawable().getIntrinsicWidth());
+                    iv.setY(navigationController.view.getHeight() - iv.getDrawable().getIntrinsicHeight());
+                    navigationController.view.addView(iv);
+                    iv.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    iv.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    iv.setLayoutParams(iv.getLayoutParams());
+                    ValueAnimator animator = ValueAnimator.ofFloat(iv.getX() - 100, navigationController.view.getWidth() + 100);
+                    animator.setDuration(7500);
+                    animator.addUpdateListener(animation ->
+                            iv.setX((float) animation.getAnimatedValue()));
+                    animator.setRepeatCount(ValueAnimator.INFINITE);
+                    animator.start();
                 }));
 
         return version;
