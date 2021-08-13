@@ -17,6 +17,8 @@
  */
 package org.floens.chan.core.update;
 
+import static org.floens.chan.Chan.inject;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -40,8 +42,6 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import okhttp3.HttpUrl;
-
-import static org.floens.chan.Chan.inject;
 
 /**
  * Calls the update API and downloads and requests installs of APK files.

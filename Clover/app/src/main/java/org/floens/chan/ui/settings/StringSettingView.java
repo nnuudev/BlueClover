@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.settings;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.DialogInterface;
 import android.view.View;
 import android.view.WindowManager;
@@ -28,8 +30,6 @@ import androidx.appcompat.app.AlertDialog;
 
 import org.floens.chan.R;
 import org.floens.chan.core.settings.Setting;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class StringSettingView extends SettingView implements View.OnClickListener {
     private final Setting<String> setting;

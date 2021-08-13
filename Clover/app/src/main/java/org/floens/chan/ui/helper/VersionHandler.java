@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.helper;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -40,8 +42,6 @@ import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.Logger;
 
 import java.io.File;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class VersionHandler implements UpdateManager.UpdateCallback {
     private static final String TAG = "VersionHandler";

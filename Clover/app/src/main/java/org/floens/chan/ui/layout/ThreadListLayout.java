@@ -17,6 +17,11 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.utils.AndroidUtils.ROBOTO_MEDIUM;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+import static org.floens.chan.utils.AndroidUtils.getDimen;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
@@ -62,11 +67,6 @@ import org.floens.chan.utils.AndroidUtils;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.ROBOTO_MEDIUM;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.getDimen;
 
 /**
  * A layout that wraps around a {@link RecyclerView} and a {@link ReplyLayout} to manage showing and replying to posts.

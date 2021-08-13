@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
@@ -29,10 +33,6 @@ import org.floens.chan.controller.Controller;
 import org.floens.chan.core.database.DatabaseManager;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 
 public class DeveloperSettingsController extends Controller {
     private TextView summaryText;

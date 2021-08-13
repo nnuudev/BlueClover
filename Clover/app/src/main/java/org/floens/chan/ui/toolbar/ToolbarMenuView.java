@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.toolbar;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -25,9 +28,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.Collections;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
 
 /**
  * The container view for the list of ToolbarMenuItems, a list of ImageViews.

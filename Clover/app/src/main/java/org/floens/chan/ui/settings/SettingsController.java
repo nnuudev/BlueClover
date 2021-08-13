@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.settings;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.content.res.Configuration;
 import android.view.LayoutInflater;
@@ -35,8 +37,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class SettingsController extends Controller implements AndroidUtils.OnMeasuredCallback {
     protected LinearLayout content;

@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.toolbar;
 
+import static org.floens.chan.utils.AndroidUtils.getRes;
+import static org.floens.chan.utils.AndroidUtils.removeFromParentView;
+
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.view.View;
@@ -28,9 +31,6 @@ import org.floens.chan.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.getRes;
-import static org.floens.chan.utils.AndroidUtils.removeFromParentView;
 
 /**
  * An item for the Toolbar menu. These are ImageViews with an icon, that wehen pressed call

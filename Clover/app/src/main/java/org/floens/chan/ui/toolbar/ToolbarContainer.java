@@ -17,6 +17,11 @@
  */
 package org.floens.chan.ui.toolbar;
 
+import static android.text.TextUtils.isEmpty;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+import static org.floens.chan.utils.AndroidUtils.removeFromParentView;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -49,11 +54,6 @@ import org.floens.chan.utils.AndroidUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static android.text.TextUtils.isEmpty;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.removeFromParentView;
 
 /**
  * The container for the views created by the toolbar for the navigation items.

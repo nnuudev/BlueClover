@@ -17,6 +17,11 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getDimen;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -81,11 +86,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import okhttp3.HttpUrl;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getDimen;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class ImageViewerController extends Controller implements ImageViewerPresenter.Callback {
     private static final String TAG = "ImageViewerController";

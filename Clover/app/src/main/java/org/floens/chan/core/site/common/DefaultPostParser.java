@@ -18,6 +18,8 @@
 package org.floens.chan.core.site.common;
 
 
+import static org.floens.chan.utils.AndroidUtils.sp;
+
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
@@ -43,8 +45,6 @@ import org.jsoup.parser.Parser;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.sp;
 
 @AnyThread
 public class DefaultPostParser implements PostParser {

@@ -18,6 +18,10 @@
 package org.floens.chan.core.site;
 
 
+import static org.floens.chan.Chan.injector;
+import static org.floens.chan.utils.AndroidUtils.getAppContext;
+import static org.floens.chan.utils.AndroidUtils.getRes;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -31,10 +35,6 @@ import org.floens.chan.utils.Logger;
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
-
-import static org.floens.chan.Chan.injector;
-import static org.floens.chan.utils.AndroidUtils.getAppContext;
-import static org.floens.chan.utils.AndroidUtils.getRes;
 
 public class SiteIcon {
     private static final String TAG = "SiteIcon";

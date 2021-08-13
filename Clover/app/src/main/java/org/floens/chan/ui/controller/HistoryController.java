@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -51,10 +55,6 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class HistoryController extends Controller implements
         CompoundButton.OnCheckedChangeListener,

@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -35,8 +37,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
 
 public class SiteSetupController extends SettingsController implements SiteSetupPresenter.Callback {
     @Inject

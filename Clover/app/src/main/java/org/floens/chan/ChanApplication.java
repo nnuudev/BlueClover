@@ -19,7 +19,6 @@ package org.floens.chan;
 
 import android.os.Build;
 
-import org.floens.chan.core.settings.ChanSettings;
 import org.floens.chan.utils.TLSSocketFactory;
 
 import javax.net.ssl.HttpsURLConnection;

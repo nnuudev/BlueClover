@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -39,10 +43,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class MediaSettingsController extends SettingsController implements
         StorageSetupPresenter.Callback {

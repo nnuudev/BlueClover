@@ -17,6 +17,9 @@
  */
 package org.floens.chan.core.presenter;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.isConnected;
+
 import android.net.ConnectivityManager;
 
 import androidx.viewpager.widget.ViewPager;
@@ -38,9 +41,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.isConnected;
 
 public class ImageViewerPresenter implements MultiImageView.Callback, ViewPager.OnPageChangeListener {
     private static final String TAG = "ImageViewerPresenter";

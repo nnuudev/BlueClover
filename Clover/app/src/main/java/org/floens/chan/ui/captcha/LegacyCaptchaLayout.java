@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.captcha;
 
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -39,9 +42,6 @@ import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.ui.view.FixedRatioThumbnailView;
 import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.IOUtils;
-
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
 
 public class LegacyCaptchaLayout extends LinearLayout implements AuthenticationLayoutInterface, View.OnClickListener {
     private FixedRatioThumbnailView image;

@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.view;
 
+import static org.floens.chan.Chan.inject;
+
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -76,8 +78,6 @@ import javax.inject.Inject;
 
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
-
-import static org.floens.chan.Chan.inject;
 
 public class MultiImageView extends FrameLayout implements View.OnClickListener, LifecycleObserver, AudioListener {
     public enum Mode {

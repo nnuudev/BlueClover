@@ -17,6 +17,9 @@
  */
 package org.floens.chan.core.presenter;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.graphics.Bitmap;
 
 import androidx.annotation.Nullable;
@@ -34,9 +37,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class ImageReencodingPresenter {
     private final static String TAG = "ImageReencodingPresenter";

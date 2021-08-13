@@ -1,5 +1,7 @@
 package org.floens.chan.utils;
 
+import static org.floens.chan.utils.AndroidUtils.getAppContext;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -15,8 +17,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Random;
-
-import static org.floens.chan.utils.AndroidUtils.getAppContext;
 
 public class BitmapUtils {
     private static final String TAG = "BitmapUtils";

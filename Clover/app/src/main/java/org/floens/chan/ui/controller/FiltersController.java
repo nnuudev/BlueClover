@@ -17,6 +17,11 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.TextUtils;
@@ -49,11 +54,6 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class FiltersController extends Controller implements
         ToolbarNavigationController.ToolbarSearchCallback,

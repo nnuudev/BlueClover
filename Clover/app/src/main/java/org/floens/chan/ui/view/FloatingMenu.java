@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.view;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -35,9 +38,6 @@ import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.Logger;
 
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 
 public class FloatingMenu {
     public static final int POPUP_WIDTH_AUTO = -1;

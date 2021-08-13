@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
@@ -51,10 +55,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class AlbumDownloadController extends Controller implements View.OnClickListener {
     private GridRecyclerView recyclerView;

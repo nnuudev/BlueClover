@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -64,10 +68,6 @@ import org.floens.chan.utils.Time;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class ThemeSettingsController extends Controller implements View.OnClickListener {
     private Board dummyBoard;

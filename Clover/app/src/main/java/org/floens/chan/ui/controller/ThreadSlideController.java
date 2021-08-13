@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +35,6 @@ import org.floens.chan.ui.toolbar.Toolbar;
 import org.floens.chan.utils.Logger;
 
 import java.lang.reflect.Field;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 
 public class ThreadSlideController extends Controller implements DoubleNavigationController, SlidingPaneLayout.PanelSlideListener, ToolbarNavigationController.ToolbarSearchCallback {
     private static final String TAG = "ThreadSlideController";

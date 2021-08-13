@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.content.Context;
 
 import org.floens.chan.R;
@@ -29,9 +32,6 @@ import org.floens.chan.ui.settings.SettingsGroup;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class AppearanceSettingsController extends SettingsController {
     public AppearanceSettingsController(Context context) {

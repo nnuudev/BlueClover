@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
@@ -39,9 +42,6 @@ import org.floens.chan.ui.settings.SettingsGroup;
 import org.floens.chan.utils.AndroidUtils;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 import pl.droidsonroids.gif.GifImageView;
 

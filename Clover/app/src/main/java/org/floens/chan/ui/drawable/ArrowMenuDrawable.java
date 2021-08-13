@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.drawable;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -27,8 +29,6 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
 import org.floens.chan.ui.helper.PinHelper;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class ArrowMenuDrawable extends Drawable {
     private final Paint mPaint = new Paint();

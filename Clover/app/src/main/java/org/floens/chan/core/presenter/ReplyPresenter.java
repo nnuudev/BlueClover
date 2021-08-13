@@ -17,6 +17,11 @@
  */
 package org.floens.chan.core.presenter;
 
+import static org.floens.chan.utils.AndroidUtils.getAppContext;
+import static org.floens.chan.utils.AndroidUtils.getReadableFileSize;
+import static org.floens.chan.utils.AndroidUtils.getRes;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.text.TextUtils;
 
 import org.floens.chan.R;
@@ -47,11 +52,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.utils.AndroidUtils.getAppContext;
-import static org.floens.chan.utils.AndroidUtils.getReadableFileSize;
-import static org.floens.chan.utils.AndroidUtils.getRes;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDelegate.ImagePickCallback, SiteActions.PostListener {
     public enum Page {

@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -46,10 +50,6 @@ import org.floens.chan.ui.toolbar.ToolbarMenuSubItem;
 import org.floens.chan.utils.AndroidUtils;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 
 public class ViewThreadController extends ThreadController implements ThreadLayout.ThreadLayoutCallback {
     private static final int PIN_ID = 1;

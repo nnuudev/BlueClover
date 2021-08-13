@@ -17,6 +17,14 @@
  */
 package org.floens.chan.ui.cell;
 
+import static android.text.TextUtils.isEmpty;
+import static org.floens.chan.utils.AndroidUtils.ROBOTO_CONDENSED_REGULAR;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getString;
+import static org.floens.chan.utils.AndroidUtils.openIntent;
+import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
+import static org.floens.chan.utils.AndroidUtils.sp;
+
 import android.annotation.TargetApi;
 import android.app.SearchManager;
 import android.content.Context;
@@ -68,14 +76,6 @@ import org.floens.chan.utils.Time;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.text.TextUtils.isEmpty;
-import static org.floens.chan.utils.AndroidUtils.ROBOTO_CONDENSED_REGULAR;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getString;
-import static org.floens.chan.utils.AndroidUtils.openIntent;
-import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
-import static org.floens.chan.utils.AndroidUtils.sp;
 
 public class PostCell extends LinearLayout implements PostCellInterface {
     private static final String TAG = "PostCell";

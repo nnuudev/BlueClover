@@ -17,11 +17,11 @@
  */
 package org.floens.chan.ui.toolbar;
 
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.view.View;
 
 import org.floens.chan.R;
-
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 /**
  * The navigation properties for a Controller. Controls common properties that parent controllers

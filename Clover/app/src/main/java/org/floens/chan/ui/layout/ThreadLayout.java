@@ -17,6 +17,11 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.fixSnackbarText;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
@@ -67,11 +72,6 @@ import org.floens.chan.utils.AndroidUtils;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.fixSnackbarText;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 /**
  * Wrapper around ThreadListLayout, so that it cleanly manages between a loading state

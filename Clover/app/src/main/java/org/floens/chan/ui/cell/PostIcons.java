@@ -1,5 +1,7 @@
 package org.floens.chan.ui.cell;
 
+import static org.floens.chan.Chan.injector;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -24,8 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.HttpUrl;
-
-import static org.floens.chan.Chan.injector;
 
 public class PostIcons extends View {
     private static final Bitmap stickyIcon;

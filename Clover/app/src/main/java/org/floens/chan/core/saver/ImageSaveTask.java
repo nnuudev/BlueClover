@@ -17,6 +17,9 @@
  */
 package org.floens.chan.core.saver;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -34,9 +37,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class ImageSaveTask extends FileCacheListener implements Runnable {
     private static final String TAG = "ImageSaveTask";

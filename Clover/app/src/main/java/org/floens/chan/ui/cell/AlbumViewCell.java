@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.cell;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getDimen;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.animation.DecelerateInterpolator;
@@ -28,9 +31,6 @@ import org.floens.chan.core.model.PostImage;
 import org.floens.chan.ui.view.PostImageThumbnailView;
 import org.floens.chan.ui.view.ThumbnailView;
 import org.floens.chan.utils.AndroidUtils;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getDimen;
 
 public class AlbumViewCell extends FrameLayout {
     private PostImage postImage;

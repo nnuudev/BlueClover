@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.view;
 
+import static org.floens.chan.Chan.injector;
+import static org.floens.chan.utils.AndroidUtils.getString;
+import static org.floens.chan.utils.AndroidUtils.sp;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
@@ -44,10 +48,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 
 import org.floens.chan.R;
-
-import static org.floens.chan.Chan.injector;
-import static org.floens.chan.utils.AndroidUtils.getString;
-import static org.floens.chan.utils.AndroidUtils.sp;
 
 public class ThumbnailView extends View implements ImageLoader.ImageListener {
     private ImageLoader.ImageContainer container;

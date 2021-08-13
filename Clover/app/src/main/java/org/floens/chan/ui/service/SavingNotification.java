@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.service;
 
+import static org.floens.chan.utils.AndroidUtils.getAppContext;
+
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -34,8 +36,6 @@ import androidx.core.app.NotificationCompat;
 import org.floens.chan.R;
 
 import de.greenrobot.event.EventBus;
-
-import static org.floens.chan.utils.AndroidUtils.getAppContext;
 
 public class SavingNotification extends Service {
     public static final String CHANNEL_ID_SAVING = "save:saving";

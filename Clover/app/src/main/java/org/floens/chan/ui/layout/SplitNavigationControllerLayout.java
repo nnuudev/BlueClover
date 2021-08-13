@@ -17,13 +17,13 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class SplitNavigationControllerLayout extends LinearLayout {
     private final int dividerWidth;

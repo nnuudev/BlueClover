@@ -17,6 +17,8 @@
  */
 package org.floens.chan.core.site.common.vichan;
 
+import static android.text.TextUtils.isEmpty;
+
 import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.core.site.common.CommonSite;
 import org.floens.chan.core.site.common.MultipartHttpCall;
@@ -32,8 +34,6 @@ import java.util.regex.Pattern;
 
 import okhttp3.HttpUrl;
 import okhttp3.Response;
-
-import static android.text.TextUtils.isEmpty;
 
 public class VichanActions extends CommonSite.CommonActions {
     public VichanActions(CommonSite commonSite) {

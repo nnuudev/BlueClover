@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.dialog;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -28,8 +30,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class ColorPickerView extends View {
     private static final int[] COLORS = new int[]{

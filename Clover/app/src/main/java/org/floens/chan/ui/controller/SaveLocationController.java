@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.R.string.save_location_storage_permission_required;
+import static org.floens.chan.R.string.save_location_storage_permission_required_title;
+
 import android.Manifest;
 import android.content.Context;
 import android.view.View;
@@ -33,9 +36,6 @@ import org.floens.chan.ui.adapter.FilesAdapter;
 import org.floens.chan.ui.layout.FilesLayout;
 
 import java.io.File;
-
-import static org.floens.chan.R.string.save_location_storage_permission_required;
-import static org.floens.chan.R.string.save_location_storage_permission_required_title;
 
 public class SaveLocationController extends Controller implements FileWatcher.FileWatcherCallback, FilesAdapter.Callback, FilesLayout.Callback, View.OnClickListener {
     private static final String TAG = "SaveLocationController";

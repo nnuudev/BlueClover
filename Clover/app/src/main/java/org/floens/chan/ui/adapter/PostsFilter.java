@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.adapter;
 
+import static org.floens.chan.Chan.inject;
+
 import android.text.TextUtils;
 
 import org.floens.chan.core.database.DatabaseManager;
@@ -31,8 +33,6 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
 
 public class PostsFilter {
     private static final Comparator<Post> IMAGE_COMPARATOR =

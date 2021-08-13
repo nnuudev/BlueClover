@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,10 +34,6 @@ import android.widget.LinearLayout;
 
 import org.floens.chan.R;
 import org.floens.chan.utils.AndroidUtils;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class SearchLayout extends LinearLayout {
     private EditText searchView;

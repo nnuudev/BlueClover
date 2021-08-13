@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.view;
 
+import static org.floens.chan.utils.AndroidUtils.enableHighEndAnimations;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -28,8 +30,6 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
-
-import static org.floens.chan.utils.AndroidUtils.enableHighEndAnimations;
 
 public class TransitionImageView extends View {
     private static final String TAG = "TransitionImageView";

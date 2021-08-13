@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.cell;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
+import static org.floens.chan.utils.AndroidUtils.sp;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -43,10 +47,6 @@ import org.floens.chan.ui.view.ThumbnailView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
-import static org.floens.chan.utils.AndroidUtils.sp;
 
 public class CardPostCell extends CardView implements PostCellInterface, View.OnClickListener {
     private static final int COMMENT_MAX_LENGTH = 200;

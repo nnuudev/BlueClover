@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.cell;
 
+import static org.floens.chan.utils.AndroidUtils.ROBOTO_MEDIUM;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -35,8 +37,6 @@ import org.floens.chan.core.model.Post;
 import org.floens.chan.core.model.orm.Board;
 import org.floens.chan.core.site.sites.chan4.Chan4;
 import org.floens.chan.core.site.sites.chan4.Chan4PagePositionFooter;
-
-import static org.floens.chan.utils.AndroidUtils.ROBOTO_MEDIUM;
 
 public class ThreadStatusCell extends LinearLayout implements View.OnClickListener {
     private static final int UPDATE_INTERVAL = 1000;

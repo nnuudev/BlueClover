@@ -17,6 +17,12 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.ROBOTO_MEDIUM;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.fixSnackbarText;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.TextUtils;
@@ -49,12 +55,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.ROBOTO_MEDIUM;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.fixSnackbarText;
 
 public class DrawerController extends Controller implements DrawerAdapter.Callback, View.OnClickListener {
     protected FrameLayout container;

@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.helper;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.animation.TimeInterpolator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -32,9 +35,6 @@ import android.widget.TextView;
 
 import org.floens.chan.R;
 import org.floens.chan.utils.AndroidUtils;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class HintPopup {
     public static HintPopup show(Context context, View anchor, int text) {

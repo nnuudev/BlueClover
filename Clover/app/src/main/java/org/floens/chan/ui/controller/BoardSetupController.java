@@ -18,6 +18,13 @@
 package org.floens.chan.ui.controller;
 
 
+import static android.text.TextUtils.isEmpty;
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.fixSnackbarText;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -53,13 +60,6 @@ import org.floens.chan.ui.view.DividerItemDecoration;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static android.text.TextUtils.isEmpty;
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.fixSnackbarText;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 
 public class BoardSetupController extends Controller implements View.OnClickListener, BoardSetupPresenter.Callback {
     private static final int DONE_ID = 1;

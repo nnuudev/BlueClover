@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.captcha;
 
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
@@ -42,8 +44,6 @@ import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.IOUtils;
 import org.floens.chan.utils.Logger;
-
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 
 public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInterface {
     private static final String TAG = "NewShitCaptchaLayout";

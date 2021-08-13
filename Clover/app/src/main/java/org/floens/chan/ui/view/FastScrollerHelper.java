@@ -1,12 +1,12 @@
 package org.floens.chan.ui.view;
 
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.StateListDrawable;
 
 import androidx.recyclerview.widget.RecyclerView;
-
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 /**
  * Helper for attaching a FastScroller with the correct theme colors and default values that

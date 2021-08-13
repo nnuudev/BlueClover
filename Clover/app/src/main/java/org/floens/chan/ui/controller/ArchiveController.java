@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,8 +45,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
 
 public class ArchiveController extends Controller implements ArchivePresenter.Callback,
         ToolbarNavigationController.ToolbarSearchCallback,

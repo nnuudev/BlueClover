@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.injector;
+
 import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
@@ -34,8 +36,6 @@ import org.floens.chan.ui.settings.SettingsGroup;
 import org.floens.chan.ui.settings.StringSettingView;
 
 import de.greenrobot.event.EventBus;
-
-import static org.floens.chan.Chan.injector;
 
 public class BehaviourSettingsController extends SettingsController {
     private SettingView forceEnglishSetting;

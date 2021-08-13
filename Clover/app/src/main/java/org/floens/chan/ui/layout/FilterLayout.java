@@ -17,6 +17,12 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -58,12 +64,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class FilterLayout extends LinearLayout implements View.OnClickListener {
     private TextView typeText;

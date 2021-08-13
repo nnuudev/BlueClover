@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.removeFromParentView;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
@@ -56,10 +60,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.removeFromParentView;
 
 /**
  * A ViewGroup that attaches above the entire window, containing a list of boards the user can

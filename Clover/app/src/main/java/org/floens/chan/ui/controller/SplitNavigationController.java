@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+
 import android.content.Context;
 import android.view.KeyEvent;
 import android.view.View;
@@ -29,8 +31,6 @@ import org.floens.chan.controller.ControllerTransition;
 import org.floens.chan.controller.transition.PopControllerTransition;
 import org.floens.chan.controller.transition.PushControllerTransition;
 import org.floens.chan.ui.layout.SplitNavigationControllerLayout;
-
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 
 public class SplitNavigationController extends Controller implements DoubleNavigationController {
     public Controller leftController;

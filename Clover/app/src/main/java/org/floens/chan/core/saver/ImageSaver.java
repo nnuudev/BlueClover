@@ -17,6 +17,10 @@
  */
 package org.floens.chan.core.saver;
 
+import static org.floens.chan.core.storage.Storage.filterName;
+import static org.floens.chan.utils.AndroidUtils.getAppContext;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.Manifest;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -50,10 +54,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import de.greenrobot.event.EventBus;
-
-import static org.floens.chan.core.storage.Storage.filterName;
-import static org.floens.chan.utils.AndroidUtils.getAppContext;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 @Singleton
 public class ImageSaver implements ImageSaveTask.ImageSaveTaskCallback {

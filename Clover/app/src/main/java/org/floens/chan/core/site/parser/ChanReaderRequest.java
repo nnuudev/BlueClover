@@ -17,6 +17,8 @@
  */
 package org.floens.chan.core.site.parser;
 
+import static org.floens.chan.Chan.inject;
+
 import android.util.JsonReader;
 
 import org.floens.chan.core.database.DatabaseManager;
@@ -46,8 +48,6 @@ import java.util.concurrent.Future;
 import javax.inject.Inject;
 
 import okhttp3.HttpUrl;
-
-import static org.floens.chan.Chan.inject;
 
 /**
  * Process a typical imageboard json response.<br>

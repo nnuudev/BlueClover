@@ -17,6 +17,10 @@
  */
 package org.floens.chan.ui.toolbar;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.hideKeyboard;
+import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
@@ -36,10 +40,6 @@ import org.floens.chan.ui.drawable.ArrowMenuDrawable;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.hideKeyboard;
-import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
 
 public class Toolbar extends LinearLayout implements
         View.OnClickListener, ToolbarPresenter.Callback, ToolbarContainer.Callback {

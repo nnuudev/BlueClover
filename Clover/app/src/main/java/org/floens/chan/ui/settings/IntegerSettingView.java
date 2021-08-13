@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.settings;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.DialogInterface;
 import android.text.InputType;
 import android.view.View;
@@ -29,8 +31,6 @@ import androidx.appcompat.app.AlertDialog;
 
 import org.floens.chan.R;
 import org.floens.chan.core.settings.Setting;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 /**
  * Created by Zetsubou on 02.07.2015

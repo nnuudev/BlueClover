@@ -17,6 +17,10 @@
  */
 package org.floens.chan.core.manager;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.Chan.injector;
+import static org.floens.chan.utils.AndroidUtils.getAppContext;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -64,10 +68,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import de.greenrobot.event.EventBus;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.Chan.injector;
-import static org.floens.chan.utils.AndroidUtils.getAppContext;
 
 /**
  * Manages all Pin related management.

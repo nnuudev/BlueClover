@@ -17,6 +17,8 @@
  */
 package org.floens.chan.core.presenter;
 
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.text.TextUtils;
 
 import org.floens.chan.Chan;
@@ -57,8 +59,6 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class ThreadPresenter implements
         ChanThreadLoader.ChanLoaderCallback,

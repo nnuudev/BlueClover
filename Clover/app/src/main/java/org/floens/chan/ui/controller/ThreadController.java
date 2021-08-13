@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -47,8 +49,6 @@ import org.floens.chan.utils.Logger;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public abstract class ThreadController extends Controller implements
         ThreadLayout.ThreadLayoutCallback,

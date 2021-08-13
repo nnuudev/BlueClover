@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,8 +38,6 @@ import org.floens.chan.ui.view.PostImageThumbnailView;
 import org.floens.chan.ui.view.ThumbnailView;
 
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class AlbumViewController extends Controller implements
         ImageViewerController.ImageViewerCallback,

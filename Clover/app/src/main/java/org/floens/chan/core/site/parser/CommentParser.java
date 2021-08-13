@@ -17,6 +17,9 @@
  */
 package org.floens.chan.core.site.parser;
 
+import static org.floens.chan.core.site.parser.StyleRule.tagRule;
+import static org.floens.chan.utils.AndroidUtils.sp;
+
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -40,9 +43,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static org.floens.chan.core.site.parser.StyleRule.tagRule;
-import static org.floens.chan.utils.AndroidUtils.sp;
 
 @AnyThread
 public class CommentParser {

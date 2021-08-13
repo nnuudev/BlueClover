@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.activity;
 
+import static org.floens.chan.utils.AndroidUtils.getAppContext;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,8 +34,6 @@ import androidx.core.content.ContextCompat;
 
 import org.floens.chan.R;
 import org.floens.chan.utils.AndroidUtils;
-
-import static org.floens.chan.utils.AndroidUtils.getAppContext;
 
 public class RuntimePermissionsHelper {
     private static final int RUNTIME_PERMISSION_RESULT_ID = 3;

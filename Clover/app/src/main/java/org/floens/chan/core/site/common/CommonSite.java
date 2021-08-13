@@ -17,6 +17,8 @@
  */
 package org.floens.chan.core.site.common;
 
+import static android.text.TextUtils.isEmpty;
+
 import android.os.Handler;
 import android.os.Looper;
 import android.webkit.WebView;
@@ -60,8 +62,6 @@ import java.util.regex.Pattern;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import static android.text.TextUtils.isEmpty;
 
 public abstract class CommonSite extends SiteBase {
     private final Random secureRandom = new SecureRandom();

@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.getString;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
@@ -50,9 +53,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.getString;
 
 public class BrowseController extends ThreadController implements
         ThreadLayout.ThreadLayoutCallback,

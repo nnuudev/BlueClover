@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.Chan.injector;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -36,8 +38,6 @@ import org.floens.chan.ui.settings.SettingsController;
 import org.floens.chan.ui.settings.SettingsGroup;
 import org.floens.chan.ui.view.CrossfadeView;
 import org.floens.chan.utils.AndroidUtils;
-
-import static org.floens.chan.Chan.injector;
 
 public class WatchSettingsController extends SettingsController implements CompoundButton.OnCheckedChangeListener {
     private CrossfadeView crossfadeView;

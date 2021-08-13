@@ -18,6 +18,8 @@
 package org.floens.chan.core.site;
 
 
+import static org.floens.chan.Chan.injector;
+
 import com.android.volley.RequestQueue;
 
 import org.codejargon.feather.Feather;
@@ -34,8 +36,6 @@ import org.floens.chan.utils.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static org.floens.chan.Chan.injector;
 
 public abstract class SiteBase implements Site {
     protected int id;

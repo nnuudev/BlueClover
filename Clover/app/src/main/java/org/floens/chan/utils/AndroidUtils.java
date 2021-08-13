@@ -17,6 +17,8 @@
  */
 package org.floens.chan.utils;
 
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -66,8 +68,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
 
 public class AndroidUtils {
     private static final String TAG = "AndroidUtils";

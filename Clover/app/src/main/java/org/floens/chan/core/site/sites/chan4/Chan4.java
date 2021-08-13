@@ -27,9 +27,6 @@ import org.floens.chan.core.model.orm.Board;
 import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.settings.OptionSettingItem;
 import org.floens.chan.core.settings.OptionsSetting;
-import org.floens.chan.core.settings.SettingProvider;
-import org.floens.chan.core.settings.SharedPreferencesSettingProvider;
-import org.floens.chan.core.settings.StringSetting;
 import org.floens.chan.core.site.Boards;
 import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.SiteActions;
@@ -48,7 +45,6 @@ import org.floens.chan.core.site.http.HttpCall;
 import org.floens.chan.core.site.http.Reply;
 import org.floens.chan.core.site.parser.ChanReader;
 import org.floens.chan.core.site.parser.CommentParser;
-import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.Logger;
 
 import java.util.ArrayList;

@@ -1,5 +1,7 @@
 package org.floens.chan.core.storage;
 
+import static org.floens.chan.utils.AndroidUtils.getAppContext;
+
 import android.content.ContentResolver;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -14,8 +16,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import static org.floens.chan.utils.AndroidUtils.getAppContext;
 
 public class StorageFile {
     private final ContentResolver contentResolver;

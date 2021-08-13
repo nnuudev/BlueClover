@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -34,8 +36,6 @@ import org.floens.chan.utils.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 
 public class LogsController extends Controller {
     private static final String TAG = "LogsController";

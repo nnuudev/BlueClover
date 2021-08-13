@@ -17,6 +17,14 @@
  */
 package org.floens.chan.ui.adapter;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.ROBOTO_MEDIUM;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
+import static org.floens.chan.utils.AndroidUtils.sp;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,14 +51,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.ROBOTO_MEDIUM;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
-import static org.floens.chan.utils.AndroidUtils.sp;
 
 public class DrawerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public enum HeaderAction {

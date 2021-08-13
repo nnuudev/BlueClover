@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.settings;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.view.Gravity;
 import android.view.View;
 
@@ -28,8 +30,6 @@ import org.floens.chan.ui.view.FloatingMenuItem;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class ListSettingView<T> extends SettingView implements FloatingMenu.FloatingMenuCallback, View.OnClickListener {
     public final List<Item> items;

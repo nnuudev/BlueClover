@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -37,8 +39,6 @@ import org.floens.chan.utils.RecyclerUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 
 public class FilesLayout extends LinearLayout implements FilesAdapter.Callback, View.OnClickListener {
     private ViewGroup backLayout;

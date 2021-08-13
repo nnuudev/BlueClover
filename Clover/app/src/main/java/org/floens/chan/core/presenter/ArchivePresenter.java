@@ -17,6 +17,8 @@
  */
 package org.floens.chan.core.presenter;
 
+import static android.text.TextUtils.isEmpty;
+
 import org.floens.chan.core.database.DatabaseManager;
 import org.floens.chan.core.model.Archive;
 import org.floens.chan.core.model.orm.Board;
@@ -28,8 +30,6 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
-
-import static android.text.TextUtils.isEmpty;
 
 public class ArchivePresenter implements SiteActions.ArchiveListener {
     private DatabaseManager databaseManager;

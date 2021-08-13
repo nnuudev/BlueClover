@@ -1,5 +1,7 @@
 package org.floens.chan.core.site.common.vichan;
 
+import static org.floens.chan.core.site.SiteEndpoints.makeArgument;
+
 import android.util.JsonReader;
 
 import org.floens.chan.core.model.Post;
@@ -16,8 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.HttpUrl;
-
-import static org.floens.chan.core.site.SiteEndpoints.makeArgument;
 
 public class VichanApi extends CommonSite.CommonApi {
     public VichanApi(CommonSite commonSite) {

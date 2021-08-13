@@ -17,6 +17,13 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+import static org.floens.chan.utils.AndroidUtils.getString;
+import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
+
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.ClipData;
@@ -94,13 +101,6 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.getString;
-import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
 
 public class ReplyLayout extends LoadView implements
         View.OnClickListener,

@@ -17,6 +17,8 @@
  */
 package org.floens.chan.core.site.loader;
 
+import static org.floens.chan.Chan.inject;
+
 import android.text.TextUtils;
 
 import com.android.volley.RequestQueue;
@@ -42,8 +44,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
 
 /**
  * A ChanThreadLoader is the loader for Loadables.

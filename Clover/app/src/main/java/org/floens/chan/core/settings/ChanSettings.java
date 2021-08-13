@@ -19,7 +19,6 @@ package org.floens.chan.core.settings;
 
 import android.text.TextUtils;
 
-import org.floens.chan.BuildConfig;
 import org.floens.chan.R;
 import org.floens.chan.core.manager.WatchManager;
 import org.floens.chan.core.update.UpdateManager;

@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.text;
 
+import static org.floens.chan.utils.AndroidUtils.sp;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -33,8 +35,6 @@ import android.view.View;
 
 import org.floens.chan.R;
 import org.floens.chan.utils.Logger;
-
-import static org.floens.chan.utils.AndroidUtils.sp;
 
 /**
  * A simple implementation of a TextView that caches the used StaticLayouts for performance.<br>

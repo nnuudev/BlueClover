@@ -1,5 +1,7 @@
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.Chan.inject;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Pair;
@@ -14,8 +16,6 @@ import org.floens.chan.R;
 import org.floens.chan.core.manager.ArchivesManager;
 import org.floens.chan.core.model.PostLinkable;
 import org.floens.chan.core.model.orm.Loadable;
-
-import static org.floens.chan.Chan.inject;
 
 public class ArchivesLayout extends LinearLayout {
     private Callback callback;

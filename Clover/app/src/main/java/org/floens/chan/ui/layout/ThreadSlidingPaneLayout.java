@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -28,8 +30,6 @@ import androidx.slidingpanelayout.widget.SlidingPaneLayout;
 import org.floens.chan.R;
 import org.floens.chan.ui.controller.ThreadSlideController;
 import org.floens.chan.utils.AndroidUtils;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class ThreadSlidingPaneLayout extends SlidingPaneLayout {
     public ViewGroup leftPane;

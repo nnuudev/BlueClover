@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.activity;
 
+import static org.floens.chan.Chan.inject;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -66,8 +68,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
 
 public class StartActivity extends AppCompatActivity implements
         NfcAdapter.CreateNdefMessageCallback,

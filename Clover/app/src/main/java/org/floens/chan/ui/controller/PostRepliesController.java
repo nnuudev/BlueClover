@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.controller;
 
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -45,8 +47,6 @@ import org.floens.chan.utils.AndroidUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
 
 public class PostRepliesController extends Controller {
     private static final int TRANSITION_DURATION = 200;

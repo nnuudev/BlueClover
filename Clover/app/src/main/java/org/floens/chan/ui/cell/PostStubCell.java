@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.cell;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -39,9 +42,6 @@ import org.floens.chan.ui.view.ThumbnailView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
-import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
 
 public class PostStubCell extends RelativeLayout implements PostCellInterface, View.OnClickListener {
     private static final int TITLE_MAX_LENGTH = 100;

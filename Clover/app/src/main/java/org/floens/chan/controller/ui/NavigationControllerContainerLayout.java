@@ -17,6 +17,8 @@
  */
 package org.floens.chan.controller.ui;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
@@ -34,8 +36,6 @@ import androidx.core.view.ViewCompat;
 
 import org.floens.chan.controller.Controller;
 import org.floens.chan.controller.NavigationController;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class NavigationControllerContainerLayout extends FrameLayout {
     // The shadow starts at this alpha and goes up to 1f

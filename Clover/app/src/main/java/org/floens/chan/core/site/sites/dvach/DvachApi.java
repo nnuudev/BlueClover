@@ -1,5 +1,7 @@
 package org.floens.chan.core.site.sites.dvach;
 
+import static org.floens.chan.core.site.SiteEndpoints.makeArgument;
+
 import android.util.JsonReader;
 
 import org.floens.chan.core.model.Post;
@@ -13,8 +15,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static org.floens.chan.core.site.SiteEndpoints.makeArgument;
 
 public class DvachApi extends CommonSite.CommonApi {
     DvachApi(CommonSite commonSite) {

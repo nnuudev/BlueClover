@@ -27,12 +27,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
-import org.floens.chan.Chan;
 import org.floens.chan.R;
 import org.floens.chan.core.model.PostImage;
-import org.floens.chan.core.saver.ImageSaveTask;
-import org.floens.chan.core.saver.ImageSaver;
-import org.floens.chan.core.settings.ChanSettings;
 import org.floens.chan.utils.AndroidUtils;
 
 public class PostImageThumbnailView extends ThumbnailView implements View.OnLongClickListener {

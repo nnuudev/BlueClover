@@ -17,6 +17,8 @@
  */
 package org.floens.chan.core.receiver;
 
+import static org.floens.chan.Chan.inject;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,8 +26,6 @@ import android.content.Intent;
 import org.floens.chan.core.manager.WatchManager;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
 
 public class WatchUpdateReceiver extends BroadcastReceiver {
     private static final String TAG = "WatchUpdateReceiver";

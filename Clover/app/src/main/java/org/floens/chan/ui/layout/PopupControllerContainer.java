@@ -17,11 +17,11 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class PopupControllerContainer extends FrameLayout {
     public PopupControllerContainer(Context context) {

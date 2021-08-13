@@ -18,6 +18,11 @@
 package org.floens.chan.ui.controller;
 
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.ui.theme.ThemeHelper.theme;
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -53,11 +58,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
-import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
 
 public class SitesSetupController extends StyledToolbarNavigationController implements
         SitesSetupPresenter.Callback,

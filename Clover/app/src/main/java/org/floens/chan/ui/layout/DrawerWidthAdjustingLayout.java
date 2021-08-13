@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.layout;
 
+import static org.floens.chan.utils.AndroidUtils.dp;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -24,8 +26,6 @@ import android.view.View;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import org.floens.chan.R;
-
-import static org.floens.chan.utils.AndroidUtils.dp;
 
 public class DrawerWidthAdjustingLayout extends DrawerLayout {
     public DrawerWidthAdjustingLayout(Context context) {

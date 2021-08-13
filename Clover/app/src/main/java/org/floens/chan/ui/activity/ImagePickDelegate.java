@@ -17,6 +17,9 @@
  */
 package org.floens.chan.ui.activity;
 
+import static org.floens.chan.Chan.inject;
+import static org.floens.chan.utils.AndroidUtils.runOnUiThread;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -36,9 +39,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import javax.inject.Inject;
-
-import static org.floens.chan.Chan.inject;
-import static org.floens.chan.utils.AndroidUtils.runOnUiThread;
 
 public class ImagePickDelegate implements Runnable {
     private static final String TAG = "ImagePickActivity";

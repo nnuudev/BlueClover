@@ -16,6 +16,8 @@
  */
 package org.floens.chan.core.manager;
 
+import static org.floens.chan.utils.AndroidUtils.getAppContext;
+
 import android.annotation.SuppressLint;
 import android.util.Pair;
 
@@ -32,8 +34,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.floens.chan.utils.AndroidUtils.getAppContext;
 
 public class ArchivesManager {
     private JSONArray archivesList;

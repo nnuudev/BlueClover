@@ -17,6 +17,8 @@
  */
 package org.floens.chan.ui.adapter;
 
+import static org.floens.chan.utils.AndroidUtils.getAttrColor;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -30,8 +32,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.floens.chan.R;
 import org.floens.chan.core.saver.FileWatcher;
-
-import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 
 public class FilesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int ITEM_TYPE_FOLDER = 0;
