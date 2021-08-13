@@ -41,7 +41,6 @@ import org.floens.chan.core.site.SiteUrlHandler;
 import org.floens.chan.core.site.http.DeleteRequest;
 import org.floens.chan.core.site.http.DeleteResponse;
 import org.floens.chan.core.site.http.HttpCall;
-import org.floens.chan.core.site.http.LoginRequest;
 import org.floens.chan.core.site.http.Reply;
 import org.floens.chan.core.site.http.ReplyResponse;
 import org.floens.chan.core.site.parser.ChanReader;
@@ -377,11 +376,6 @@ public abstract class CommonSite extends SiteBase {
         public HttpUrl report(Post post) {
             return null;
         }
-
-        @Override
-        public HttpUrl login() {
-            return null;
-        }
     }
 
     public static class SimpleHttpUrl {
@@ -530,24 +524,6 @@ public abstract class CommonSite extends SiteBase {
 
         @Override
         public void archive(Board board, ArchiveListener archiveListener) {
-        }
-
-        @Override
-        public void login(LoginRequest loginRequest, LoginListener loginListener) {
-        }
-
-        @Override
-        public void logout() {
-        }
-
-        @Override
-        public boolean isLoggedIn() {
-            return false;
-        }
-
-        @Override
-        public LoginRequest getLoginDetails() {
-            return null;
         }
     }
 

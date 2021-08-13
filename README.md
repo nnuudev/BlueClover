@@ -2,7 +2,7 @@
 
 ### Download APK: [ [latest release](https://github.com/nnuudev/BlueClover/releases/latest) | [all releases](https://github.com/nnuudev/BlueClover/releases) ]
 
-Blue Clover is a fast Android app for browsing 4chan on Android. It adds inline replying, thread watching, notifications, themes, pass support, filters and a whole lot more. Blue Clover is licensed under the GPL and will always be free.
+Blue Clover is a fast Android app for browsing 4chan on Android. It adds inline replying, thread watching, notifications, themes, filters and a whole lot more. Blue Clover is licensed under the GPL and will always be free.
 
 The app is based on [Clover-dev 3.0.2 0e32fb7](https://github.com/chandevel/Clover/commit/0e32fb74d5ea4fbfe3248e559e64037bdf9acf17) and some of its more relevant [changes](https://raw.githubusercontent.com/nnuudev/BlueClover/dev/CHANGES.txt) are:
 

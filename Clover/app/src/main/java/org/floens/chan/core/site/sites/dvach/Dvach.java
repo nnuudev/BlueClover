@@ -163,22 +163,18 @@ public class Dvach extends CommonSite {
 
             @Override
             public boolean postRequiresAuthentication() {
-                return !isLoggedIn();
+                return true;
             }
 
             @Override
             public SiteAuthentication postAuthenticate() {
-                if (isLoggedIn()) {
-                    return SiteAuthentication.fromNone();
-                } else {
-                    switch (captchaType.get()) {
-                        case V2JS:
-                            return SiteAuthentication.fromCaptcha2(CAPTCHA_KEY, "https://2ch.hk/api/captcha/recaptcha/mobile");
-                        case V2NOJS:
-                            return SiteAuthentication.fromCaptcha2nojs(CAPTCHA_KEY, "https://2ch.hk/api/captcha/recaptcha/mobile");
-                        default:
-                            throw new IllegalArgumentException();
-                    }
+                switch (captchaType.get()) {
+                    case V2JS:
+                        return SiteAuthentication.fromCaptcha2(CAPTCHA_KEY, "https://2ch.hk/api/captcha/recaptcha/mobile");
+                    case V2NOJS:
+                        return SiteAuthentication.fromCaptcha2nojs(CAPTCHA_KEY, "https://2ch.hk/api/captcha/recaptcha/mobile");
+                    default:
+                        throw new IllegalArgumentException();
                 }
             }
 

@@ -23,7 +23,6 @@ import org.floens.chan.core.model.orm.Board;
 import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.settings.json.JsonSettings;
 import org.floens.chan.core.site.http.DeleteRequest;
-import org.floens.chan.core.site.http.LoginRequest;
 import org.floens.chan.core.site.http.Reply;
 import org.floens.chan.core.site.parser.ChanReader;
 
@@ -52,15 +51,7 @@ public interface Site {
          *
          * @see SiteEndpoints#report(Post)
          */
-        POST_REPORT,
-
-        /**
-         * This site supports some sort of authentication (like 4pass).
-         *
-         * @see SiteActions#login(LoginRequest, SiteActions.LoginListener)
-         * @see SiteEndpoints#login()
-         */
-        LOGIN
+        POST_REPORT
     }
 
     /**

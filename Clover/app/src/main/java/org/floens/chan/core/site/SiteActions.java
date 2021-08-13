@@ -22,8 +22,6 @@ import org.floens.chan.core.model.orm.Board;
 import org.floens.chan.core.site.http.DeleteRequest;
 import org.floens.chan.core.site.http.DeleteResponse;
 import org.floens.chan.core.site.http.HttpCall;
-import org.floens.chan.core.site.http.LoginRequest;
-import org.floens.chan.core.site.http.LoginResponse;
 import org.floens.chan.core.site.http.Reply;
 import org.floens.chan.core.site.http.ReplyResponse;
 
@@ -73,23 +71,5 @@ public interface SiteActions {
         void onArchive(Archive archive);
 
         void onArchiveError();
-    }
-
-    /* TODO(multi-site) this login mechanism is probably not generic enough right now,
-     * especially if we're thinking about what a login really is
-     * We'll expand this later when we have a better idea of what other sites require.
-     */
-    void login(LoginRequest loginRequest, LoginListener loginListener);
-
-    void logout();
-
-    boolean isLoggedIn();
-
-    LoginRequest getLoginDetails();
-
-    interface LoginListener {
-        void onLoginComplete(HttpCall httpCall, LoginResponse loginResponse);
-
-        void onLoginError(HttpCall httpCall);
     }
 }

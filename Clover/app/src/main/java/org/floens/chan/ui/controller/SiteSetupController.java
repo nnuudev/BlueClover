@@ -44,7 +44,6 @@ public class SiteSetupController extends SettingsController implements SiteSetup
 
     private Site site;
     private LinkSettingView boardsLink;
-    private LinkSettingView loginLink;
 
     public SiteSetupController(Context context) {
         super(context);
@@ -92,14 +91,6 @@ public class SiteSetupController extends SettingsController implements SiteSetup
     }
 
     @Override
-    public void setIsLoggedIn(boolean isLoggedIn) {
-        String text = context.getString(isLoggedIn ?
-                R.string.setup_site_login_description_enabled :
-                R.string.setup_site_login_description_disabled);
-        loginLink.setDescription(text);
-    }
-
-    @Override
     public void showSettings(List<SiteSetting> settings) {
         SettingsGroup group = new SettingsGroup("Additional settings");
 
@@ -136,26 +127,6 @@ public class SiteSetupController extends SettingsController implements SiteSetup
         // we know it's an enum
         return (ListSettingView<?>) new ListSettingView(this,
                 optionsSetting, setting.name, items);
-    }
-
-    @Override
-    public void showLogin() {
-        SettingsGroup login = new SettingsGroup(R.string.setup_site_group_login);
-
-        loginLink = new LinkSettingView(
-                this,
-                context.getString(R.string.setup_site_login),
-                "",
-                v -> {
-                    LoginController loginController = new LoginController(context);
-                    loginController.setSite(site);
-                    navigationController.pushController(loginController);
-                }
-        );
-
-        login.add(loginLink);
-
-        groups.add(login);
     }
 
     private void populatePreferences() {

@@ -1,12 +1,15 @@
-New in v3.20 build 20210731_1400
+New in v3.20 build 20210813_2250
+- Release.
+
+New in v3.20 build 20210731_1400 [preview]
 - Removed unused libraries, the apk is ~1 MB smaller now.
 - Albums are now downloaded to the right folder.
 
-New in v3.20 build 20210729_1950
+New in v3.20 build 20210729_1950 [preview]
 - Added options to select download subfolders (adjust in Settings > Media).
 -- Images can no longer be downloaded by pressing their thumbnail.
 
-New in v3.20 build 20210727_1120
+New in v3.20 build 20210727_1120 [preview]
 - Added "web search" option to text selection.
 - Added new menu entry to mark or unmark a post as yours.
 - Added option to show the text below the thumbnail to fill the screen width when there's only one image (enable in Settings > Appearance).
@@ -14,20 +17,20 @@ New in v3.20 build 20210727_1120
 - Added option to choose between downloading image (old behavior) or copying its URL (new default) when long-pressing it (enable in Settings > Media).
 - Moved flag selector button thingy to the left.
 
-New in v3.20 build 20210723_1110
+New in v3.20 build 20210723_1110 [preview]
 - Added board flags to catalog view.
 - Added Copy URL and Rotate options to images.
 - External archive quick access (opens in the browser).
 - Immersive image view (enable in Settings > Appearance).
 -- Used some code from https://github.com/Adamantcheese/Kuroba.
 
-New in v3.20 build 20210721_1120
+New in v3.20 build 20210721_1120 [preview]
 - Implement thread activity sort order.
 -- Merged from https://github.com/chandevel/Clover/pull/717.
 - Image re encoding.
 -- Merged from https://github.com/chandevel/Clover/pull/669.
 
-New in v3.20 build 20210720_1140
+New in v3.20 build 20210720_1140 [preview]
 - Added Furbooru as image search option on /trash/.
 - Image uploading progress.
 -- Merged from https://github.com/chandevel/Clover/pull/670.
@@ -35,14 +38,14 @@ New in v3.20 build 20210720_1140
 -- Merged from https://github.com/chandevel/Clover/pull/799.
 - Minor fixes for Android 4.
 
-New in v3.20 build 20210719_1140
+New in v3.20 build 20210719_1140 [preview]
 - Improved board flag support.
 -- Used some code from https://github.com/Adamantcheese/Kuroba.
 - Flags on /mlp/ are sorted like this: Mane 6, rest, G5, TFH, EqG.
 - Added Derpibooru as image search option on /mlp/ and /trash/.
 - Changed default theme for people who are new to Blue Clover.
 
-New in v3.20 build 20210718_0905
+New in v3.20 build 20210718_0905 [preview]
 [INITIAL RELEASE, based on Clover-dev 3.0.2 0e32fb7]
 - NEW CAPTCHA SUPPORT!
 - Added page counter at the bottom of the thread view.

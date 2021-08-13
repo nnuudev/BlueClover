@@ -45,8 +45,6 @@ import org.floens.chan.core.site.common.DefaultPostParser;
 import org.floens.chan.core.site.common.FutabaChanReader;
 import org.floens.chan.core.site.http.DeleteRequest;
 import org.floens.chan.core.site.http.HttpCall;
-import org.floens.chan.core.site.http.LoginRequest;
-import org.floens.chan.core.site.http.LoginResponse;
 import org.floens.chan.core.site.http.Reply;
 import org.floens.chan.core.site.parser.ChanReader;
 import org.floens.chan.core.site.parser.CommentParser;
@@ -298,43 +296,17 @@ public class Chan4 extends SiteBase {
                     .addQueryParameter("no", String.valueOf(post.no))
                     .build();
         }
-
-        @Override
-        public HttpUrl login() {
-            return sys.newBuilder()
-                    .addPathSegment("auth")
-                    .build();
-        }
     };
 
     private SiteRequestModifier siteRequestModifier = new SiteRequestModifier() {
         @Override
-        public void modifyHttpCall(HttpCall httpCall, Request.Builder requestBuilder) {
-            if (actions.isLoggedIn()) {
-                requestBuilder.addHeader("Cookie", "pass_id=" + passToken.get());
-            }
-        }
+        public void modifyHttpCall(HttpCall httpCall, Request.Builder requestBuilder) { }
 
         @SuppressWarnings("deprecation")
         @Override
         public void modifyWebView(WebView webView) {
-            final HttpUrl sys = new HttpUrl.Builder()
-                    .scheme("https")
-                    .host("sys.4chan.org")
-                    .build();
-
             CookieManager cookieManager = CookieManager.getInstance();
             cookieManager.removeAllCookie();
-            if (actions.isLoggedIn()) {
-                String[] passCookies = {
-                        "pass_enabled=1;",
-                        "pass_id=" + passToken.get() + ";"
-                };
-                String domain = sys.scheme() + "://" + sys.host() + "/";
-                for (String cookie : passCookies) {
-                    cookieManager.setCookie(domain, cookie);
-                }
-            }
         }
     };
 
@@ -382,24 +354,20 @@ public class Chan4 extends SiteBase {
 
         @Override
         public boolean postRequiresAuthentication() {
-            return !isLoggedIn();
+            return true;
         }
 
         @Override
         public SiteAuthentication postAuthenticate() {
-            if (isLoggedIn()) {
-                return SiteAuthentication.fromNone();
-            } else {
-                switch (captchaType.get()) {
-                    case V2JS:
-                        return SiteAuthentication.fromCaptcha2(CAPTCHA_KEY, "https://boards.4chan.org");
-                    case V2NOJS:
-                        return SiteAuthentication.fromCaptcha2nojs(CAPTCHA_KEY, "https://boards.4chan.org");
-                    case NEWCAPTCHA:
-                        return SiteAuthentication.fromNewCaptcha("https://boards.4chan.org");
-                    default:
-                        throw new IllegalArgumentException();
-                }
+            switch (captchaType.get()) {
+                case V2JS:
+                    return SiteAuthentication.fromCaptcha2(CAPTCHA_KEY, "https://boards.4chan.org");
+                case V2NOJS:
+                    return SiteAuthentication.fromCaptcha2nojs(CAPTCHA_KEY, "https://boards.4chan.org");
+                case NEWCAPTCHA:
+                    return SiteAuthentication.fromNewCaptcha("https://boards.4chan.org");
+                default:
+                    throw new IllegalArgumentException();
             }
         }
 
@@ -417,49 +385,7 @@ public class Chan4 extends SiteBase {
                 }
             });
         }
-
-        @Override
-        public void login(LoginRequest loginRequest, final LoginListener loginListener) {
-            passUser.set(loginRequest.user);
-            passPass.set(loginRequest.pass);
-
-            httpCallManager.makeHttpCall(new Chan4PassHttpCall(Chan4.this, loginRequest), new HttpCall.HttpCallback<Chan4PassHttpCall>() {
-                @Override
-                public void onHttpSuccess(Chan4PassHttpCall httpCall) {
-                    LoginResponse loginResponse = httpCall.loginResponse;
-                    if (loginResponse.success) {
-                        passToken.set(loginResponse.token);
-                    }
-                    loginListener.onLoginComplete(httpCall, loginResponse);
-                }
-
-                @Override
-                public void onHttpFail(Chan4PassHttpCall httpCall, Exception e) {
-                    loginListener.onLoginError(httpCall);
-                }
-            });
-        }
-
-        @Override
-        public void logout() {
-            passToken.set("");
-        }
-
-        @Override
-        public boolean isLoggedIn() {
-            return !passToken.get().isEmpty();
-        }
-
-        @Override
-        public LoginRequest getLoginDetails() {
-            return new LoginRequest(passUser.get(), passPass.get());
-        }
     };
-
-    // Legacy settings that were global before
-    private final StringSetting passUser;
-    private final StringSetting passPass;
-    private final StringSetting passToken;
 
     public enum CaptchaType implements OptionSettingItem {
         V2JS("v2js"),
@@ -479,16 +405,6 @@ public class Chan4 extends SiteBase {
     }
 
     private OptionsSetting<CaptchaType> captchaType;
-
-    public Chan4() {
-        // we used these before multisite, and lets keep using them.
-        SettingProvider p = new SharedPreferencesSettingProvider(AndroidUtils.getPreferences());
-        passUser = new StringSetting(p, "preference_pass_token", "");
-        passPass = new StringSetting(p, "preference_pass_pin", "");
-        // token was renamed, before it meant the username, now it means the token returned
-        // from the server that the cookie is set to.
-        passToken = new StringSetting(p, "preference_pass_id", "");
-    }
 
     @Override
     public void initializeSettings() {
@@ -529,9 +445,6 @@ public class Chan4 extends SiteBase {
         switch (feature) {
             case POSTING:
                 // yes, we support posting.
-                return true;
-            case LOGIN:
-                // 4chan pass.
                 return true;
             case POST_DELETE:
                 // yes, with the password saved when posting.
