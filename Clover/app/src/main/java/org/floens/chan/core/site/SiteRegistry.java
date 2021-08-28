@@ -49,9 +49,9 @@ public class SiteRegistry {
         // find the correct class to use.
         SITE_CLASSES.put(0, Chan4.class);
 
-        SITE_CLASSES.put(2, Lainchan.class);
-        SITE_CLASSES.put(3, Arisuchan.class);
-        SITE_CLASSES.put(4, Sushichan.class);
-        SITE_CLASSES.put(5, Dvach.class);
+        SITE_CLASSES.put(1, Lainchan.class);
+        SITE_CLASSES.put(2, Arisuchan.class);
+        SITE_CLASSES.put(3, Sushichan.class);
+        SITE_CLASSES.put(4, Dvach.class);
     }
 }
