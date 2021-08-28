@@ -21,6 +21,7 @@ import org.floens.chan.core.manager.BoardManager;
 import org.floens.chan.core.repository.SiteRepository;
 import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.SiteService;
+import org.floens.chan.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,8 @@ import java.util.Observer;
 import javax.inject.Inject;
 
 public class SitesSetupPresenter implements Observer {
+    private static final String TAG = "SitesSetupPresenter";
+
     private final SiteService siteService;
     private final SiteRepository siteRepository;
     private final BoardManager boardManager;
@@ -141,6 +144,16 @@ public class SitesSetupPresenter implements Observer {
         callback.setSites(r);
     }
 
+    public void removeSite(Site site) {
+        try {
+            siteRepository.removeSite(site);
+            callback.onSiteDeleted(site);
+        } catch (Throwable error) {
+            Logger.e(TAG, "Could not delete site: " + site.name(), error);
+            callback.onErrorWhileTryingToDeleteSite(site, error);
+        }
+    }
+
     public class SiteBoardCount {
         public Site site;
         public int boardCount;
@@ -159,6 +172,10 @@ public class SitesSetupPresenter implements Observer {
         void showAddDialog();
 
         void openSiteConfiguration(Site site);
+
+        void onSiteDeleted(Site site);
+
+        void onErrorWhileTryingToDeleteSite(Site site, Throwable error);
     }
 
     public interface AddCallback {
