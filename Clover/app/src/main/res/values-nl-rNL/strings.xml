@@ -138,8 +138,7 @@ Zet de permissie opnieuw aan in de app-instellingen als je het uit hebt gezet.\"
     <string name="thread_pin_hint">Maak een bladwijzer voor deze thread</string>
     <string name="thread_view_archive">Archief</string>
     <string name="thread_empty_setup_title">Niets te tonen</string>
-    <string name="thread_empty_setup_body">Voeg een site toe om te browsen</string>
-    <string name="thread_empty_setup_hint">Voeg hier een site toe</string>
+    <string name="thread_empty_setup_body">Tik hier om een site toe te voegen</string>
     <string name="setup_sites_title">Sites instellen</string>
     <string name="setup_sites_empty">Geen sites toegevoegd</string>
     <string name="setup_sites_add_hint">Voeg hier een site toe</string>

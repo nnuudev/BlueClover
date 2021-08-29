@@ -171,8 +171,7 @@ Re-enable this permission in the app settings if you permanently disabled it."</
 
     <string name="thread_empty_setup_feature" translatable="false">&#128564;</string>
     <string name="thread_empty_setup_title">Nothing to show</string>
-    <string name="thread_empty_setup_body">Add a site to begin browsing</string>
-    <string name="thread_empty_setup_hint">Add a site here</string>
+    <string name="thread_empty_setup_body">Tap here to add a site</string>
 
     <string name="setup_sites_title">Setup sites</string>
     <string name="setup_sites_empty">No sites added</string>

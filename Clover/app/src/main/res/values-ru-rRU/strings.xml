@@ -159,8 +159,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <string name="thread_pin_hint">Добавить тред в избранное</string>
   <string name="thread_view_archive">Архив</string>
   <string name="thread_empty_setup_title">Нечего показывать</string>
-  <string name="thread_empty_setup_body">Добавьте сайт, чтобы начать</string>
-  <string name="thread_empty_setup_hint">Добавьте сайт здесь</string>
+  <string name="thread_empty_setup_body">Нажмите здесь, чтобы добавить сайт</string>
   <string name="setup_sites_title">Настроить сайты</string>
   <string name="setup_sites_empty">Нет добавленных сайтов</string>
   <string name="setup_sites_add_hint">Добавьте сайт здесь</string>

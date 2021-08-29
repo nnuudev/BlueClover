@@ -630,7 +630,9 @@ public class ThreadLayout extends CoordinatorLayout implements
 
     @SuppressLint("InflateParams")
     private View inflateEmptyView() {
-        return LayoutInflater.from(getContext()).inflate(R.layout.layout_empty_setup, null);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_empty_setup, null);
+        view.setOnClickListener(v -> callback.openSiteSetupController());
+        return view;
     }
 
     @Override
@@ -662,6 +664,8 @@ public class ThreadLayout extends CoordinatorLayout implements
         void presentImageReencodingController(Controller controller);
 
         void openReportController(Post post);
+
+        void openSiteSetupController();
 
         void hideSwipeRefreshLayout();
 

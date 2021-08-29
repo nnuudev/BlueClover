@@ -127,8 +127,7 @@ Aktifkan kembali izin ini di pengaturan aplikasi jika Anda menonaktifkannya seca
     <string name="thread_pin_hint">Tandai utas ini</string>
     <string name="thread_view_archive">Arsip</string>
     <string name="thread_empty_setup_title">Tidak ada yang ditampilkan</string>
-    <string name="thread_empty_setup_body">Tambahkan situs untuk mulai menjelajah</string>
-    <string name="thread_empty_setup_hint">Tambahkan situs di sini</string>
+    <string name="thread_empty_setup_body">Ketuk di sini untuk menambahkan situs</string>
     <string name="setup_sites_title">Atur situs</string>
     <string name="setup_sites_empty">Tidak ada situs yang ditambahkan</string>
     <string name="setup_sites_add_hint">Tambahkan situs di sini</string>

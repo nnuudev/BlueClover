@@ -136,8 +136,7 @@ Rehablita este permiso en la configuracion de la app si lo desailitaste permanen
     <string name="thread_pin_hint">Marcar este hilo</string>
     <string name="thread_view_archive">Archivar</string>
     <string name="thread_empty_setup_title">Nada que mostrar</string>
-    <string name="thread_empty_setup_body">Añadir un sitio web para comenzar a navegar</string>
-    <string name="thread_empty_setup_hint">Añadir un sitio web aquí</string>
+    <string name="thread_empty_setup_body">Toca aquí para añadir un sitio</string>
     <string name="setup_sites_title">Configurar sitios</string>
     <string name="setup_sites_empty">No hay sitios añadidos</string>
     <string name="setup_sites_add_hint">Añadir un sitio web aquí</string>

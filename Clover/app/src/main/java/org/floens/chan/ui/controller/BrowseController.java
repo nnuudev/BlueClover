@@ -38,7 +38,6 @@ import org.floens.chan.core.settings.ChanSettings;
 import org.floens.chan.core.site.Site;
 import org.floens.chan.ui.adapter.PostsFilter;
 import org.floens.chan.ui.helper.BoardHelper;
-import org.floens.chan.ui.helper.HintPopup;
 import org.floens.chan.ui.layout.BrowseBoardsFloatingMenu;
 import org.floens.chan.ui.layout.ThreadLayout;
 import org.floens.chan.ui.toolbar.NavigationItem;
@@ -91,15 +90,6 @@ public class BrowseController extends ThreadController implements
         super.onDestroy();
 
         presenter.destroy();
-    }
-
-    @Override
-    public void showSitesNotSetup() {
-        super.showSitesNotSetup();
-
-        HintPopup hint = HintPopup.show(context, getToolbar(), R.string.thread_empty_setup_hint);
-        hint.alignLeft();
-        hint.wiggle();
     }
 
     public void setBoard(Board board) {

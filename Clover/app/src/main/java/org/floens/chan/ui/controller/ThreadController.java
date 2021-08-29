@@ -181,6 +181,11 @@ public abstract class ThreadController extends Controller implements
         navigationController.pushController(new ReportController(context, post));
     }
 
+    @Override
+    public void openSiteSetupController() {
+        navigationController.pushController(new SitesSetupController(context));
+    }
+
     public void selectPostImage(PostImage postImage) {
         threadLayout.getPresenter().selectPostImage(postImage);
     }
