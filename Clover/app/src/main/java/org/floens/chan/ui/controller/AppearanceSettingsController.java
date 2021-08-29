@@ -86,11 +86,6 @@ public class AppearanceSettingsController extends SettingsController {
                     R.string.setting_enable_accessible_post_info_description)));
 
             requiresUiRefresh.add(layout.add(new BooleanSettingView(this,
-                    ChanSettings.layoutTextBelowThumbnails,
-                    R.string.setting_alternate_layout_mode_title,
-                    R.string.setting_alternate_layout_mode_description)));
-
-            requiresUiRefresh.add(layout.add(new BooleanSettingView(this,
                     ChanSettings.useImmersiveModeForGallery,
                     R.string.setting_images_immersive_mode_title,
                     R.string.setting_images_immersive_mode_description)));
@@ -108,6 +103,13 @@ public class AppearanceSettingsController extends SettingsController {
                     ChanSettings.fontCondensed,
                     R.string.setting_font_condensed,
                     R.string.setting_font_condensed_description)));
+
+            setupThumbnailScaleSetting(post);
+
+            requiresUiRefresh.add(post.add(new BooleanSettingView(this,
+                    ChanSettings.layoutTextBelowThumbnails,
+                    R.string.setting_alternate_layout_mode_title,
+                    R.string.setting_alternate_layout_mode_description)));
 
             requiresUiRefresh.add(post.add(new BooleanSettingView(this,
                     ChanSettings.postFullDate,
@@ -179,5 +181,18 @@ public class AppearanceSettingsController extends SettingsController {
                 ChanSettings.fontSize,
                 R.string.setting_font_size,
                 fontSizes.toArray(new ListSettingView.Item[fontSizes.size()]))));
+    }
+
+    private void setupThumbnailScaleSetting(SettingsGroup post) {
+        List<ListSettingView.Item> imageSizes = new ArrayList<>();
+        for (int size = 25; size <= 250; size+=25) {
+            String name = size + "%";
+            imageSizes.add(new ListSettingView.Item<>(name, size));
+        }
+
+        requiresUiRefresh.add(post.add(new ListSettingView<>(this,
+                ChanSettings.thumbnailScale,
+                R.string.setting_thumbnail_scale,
+                imageSizes.toArray(new ListSettingView.Item[imageSizes.size()]))));
     }
 }

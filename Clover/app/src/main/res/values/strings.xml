@@ -465,6 +465,7 @@ Crash reports do not collect any personally identifiable information."
     <string name="setting_font_size_default">(default)</string>
     <string name="setting_font_condensed">Use condensed font</string>
     <string name="setting_font_condensed_description">Use a condensed font for the posts</string>
+    <string name="setting_thumbnail_scale">Thumbnail scale</string>
     <string name="setting_post_full_date">Show the full date on posts</string>
     <string name="setting_post_file_info">Show file info on posts</string>
     <string name="setting_post_filename">Show filename on posts</string>

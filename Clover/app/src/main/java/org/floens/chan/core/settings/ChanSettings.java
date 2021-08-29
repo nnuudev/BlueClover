@@ -123,6 +123,8 @@ public class ChanSettings {
     public static final OptionsSetting<LayoutMode> layoutMode;
     public static final StringSetting fontSize;
     public static final BooleanSetting fontCondensed;
+    public static final IntegerSetting thumbnailScale;
+    public static final BooleanSetting layoutTextBelowThumbnails;
     public static final BooleanSetting openLinkConfirmation;
     public static final BooleanSetting openLinkBrowser;
     public static final BooleanSetting autoRefreshThread;
@@ -150,7 +152,6 @@ public class ChanSettings {
     public static final BooleanSetting shareUrl;
     public static final BooleanSetting enableReplyFab;
     public static final BooleanSetting accessibleInfo;
-    public static final BooleanSetting layoutTextBelowThumbnails;
     public static final BooleanSetting useImmersiveModeForGallery;
     public static final BooleanSetting anonymize;
     public static final BooleanSetting anonymizeIds;
@@ -212,6 +213,8 @@ public class ChanSettings {
 
         fontSize = new StringSetting(p, "preference_font", tablet ? "16" : "14");
         fontCondensed = new BooleanSetting(p, "preference_font_condensed", false);
+        thumbnailScale = new IntegerSetting(p, "preference_thumbnail_scale", 100);
+        layoutTextBelowThumbnails = new BooleanSetting(p, "layout_text_below_thumbnails", false);
         openLinkConfirmation = new BooleanSetting(p, "preference_open_link_confirmation", false);
         openLinkBrowser = new BooleanSetting(p, "preference_open_link_browser", false);
         autoRefreshThread = new BooleanSetting(p, "preference_auto_refresh_thread", true);
@@ -238,7 +241,6 @@ public class ChanSettings {
         saveOriginalFilename = new BooleanSetting(p, "preference_image_save_original", false);
         shareUrl = new BooleanSetting(p, "preference_image_share_url", false);
         accessibleInfo = new BooleanSetting(p, "preference_enable_accessible_info", false);
-        layoutTextBelowThumbnails = new BooleanSetting(p, "layout_text_below_thumbnails", false);
         useImmersiveModeForGallery = new BooleanSetting(p, "use_immersive_mode_for_gallery", false);
         enableReplyFab = new BooleanSetting(p, "preference_enable_reply_fab", true);
         anonymize = new BooleanSetting(p, "preference_anonymize", false);

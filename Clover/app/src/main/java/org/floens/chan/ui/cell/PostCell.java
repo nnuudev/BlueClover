@@ -592,8 +592,8 @@ public class PostCell extends LinearLayout implements PostCellInterface {
                 // The first thumbnail uses thumbnail_view so that the layout can offset to that.
                 final int idToSet = first ? R.id.thumbnail_view : generatedId++;
                 v.setId(idToSet);
-                final int size = getResources()
-                        .getDimensionPixelSize(R.dimen.cell_post_thumbnail_size);
+                final int size = ChanSettings.thumbnailScale.get() * getResources()
+                        .getDimensionPixelSize(R.dimen.cell_post_thumbnail_size) / 100;
 
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(size, size);
                 p.alignWithParent = true;
