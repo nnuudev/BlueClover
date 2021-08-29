@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <org.floens.chan.ui.view.TouchBlockingLinearLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/drawer"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -44,6 +44,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:scrollbarStyle="outsideOverlay"
             android:scrollbars="vertical" />
 
-    </org.floens.chan.ui.view.TouchBlockingLinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </org.floens.chan.ui.layout.DrawerWidthAdjustingLayout>

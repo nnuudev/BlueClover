@@ -587,6 +587,11 @@ public class WatchManager {
         }
     }
 
+    public void forceUpdate() {
+        handler.removeMessages(MESSAGE_UPDATE);
+        update(false);
+    }
+
     // Update the watching pins
     private void update(boolean fromBackground) {
         Logger.d(TAG, "update() fromBackground = " + fromBackground);

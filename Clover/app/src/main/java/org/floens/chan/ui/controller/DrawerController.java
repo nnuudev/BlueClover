@@ -35,6 +35,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -56,7 +57,7 @@ import de.greenrobot.event.EventBus;
 public class DrawerController extends Controller implements DrawerAdapter.Callback {
     protected FrameLayout container;
     protected DrawerLayout drawerLayout;
-    protected LinearLayout drawer;
+    protected SwipeRefreshLayout drawer;
     protected RecyclerView recyclerView;
     protected DrawerAdapter drawerAdapter;
 
@@ -79,6 +80,10 @@ public class DrawerController extends Controller implements DrawerAdapter.Callba
         drawerLayout = view.findViewById(R.id.drawer_layout);
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.LEFT);
         drawer = view.findViewById(R.id.drawer);
+        drawer.setOnRefreshListener(() -> {
+            watchManager.forceUpdate();
+            drawer.setRefreshing(false);
+        });
         recyclerView = view.findViewById(R.id.drawer_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
