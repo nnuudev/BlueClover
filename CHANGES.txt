@@ -1,3 +1,10 @@
+New in v3.20 build 20210829_1030
+- The other sites (besides 4chan) should work again.
+-- Updating from a previous release might show some "INVALID SITE" on the site list, those have to be manually removed.
+- Add ability to delete sites.
+-- Merged from https://github.com/chandevel/Clover/pull/708.
+- When the thread watcher is enabled, bookmarked threads will show a trash icon if they 404.
+
 New in v3.20 build 20210813_2250
 - Release.
 
