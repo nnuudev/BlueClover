@@ -18,8 +18,6 @@
 package org.floens.chan.ui.controller;
 
 import static org.floens.chan.Chan.inject;
-import static org.floens.chan.ui.theme.ThemeHelper.theme;
-import static org.floens.chan.utils.AndroidUtils.ROBOTO_MEDIUM;
 import static org.floens.chan.utils.AndroidUtils.dp;
 import static org.floens.chan.utils.AndroidUtils.fixSnackbarText;
 
@@ -31,7 +29,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -56,12 +53,11 @@ import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
 
-public class DrawerController extends Controller implements DrawerAdapter.Callback, View.OnClickListener {
+public class DrawerController extends Controller implements DrawerAdapter.Callback {
     protected FrameLayout container;
     protected DrawerLayout drawerLayout;
     protected LinearLayout drawer;
     protected RecyclerView recyclerView;
-    protected LinearLayout settings;
     protected DrawerAdapter drawerAdapter;
 
     @Inject
@@ -86,10 +82,6 @@ public class DrawerController extends Controller implements DrawerAdapter.Callba
         recyclerView = view.findViewById(R.id.drawer_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        settings = view.findViewById(R.id.settings);
-        settings.setOnClickListener(this);
-        theme().settingsDrawable.apply(settings.findViewById(R.id.image));
-        ((TextView) settings.findViewById(R.id.text)).setTypeface(ROBOTO_MEDIUM);
 
         drawerAdapter = new DrawerAdapter(this);
         recyclerView.setAdapter(drawerAdapter);
@@ -113,13 +105,6 @@ public class DrawerController extends Controller implements DrawerAdapter.Callba
         addChildController(childController);
         childController.attachToParentView(container);
         childController.onShow();
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v == settings) {
-            openController(new MainSettingsController(context));
-        }
     }
 
     public void onMenuClicked() {
@@ -232,8 +217,8 @@ public class DrawerController extends Controller implements DrawerAdapter.Callba
     }
 
     @Override
-    public void openSites() {
-        openController(new SitesSetupController(context));
+    public void openSettings() {
+        openController(new MainSettingsController(context));
     }
 
     @Override

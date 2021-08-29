@@ -57,13 +57,11 @@ public class DrawerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         CLEAR, CLEAR_ALL
     }
 
-    private static final int PIN_OFFSET = 3;
+    private static final int PIN_OFFSET = 2;
 
-    private static final int TYPE_HEADER = 0;
-    private static final int TYPE_PIN = 1;
-    private static final int TYPE_LINK = 2;
-    private static final int TYPE_BOARD_INPUT = 3;
-    private static final int TYPE_DIVIDER = 4;
+    private static final int TYPE_SETTINGS = 0;
+    private static final int TYPE_HEADER = 1;
+    private static final int TYPE_PIN = 2;
 
     private static final Comparator<Pin> SORT_PINS = new Comparator<Pin>() {
         @Override
@@ -127,16 +125,12 @@ public class DrawerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
+            case TYPE_SETTINGS:
+                return new SettingsHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_settings, parent, false));
             case TYPE_HEADER:
                 return new HeaderHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_header, parent, false));
             case TYPE_PIN:
                 return new PinViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_pin, parent, false));
-            case TYPE_LINK:
-                return new LinkHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_link, parent, false));
-            case TYPE_BOARD_INPUT:
-                return new BoardInputHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_browse_input, parent, false));
-            case TYPE_DIVIDER:
-                return new DividerHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_divider, parent, false));
         }
         return null;
     }
@@ -144,6 +138,12 @@ public class DrawerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
+            case TYPE_SETTINGS:
+                SettingsHolder settingsHolder = (SettingsHolder) holder;
+                theme().settingsDrawable.apply(settingsHolder.imageSettings);
+                theme().historyDrawable.apply(settingsHolder.imageHistory);
+
+                break;
             case TYPE_HEADER:
                 HeaderHolder headerHolder = (HeaderHolder) holder;
                 headerHolder.text.setText(R.string.drawer_pinned);
@@ -154,26 +154,6 @@ public class DrawerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 final Pin pin = pins.get(position - PIN_OFFSET);
                 PinViewHolder pinHolder = (PinViewHolder) holder;
                 updatePinViewHolder(pinHolder, pin);
-
-                break;
-            case TYPE_LINK:
-                LinkHolder linkHolder = (LinkHolder) holder;
-                switch (position) {
-                    case 0:
-                        linkHolder.text.setText(R.string.drawer_sites);
-                        theme().listAddDrawable.apply(linkHolder.image);
-                        break;
-                    case 1:
-                        linkHolder.text.setText(R.string.drawer_history);
-                        theme().historyDrawable.apply(linkHolder.image);
-                        break;
-                }
-                break;
-            case TYPE_BOARD_INPUT:
-                break;
-            case TYPE_DIVIDER:
-                ((DividerHolder) holder).withBackground(position != 0);
-                break;
         }
     }
 
@@ -196,9 +176,8 @@ public class DrawerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public int getItemViewType(int position) {
         switch (position) {
             case 0:
+                return TYPE_SETTINGS;
             case 1:
-                return TYPE_LINK;
-            case 2:
                 return TYPE_HEADER;
             default:
                 return TYPE_PIN;
@@ -369,29 +348,20 @@ public class DrawerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    private class LinkHolder extends RecyclerView.ViewHolder {
-        private ImageView image;
-        private TextView text;
+    private class SettingsHolder extends RecyclerView.ViewHolder {
+        private ImageView imageSettings;
+        private TextView textSettings;
+        private ImageView imageHistory;
 
-        private LinkHolder(View itemView) {
+        private SettingsHolder(View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.image);
-            text = itemView.findViewById(R.id.text);
-            text.setTypeface(ROBOTO_MEDIUM);
+            imageSettings = itemView.findViewById(R.id.image_settings);
+            textSettings = itemView.findViewById(R.id.text_settings);
+            imageHistory = itemView.findViewById(R.id.image_history);
+            textSettings.setTypeface(ROBOTO_MEDIUM);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    switch (getAdapterPosition()) {
-                        case 0:
-                            callback.openSites();
-                            break;
-                        case 1:
-                            callback.openHistory();
-                            break;
-                    }
-                }
-            });
+            itemView.findViewById(R.id.settings).setOnClickListener(v -> callback.openSettings());
+            imageHistory.setOnClickListener(v -> callback.openHistory());
         }
     }
 
@@ -436,7 +406,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         void onPinLongClicked(Pin pin);
 
-        void openSites();
+        void openSettings();
 
         void openHistory();
     }
