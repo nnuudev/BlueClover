@@ -47,6 +47,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="center_vertical"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
             android:singleLine="true"
             android:textColor="?text_color_primary"
             android:textSize="14sp" />
@@ -57,8 +59,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         android:layout_width="56dp"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
         android:scaleType="center"
         android:background="?attr/selectableItemBackground"
         tools:ignore="ContentDescription" />

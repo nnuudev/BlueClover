@@ -118,7 +118,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         android:progress="100" />
 
                     <TextView
-                        android:layout_width="24dp"
+                        android:layout_width="26dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="100" />
@@ -162,7 +162,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         android:progress="1" />
 
                     <TextView
-                        android:layout_width="24dp"
+                        android:layout_width="26dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="10" />
