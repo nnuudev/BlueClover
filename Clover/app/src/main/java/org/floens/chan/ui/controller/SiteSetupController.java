@@ -103,7 +103,7 @@ public class SiteSetupController extends SettingsController implements SiteSetup
 
                 List<ListSettingView.Item<Enum>> items = new ArrayList<>();
                 Enum[] settingItems = optionsSetting.getItems();
-                for (int i = 0; i < settingItems.length; i++) {
+                for (int i = 0; i < setting.optionNames.size(); i++) {
                     String name = setting.optionNames.get(i);
                     Enum anEnum = settingItems[i];
                     items.add(new ListSettingView.Item<>(name, anEnum));
