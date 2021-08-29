@@ -268,7 +268,7 @@ public class SitesSetupController extends StyledToolbarNavigationController impl
                 if (addBoardsHint != null) {
                     addBoardsHint.dismiss();
                 }
-                addBoardsHint = HintPopup.show(context, holder.settings, R.string.setup_sites_add_boards_hint);
+                addBoardsHint = HintPopup.show(context, holder.description, R.string.setup_sites_add_boards_hint);
                 addBoardsHint.wiggle();
             }
         }
@@ -285,7 +285,6 @@ public class SitesSetupController extends StyledToolbarNavigationController impl
         private TextView description;
         private SiteIcon siteIcon;
         private ImageView removeSite;
-        private ImageView settings;
         private ImageView reorder;
 
         private Site site;
@@ -299,16 +298,13 @@ public class SitesSetupController extends StyledToolbarNavigationController impl
             text = itemView.findViewById(R.id.text);
             description = itemView.findViewById(R.id.description);
             removeSite = itemView.findViewById(R.id.remove_site);
-            settings = itemView.findViewById(R.id.settings);
             reorder = itemView.findViewById(R.id.reorder);
 
             // Setup views
             itemView.setOnClickListener(this);
             removeSite.setOnClickListener(this);
 
-            setRoundItemBackground(settings);
             setRoundItemBackground(removeSite);
-            theme().settingsDrawable.apply(settings);
             theme().clearDrawable.apply(removeSite);
 
             Drawable drawable = DrawableCompat.wrap(
