@@ -242,10 +242,10 @@ public class DrawerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private void updatePinViewHolder(PinViewHolder holder, Pin pin) {
         CharSequence text = pin.loadable.title;
-        if (pin.archived) {
-            text = TextUtils.concat(PostHelper.addIcon(PostHelper.archivedIcon, sp(14 + 2)), text);
-        } else if (pin.isError) {
+        if (pin.isError) {
             text = TextUtils.concat(PostHelper.addIcon(PostHelper.trashIcon, sp(14 + 2)), text);
+        } else if (pin.archived) {
+            text = TextUtils.concat(PostHelper.addIcon(PostHelper.archivedIcon, sp(14 + 2)), text);
         }
 
         holder.textView.setText(text);
