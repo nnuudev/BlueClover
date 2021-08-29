@@ -11,8 +11,10 @@ import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.model.orm.SiteModel;
 import org.floens.chan.core.settings.json.JsonSettings;
 import org.floens.chan.core.site.Site;
+import org.floens.chan.core.site.SiteIcon;
 import org.floens.chan.core.site.SiteRegistry;
 import org.floens.chan.core.site.sites.chan4.Chan4;
+import org.floens.chan.core.site.sites.lainchan.Lainchan;
 import org.floens.chan.utils.Logger;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ import java.util.Observable;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import okhttp3.HttpUrl;
 
 @Singleton
 public class SiteRepository {
@@ -122,7 +126,7 @@ public class SiteRepository {
         Site site = new Chan4();
 
         SiteConfig config = new SiteConfig();
-        config.classId = SiteRegistry.SITE_CLASSES.indexOfValue(site.getClass());
+        config.classId = SiteRegistry.SITE_CLASSES.keyAt(SiteRegistry.SITE_CLASSES.indexOfValue(site.getClass()));
         config.external = false;
 
         SiteModel model = createFromClass(config, new JsonSettings());
@@ -135,7 +139,7 @@ public class SiteRepository {
         SiteConfig config = new SiteConfig();
         JsonSettings settings = new JsonSettings();
 
-        config.classId = SiteRegistry.SITE_CLASSES.indexOfValue(site.getClass());
+        config.classId = SiteRegistry.SITE_CLASSES.keyAt(SiteRegistry.SITE_CLASSES.indexOfValue(site.getClass()));
         config.external = false;
 
         SiteModel model = createFromClass(config, settings);
@@ -174,7 +178,8 @@ public class SiteRepository {
     private Site instantiateSiteClass(int classId) {
         Class<? extends Site> clazz = SiteRegistry.SITE_CLASSES.get(classId);
         if (clazz == null) {
-            throw new IllegalArgumentException("Unknown class id");
+            //throw new IllegalArgumentException("Unknown class id");
+            return instantiateSiteClass(InvalidSite.class);
         }
         return instantiateSiteClass(clazz);
     }
@@ -331,6 +336,17 @@ public class SiteRepository {
             this.site = site;
             this.config = config;
             this.settings = settings;
+        }
+    }
+
+    // very dirty hack to allow the user to remove invalid sites
+    public static class InvalidSite extends Lainchan {
+
+        @Override
+        public void setup() {
+            super.setup();
+            setName("INVALID SITE");
+            setIcon(SiteIcon.fromFavicon(HttpUrl.parse("https://s.4cdn.org/image/favicon-status.ico")));
         }
     }
 }
