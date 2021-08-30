@@ -1,0 +1,31 @@
+name: Update API
+on: release
+
+jobs:
+  run:
+    name: Generate new json from the atom feed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Run script
+        run: python api/generate.py
+
+      - name: Save new json
+        run: mv output.tmp api/update.json
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: 'api/update.json'
+          branch: gh-pages
+          default_author: github_actions
+          message: 'Updated API endpoint.'
