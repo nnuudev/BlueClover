@@ -83,8 +83,8 @@ android {
             dimension "default"
             resValue "string", "app_name", "Blue Clover"
             resValue "string", "app_flavor_name", "(build $timestamp)"
-            buildConfigField "String", "BUILD_HASH", "\"\""
-            buildConfigField "String", "UPDATE_API_ENDPOINT", "\"\""
+            buildConfigField "String", "BUILD_HASH", "\"$timestamp\""
+            buildConfigField "String", "UPDATE_API_ENDPOINT", "\"https://nnuudev.github.io/BlueClover/api/update.json\""
             buildConfigField "String", "USER_AGENT", "\"$user_agent\""
         }
 
