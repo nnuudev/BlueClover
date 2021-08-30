@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="add">Añadir</string>
     <string name="close">Cerrar</string>
     <string name="back">Volver</string>
-    <string name="ok">OK</string>
+    <string name="ok">Aceptar</string>
     <string name="exit">Salir</string>
     <string name="delete">Eliminar</string>
     <string name="undo">Deshacer</string>
@@ -29,25 +29,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="permission_grant">Conceder</string>
     <string name="update_later">Más tarde</string>
     <string name="update_none">Clover está actualizado</string>
-    <string name="update_check_failed">No se ha podido buscar actualizaciones.</string>
+    <string name="update_check_failed">No se han podido buscar actualizaciones.</string>
     <string name="update_install">Instalar</string>
     <string name="update_install_downloading">Descargando actualización</string>
     <string name="update_install_download_failed">Fallo en la descarga</string>
     <string name="update_install_download_move_failed">No se pudo mover el archivo descargado a la carpeta de descarga.</string>
     <string name="update_retry_title">Reintentar actualización</string>
-    <string name="update_retry">Clover no se ha actualizado todavía. Presione \"Reintentar\" para volver a intentar la instalación.</string>
+    <string name="update_retry">Clover no se ha actualizado todavía. Pulsa \"Reintentar\" para volver a intentar la instalación.</string>
     <string name="update_retry_button">Reintentar</string>
     <string name="update_storage_permission_required_title">Permiso de almacenamiento requerido</string>
-    <string name="update_storage_permission_required">El perimiso para acceder almacenamiento es requerido para instalar la actualización
+    <string name="update_storage_permission_required">
+"Se necesita permiso de almacenamiento para instalar la actualización.
 
-Rehablita este permiso en la configuracion de la app si lo desailitaste permanentementes</string>
+Rehabilita este permiso en la configuración de la aplicación si lo deshabilitaste permanentemente."</string>
     <plurals name="minutes">
         <item quantity="one">%d minuto</item>
         <item quantity="other">%d minuto</item>
     </plurals>
     <plurals name="posts">
-        <item quantity="one">%d publicación</item>
-        <item quantity="other">%d publicaciónes</item>
+        <item quantity="one">%d post</item>
+        <item quantity="other">%d posts</item>
     </plurals>
     <plurals name="reply">
         <item quantity="one">%d respuesta</item>
@@ -58,8 +59,8 @@ Rehablita este permiso en la configuracion de la app si lo desailitaste permanen
         <item quantity="other">%d imágenes</item>
     </plurals>
     <plurals name="board">
-        <item quantity="one">%d board</item>
-        <item quantity="other">%d boards</item>
+        <item quantity="one">%d tablero</item>
+        <item quantity="other">%d tableros</item>
     </plurals>
     <plurals name="type">
         <item quantity="one">%d tipo</item>
@@ -78,22 +79,22 @@ Rehablita este permiso en la configuracion de la app si lo desailitaste permanen
         <item quantity="other">%d sitios</item>
     </plurals>
     <string name="card_stats">%1$dR%2$dI</string>
-    <string name="action_reload">Refresar</string>
-    <string name="action_pin">Favorito</string>
+    <string name="action_reload">Recargar</string>
+    <string name="action_pin">Marcador</string>
     <string name="action_open_browser">Abrir en el navegador</string>
     <string name="action_share">Compartir</string>
     <string name="action_download_album">Descargar álbum</string>
     <string name="action_search">Buscar</string>
     <string name="action_search_image">Búsqueda de imágenes</string>
     <string name="action_switch_catalog">Modo catálogo</string>
-    <string name="action_switch_board">Índice del Foro</string>
+    <string name="action_switch_board">Modo tablero</string>
     <string name="action_scroll_to_top">Arriba</string>
-    <string name="action_scroll_to_bottom">Fondo</string>
+    <string name="action_scroll_to_bottom">Abajo</string>
     <string name="action_sort">Ordenar</string>
     <string name="action_rename_pin">Renombrar marcador</string>
     <string name="action_rename">Renombrar</string>
     <string name="action_reply">Responder</string>
-    <string name="open_link_not_matched">Clover no puede abrir este enlace; en su lugar se abrirá en su navegador.</string>
+    <string name="open_link_not_matched">Clover no puede abrir este enlace; en su lugar se abrirá en el navegador.</string>
     <string name="order_bump">Orden de bump</string>
     <string name="order_reply">Número de respuestas</string>
     <string name="order_image">Contador de Imágenes</string>
@@ -103,23 +104,23 @@ Rehablita este permiso en la configuracion de la app si lo desailitaste permanen
     <string name="search_hint">Buscar</string>
     <string name="search_results">Encontrados %1$s para \"%2$s\"</string>
     <string name="search_empty">Buscar asuntos, comentarios, nombres y nombres de archivo</string>
-    <string name="open_link_confirmation">¿Abrir este link?</string>
+    <string name="open_link_confirmation">¿Abrir este enlace?</string>
     <string name="open_thread_confirmation">¿Abrir este hilo?</string>
     <string name="open_link_failed">No se ha encontrado ninguna aplicación para abrir el archivo</string>
     <string name="action_confirm_exit_title">Confirmar salida</string>
     <string name="thumbnail_load_failed_network">Error</string>
-    <string name="image_preview_failed">No se pudo cargar la imagen</string>
-    <string name="image_preview_failed_oom">Error al mostrar la imagen, sin memoria</string>
-    <string name="image_failed_big_image">Error al mostrar la imagen, carga de zoom profundo falló</string>
+    <string name="image_preview_failed">No se pudo mostrar la imagen</string>
+    <string name="image_preview_failed_oom">No se pudo mostrar la imagen, no hay memoria</string>
+    <string name="image_failed_big_image">No se pudo mostrar la imagen, falló la carga de zoom profundo</string>
     <string name="image_not_found">Imagen no encontrada</string>
-    <string name="image_open_failed">Error al abrir la página</string>
+    <string name="image_open_failed">No se pudo abrir la imagen</string>
     <string name="image_spoiler_filename">Imagen spoiler</string>
     <string name="thread_boards_search_hint">Buscar</string>
     <string name="thread_load_failed_ssl">Error HTTPS</string>
     <string name="thread_load_failed_network">Error de red</string>
-    <string name="thread_load_failed_parsing">Error de parse de la API</string>
+    <string name="thread_load_failed_parsing">Error al interpretar la respuesta</string>
     <string name="thread_load_failed_server">Error del servidor</string>
-    <string name="thread_load_failed_not_found">Error 404 No encontrado</string>
+    <string name="thread_load_failed_not_found">404 No encontrado</string>
     <string name="thread_refresh_bar_inactive">Tocar para actualizar</string>
     <string name="thread_refresh_now">Cargando</string>
     <string name="thread_refresh_countdown">Carga en %1$ds</string>
@@ -131,7 +132,7 @@ Rehablita este permiso en la configuracion de la app si lo desailitaste permanen
         <item quantity="other">%d nuevos posts</item>
     </plurals>
     <string name="thread_new_posts_goto">Ver</string>
-    <string name="thread_empty_select">Por favor, seleccione un hilo</string>
+    <string name="thread_empty_select">Por favor, selecciona un hilo</string>
     <string name="thread_up_down_hint">Desplazar hacia arriba/abajo</string>
     <string name="thread_pin_hint">Marcar este hilo</string>
     <string name="thread_view_archive">Archivar</string>
@@ -140,22 +141,22 @@ Rehablita este permiso en la configuracion de la app si lo desailitaste permanen
     <string name="setup_sites_title">Configurar sitios</string>
     <string name="setup_sites_empty">No hay sitios añadidos</string>
     <string name="setup_sites_add_hint">Añadir un sitio web aquí</string>
-    <string name="setup_sites_add_title">Agregar sitio</string>
+    <string name="setup_sites_add_title">Añadir sitio</string>
     <string name="setup_sites_description">Añadir un sitio web por su dirección URL o nombre</string>
     <string name="setup_sites_url">Dirección URL o nombre</string>
     <string name="setup_sites_url_hint">http://ejemplo.com</string>
     <string name="setup_sites_site_description">%s añadido</string>
-    <string name="setup_sites_add_boards_hint">Toca para añadir boards</string>
+    <string name="setup_sites_add_boards_hint">Toca para añadir tableros</string>
     <string name="setup_site_title">Configurar %s</string>
     <string name="setup_site_group_general">General</string>
-    <string name="setup_site_boards">Configurar borads</string>
+    <string name="setup_site_boards">Configurar tableros</string>
     <string name="setup_site_boards_description">%s añadido</string>
-    <string name="setup_board_title">Configurar borads de %s</string>
-    <string name="setup_board_empty">No se han agregado boards</string>
-    <string name="setup_board_removed">\"%s\" Removido</string>
+    <string name="setup_board_title">Configurar tableros de %s</string>
+    <string name="setup_board_empty">No se han agregado tableros</string>
+    <string name="setup_board_removed">\"%s\" eliminado</string>
     <string name="setup_board_added">%s añadido</string>
     <string name="setup_board_select_all">Seleccionar todo</string>
-    <string name="filter_summary_all_boards">Todos los boards</string>
+    <string name="filter_summary_all_boards">Todos los tableros</string>
     <string name="filter_enabled">Habilitar</string>
     <string name="filter_filter">Filtro</string>
     <string name="filter_action">Acción</string>
@@ -175,7 +176,7 @@ Rehablita este permiso en la configuracion de la app si lo desailitaste permanen
     <string name="filter_no_matches">No coincide con</string>
     <string name="filter_matches">Coincidencias</string>
     <string name="filter_color_pick">Elegir un color</string>
-    <string name="filter_help_title">Filtro ayuda</string>
+    <string name="filter_help_title">Ayuda</string>
     <string name="filter_help">
 <![CDATA[
 Filters act on a given pattern and a place to search the pattern.<br>
@@ -212,7 +213,7 @@ If the pattern matches then the post can be hidden or highlighted.<br>
     <string name="history_clear">Limpiar historial</string>
     <string name="history_clear_confirm">¿Limpiar historial?</string>
     <string name="history_clear_confirm_button">Limpiar</string>
-    <string name="history_toggle_hint">Activar o desactivar la historial</string>
+    <string name="history_toggle_hint">Activar o desactivar el historial</string>
     <string name="history_empty_info">Sin historial</string>
     <string name="saved_reply_clear">Borrar historial de publicación</string>
     <string name="saved_reply_clear_confirm">¿Borrar historial de publicación?</string>
@@ -220,10 +221,10 @@ If the pattern matches then the post can be hidden or highlighted.<br>
     <string name="archive_title">Archivo de %s</string>
     <string name="archive_error">Error al cargar archivo</string>
     <string name="drawer_pinned">Hilos guardados</string>
-    <string name="drawer_pin_removed">\"%1$s\" Removido</string>
+    <string name="drawer_pin_removed">\"%1$s\" eliminado</string>
     <string name="drawer_pins_cleared">%1$s limpiado</string>
     <string name="drawer_pins_non_cleared">Ningún marcador borrado.</string>
-    <string name="drawer_pins_non_cleared_try_all">Ningún marcador borrado. Mantenga para eliminar todos.</string>
+    <string name="drawer_pins_non_cleared_try_all">Ningún marcador borrado. Mantén para eliminar todos.</string>
     <string name="post_highlight_id">Destacar ID</string>
     <string name="post_highlight_tripcode">Destacar Tripcode</string>
     <string name="post_filter_tripcode">Filtrar Tripcode</string>
@@ -244,30 +245,30 @@ If the pattern matches then the post can be hidden or highlighted.<br>
     <string name="reply_name">Nombre</string>
     <string name="reply_options">Opciones</string>
     <string name="reply_subject">Asunto</string>
-    <string name="reply_comment_thread">Respuesta al comentario</string>
-    <string name="reply_comment_board">Comentar un nuevo hilo</string>
+    <string name="reply_comment_thread">Publicar respuesta</string>
+    <string name="reply_comment_board">Publicar nuevo hilo</string>
     <string name="reply_file_name">Nombre del archivo</string>
     <string name="reply_file_too_big">Aviso: El tamaño del archivo es muy grande (%1$s / %2$s)</string>
     <string name="reply_webm_too_big">Aviso: El tamaño del WebM es muy grande (%1$s / %2$s)</string>
     <string name="reply_file_open_failed">Error al abrir el archivo</string>
     <string name="reply_spoiler_image">Imagen spoiler</string>
-    <string name="reply_no_preview">Sin Vista Previa</string>
+    <string name="reply_no_preview">Sin vista previa</string>
     <string name="reply_submit">Enviar</string>
     <string name="reply_error">Error al publicar</string>
     <string name="reply_error_message">Error al publicar %s</string>
-    <string name="reply_success">Publicación exitosa</string>
+    <string name="reply_success">Publicado con éxito</string>
     <string name="reply_captcha_text">Escribe el texto</string>
     <string name="reply_comment_button_spoiler">[s]</string>
-    <string name="delete_confirm">¿Eliminar esta publicación?</string>
+    <string name="delete_confirm">¿Eliminar este post?</string>
     <string name="delete_wait">Borrando post&#8230;</string>
-    <string name="delete_success">Publicación eliminada</string>
-    <string name="delete_image_only">Solo borra la imagen</string>
+    <string name="delete_success">Post eliminado</string>
+    <string name="delete_image_only">Borrar solo la imagen</string>
     <string name="delete_error">Error al eliminar</string>
-    <string name="video_playback_warning_title">Error de video WebM</string>
-    <string name="video_playback_warning">"El video WebM no se puro reproducir.Este puede ser un problema con el hardware del teléfono.
+    <string name="video_playback_warning_title">Error de vídeo WebM</string>
+    <string name="video_playback_warning">"El vídeo WebM no se pudo reproducir. Este puede ser un problema con el hardware del teléfono.
 
-Una posible solución es usar un reproductor de tercero con algún decodificador
-Active \"Reproducir videos con reproductor externo\" En las configuraciones"</string>
+Una posible solución es usar un reproductor de tercero con algún decodificador.
+Active \"Reproducir vídeos con reproductor externo\" en las configuraciones."</string>
     <string name="video_playback_ignore">No mostrar de nuevo</string>
     <string name="watch_pause_pins">Dejar de ver</string>
     <string name="watch_idle">No nuevos posts</string>
@@ -280,17 +281,17 @@ Active \"Reproducir videos con reproductor externo\" En las configuraciones"</st
         <item quantity="other">%d nueva respuestas</item>
     </plurals>
     <plurals name="watch_new_quotes">
-        <item quantity="one">%d nueva respuesta mencionandote</item>
-        <item quantity="other">%d nuevas respuestas mencionandote</item>
+        <item quantity="one">%d nueva respuesta mencionándote</item>
+        <item quantity="other">%d nuevas respuestas mencionándote</item>
     </plurals>
     <plurals name="watch_new_quoting">
-        <item quantity="one">%1$d nueva respuesta %2$d mencionandote</item>
-        <item quantity="other">%1$d nuevas respuestas %2$d mencionandote</item>
+        <item quantity="one">%1$d nueva respuesta %2$d mencionándote</item>
+        <item quantity="other">%1$d nuevas respuestas %2$d mencionándote</item>
     </plurals>
     <string name="history_screen">Historial</string>
     <string name="filters_screen">Filtros</string>
-    <string name="album_download_screen">Seleccionar imágenes (%1d$d/%2$d)</string>
-    <string name="album_download_none_checked">Seleccione imágenes para descargar</string>
+    <string name="album_download_screen">Seleccionar imágenes (%1$d/%2$d)</string>
+    <string name="album_download_none_checked">Selecciona imágenes para descargar</string>
     <string name="album_download_confirm">%1$s se descargará en la carpeta %2$s</string>
     <string name="report_screen">Reportar a %1$s</string>
     <string name="image_save_notification_downloading">Descargando imágenes</string>
@@ -318,20 +319,20 @@ Active \"Reproducir videos con reproductor externo\" En las configuraciones"</st
     <string name="setting_watch_summary_disabled">Desactivado</string>
     <string name="settings_screen_watch">Ajustes de observador de hilo</string>
     <string name="settings_group_watch">Preferencias</string>
-    <string name="setting_watch_info">Para ver marcadores de nuevos post, active el observador de hilos</string>
+    <string name="setting_watch_info">Para ver nuevos posts en los marcadores, activa el observador de hilos</string>
     <string name="setting_watch_enable_background">Actualizar en segundo plano</string>
-    <string name="setting_watch_enable_background_description">Ver marcadores cuando Clover está en segundo plano</string>
+    <string name="setting_watch_enable_background_description">Actualizar marcadores cuando Clover está en segundo plano</string>
     <string name="setting_watch_background_timeout">Intervalo de actualización de segundo plano</string>
-    <string name="setting_watch_background_timeout_description">El intervalo entre actualizaciones cuando se coloca en segundo plano</string>
+    <string name="setting_watch_background_timeout_description">Intervalo entre actualizaciones cuando se pasa a segundo plano</string>
     <string name="setting_watch_notify_mode">Notificar sobre</string>
     <string-array name="setting_watch_notify_modes">
-        <item>Todas las publicaciones</item>
-        <item>Solo post citandote</item>
+        <item>Todos los posts</item>
+        <item>Solo posts citándote</item>
     </string-array>
     <string name="setting_watch_sound">Sonido de notificación</string>
     <string-array name="setting_watch_sounds">
-        <item>Todas las publicaciones</item>
-        <item>Solo posts citandote</item>
+        <item>Todos los posts</item>
+        <item>Solo posts citándote</item>
     </string-array>
     <string name="setting_watch_peek">Notificaciones emergenes en citaciones</string>
     <string name="setting_watch_peek_description">Mostrar una notificación emergente cuando sea citado</string>
@@ -358,7 +359,7 @@ Los reportes de crash no recolectan información personal."</string>
     <string name="settings_about_license_description">Presione para ver licencia</string>
     <string name="settings_about_licenses">Licencias de código abierto</string>
     <string name="settings_about_licenses_description">Información legal sobre las licencias</string>
-    <string name="settings_developer">Configuración de desarrollador</string>
+    <string name="settings_developer">Ajustes para desarrolladores</string>
     <!-- Appearance -->
     <string name="settings_screen_appearance">Apariencia</string>
     <string name="settings_group_appearance">Apariencia</string>
@@ -367,45 +368,45 @@ Los reportes de crash no recolectan información personal."</string>
     <string name="settings_group_layout">Diseño</string>
     <string name="setting_layout_mode">Modo de diseño</string>
     <string name="setting_layout_mode_auto">Automático</string>
-    <string name="setting_layout_mode_phone">Modo telefono</string>
+    <string name="setting_layout_mode_phone">Modo teléfono</string>
     <string name="setting_layout_mode_slide">Modo presentación</string>
     <string name="setting_layout_mode_split">Modo dividido</string>
-    <string name="setting_board_grid_span_count">Catálogo en modo columna</string>
+    <string name="setting_board_grid_span_count">Columnas en modo tablero</string>
     <string name="setting_board_grid_span_count_default">Automático</string>
     <string name="setting_board_grid_span_count_item">%1$d columnas</string>
     <string name="setting_never_hide_toolbar">Nunca esconder la barra de herramientas</string>
     <string name="setting_enable_reply_fab">Activar el botón de respuesta</string>
-    <string name="setting_enable_reply_fab_description">Deshabilitar reemplaza el botón circular con una opción de menú</string>
+    <string name="setting_enable_reply_fab_description">Si se deshabilita, se reemplazará el botón circular con una opción en el menú</string>
     <!-- Appearance post group -->
-    <string name="settings_group_post">Publicación</string>
+    <string name="settings_group_post">Posts</string>
     <string name="setting_font_size">Tamaño de la fuente</string>
     <string name="setting_font_size_default">(Por defecto)</string>
-    <string name="setting_font_condensed">Usar fuente condensada</string>
-    <string name="setting_font_condensed_description">Usar fuente condensada para las publicaciones</string>
-    <string name="setting_post_full_date">Mostrar la fecha entera en las publicaciones</string>
-    <string name="setting_post_file_info">Mostrar la información de archivo en las publicaciones</string>
-    <string name="setting_post_filename">Mostrar el nombre de archio en las publicaciones</string>
+    <string name="setting_font_condensed">Usar fuente compacta</string>
+    <string name="setting_font_condensed_description">Usar fuente compacta para los posts</string>
+    <string name="setting_post_full_date">Mostrar la fecha completa en los posts</string>
+    <string name="setting_post_file_info">Mostrar la información de archivo en los posts</string>
+    <string name="setting_post_filename">Mostrar el nombre de archivo en los posts</string>
     <!-- Behavior -->
     <string name="settings_screen_behavior">Comportamiento</string>
     <!-- Behavior general group -->
     <string name="settings_group_general">General</string>
     <string name="setting_auto_refresh_thread">Auto-refrescar hilo</string>
     <string name="setting_confirm_exit">Confirmar antes de salir</string>
-    <string name="setting_controller_swipeable">Permitir pantallas deslizables</string>
+    <string name="setting_controller_swipeable">Permitir deslizar pantallas</string>
     <string name="setting_clear_thread_hides">Borrar todos los hilos ocultos</string>
-    <string name="setting_cleared_thread_hides">Borrado todos los hilos ocultos</string>
+    <string name="setting_cleared_thread_hides">Todos los hilos ocultos se han borrado</string>
     <!-- Behavior reply group -->
     <string name="settings_group_reply">Responder</string>
-    <string name="setting_post_pin">Hilo marcado en publicación</string>
-    <string name="setting_post_default_name">Nombre de publicación predeterminado</string>
+    <string name="setting_post_pin">Guardar hilo al responder</string>
+    <string name="setting_post_default_name">Nombre por defecto</string>
     <!-- Behavior post group -->
     <string name="setting_text_only">Modo de solo lectura</string>
     <string name="setting_text_only_description">Ocultar imágenes en vista de hilo</string>
     <string name="settings_reveal_text_spoilers">Revelar textos spoilers</string>
-    <string name="settings_reveal_text_spoilers_description">Ocultar textos spoilers</string>
+    <string name="settings_reveal_text_spoilers_description">Ver siempre el contenido de los textos marcados como spoiler</string>
     <string name="setting_anonymize">Hacer todos Anonymous</string>
     <string name="setting_anonymize_ids">Esconder IDs</string>
-    <string name="setting_show_anonymous_name">Mostrar siempre el nombre de \"Anónimo\"</string>
+    <string name="setting_show_anonymous_name">Mostrar siempre el nombre de \"Anonymous\"</string>
     <string name="setting_buttons_bottom">Botones de respuesta abajo</string>
     <string name="setting_volume_key_scrolling">Usar teclas de volumen para ver contenido</string>
     <string name="setting_tap_no_rely">Tocar número de post para responder</string>
@@ -425,58 +426,61 @@ Los reportes de crash no recolectan información personal."</string>
 "Guardar la imagen con el nombre de archivo asignado por el sitio.
 Si esta deshabilitado, guardar imagen con el nombre de archivo original de la subida"
     </string>
-    <string name="setting_video_default_muted">Inicio videos silenciados</string>
-    <string name="setting_video_default_muted_description">Si un video tiene audio, silenceado predeterminado.</string>
+    <string name="setting_video_default_muted">Iniciar vídeos silenciados</string>
+    <string name="setting_video_default_muted_description">Si un vídeo tiene audio, silenciarlo por defecto.</string>
     <string name="setting_video_open_external">Reproducir con reproductor externo</string>
     <string name="setting_video_open_external_description">Reproducir en una aplicación de reproductor de medios externos</string>
+    <string name="setting_video_exoplayer">Habilitar el nuevo ExoPlayer</string>
+    <string name="setting_video_exoplayer_description">Usar el nuevo ExoPlayer para reproductor de media interna</string>
     <string name="setting_share_url">Compartir la URL de la imagen</string>
     <string name="setting_share_url_description">Compartir la URL de la imagen en lugar de la propia imagen</string>
     <string name="settings_reveal_image_spoilers">Revelar imágenes spoilers</string>
     <string name="settings_reveal_image_spoilers_description">Siempre cargar imágenes spoilers.</string>
     <!-- Media loading group -->
     <string name="settings_group_media_loading">Carga de media</string>
-    <string name="setting_image_auto_load">Automáticamente cargar imágenes</string>
+    <string name="setting_image_auto_load">Cargar imágenes automáticamente</string>
     <string name="setting_image_auto_load_all">Siempre</string>
-    <string name="setting_image_auto_load_wifi">Solo conexión Wi-Fi</string>
+    <string name="setting_image_auto_load_wifi">Solo con conexión Wi-Fi</string>
     <string name="setting_image_auto_load_none">Nunca</string>
-    <string name="setting_video_auto_load">Automáticamente cargar videos</string>
-    <string name="setting_video_auto_loop">Activar loop de video automático</string>
-    <string name="setting_video_auto_loop_description">Automaticamente hacer loop del video</string>
+    <string name="setting_video_auto_load">Cargar vídeos automáticamente</string>
+    <string name="setting_video_auto_loop">Reproducir vídeos en bucle</string>
+    <string name="setting_video_auto_loop_description">Los vídeos se reproduciran en bucle.</string>
     <!-- Save location settings -->
     <string name="save_location_screen">Ubicación de guardado</string>
     <string name="save_location_storage_permission_required_title">Permiso de almacenamiento requerido</string>
     <string name="save_location_storage_permission_required">
-El perimiso para acceder almacenamiento es requerido para navegar archios
+"Se necesita permiso de almacenamiento para guardar archivos.
 
-Rehablita este permiso en la configuracion de la app si lo desailitaste permanentementes    </string>
+Rehabilita este permiso en la configuración de la aplicación si lo deshabilitaste permanentemente."</string>
     <string name="setting_folder_pick_ok">Elegir</string>
     <string name="setting_folder_navigate_up">Subir</string>
     <!-- Theme settings -->
     <string name="setting_theme_explanation">
-"Para cambiar el tema deslice.
-Toque la barra de menu para cambiar su color"
+"Desliza para cambiar el tema.
+Toca la barra de menú para cambiar su color.
+"
     </string>
-    <string name="setting_theme_accent">Presione aquí para cambiar el color de FAB</string>
+    <string name="setting_theme_accent">Toca aquí para cambiar el color del botón circular.</string>
     <!-- Developer settings -->
-    <string name="settings_open_logs">Ver logs</string>
+    <string name="settings_open_logs">Ver registros</string>
     <string name="settings_logs_screen">Registros</string>
     <string name="settings_logs_copy">Copiar</string>
     <string name="settings_logs_copied_to_clipboard">Copiado al portapapeles</string>
 
     <string name="settings_screen_theme">Temas</string>
-    <string name="image_quality">La calidad de imagen: %1$d</string>
+    <string name="image_quality">Calidad de imagen: %1$d</string>
     <string name="scale_reduce">Reducir: %1$dx</string>
     <string name="could_not_decode_image_bitmap">No se pudo decodificar el mapa de bits de la imagen</string>
-    <string name="could_not_apply_image_options">No se pudieron aplicar nuevas opciones de imagen. Mensaje de error es %1$s</string>
+    <string name="could_not_apply_image_options">No se pudieron aplicar nuevas opciones de imagen. Mensaje de error: %1$s</string>
     <string name="image_options_remove_filename">Eliminar nombre de archivo</string>
     <string name="image_options_change_image_checksum">Cambiar la suma de comprobación de la imagen.</string>
     <string name="image_options_remove_metadata">Eliminar metadatos</string>
     <string name="image_options_re_encode">Volver a codificar</string>
     <string name="reencode_image_re_encode_image_text">Volver a codificar la imagen</string>
-    <string name="reencode_image_as_is">COMO ES (%1$s)</string>
+    <string name="reencode_image_as_is">TAL CUAL (%1$s)</string>
     <string name="reencode_image_as_jpeg">COMO JPEG</string>
     <string name="reencode_image_as_png">COMO PNG</string>
-    <string name="reencode_image_image_quality_100_default_text">La calidad de imagen: 100</string>
+    <string name="reencode_image_image_quality_100_default_text">Calidad de imagen: 100</string>
     <string name="reencode_image_reduce_1x_default_text">Reducir: 1x</string>
-    <string name="click_image_for_extra_options">Haga clic en la imagen para opciones adicionales</string>
+    <string name="click_image_for_extra_options">Toca la imagen para opciones adicionales</string>
 </resources>
