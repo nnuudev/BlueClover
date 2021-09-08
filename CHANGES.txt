@@ -1,3 +1,11 @@
+New in v3.20 build 20210908_1940
+- Re-enabled update manager.
+- Compact drawer inspired by Kuroba.
+-- Bookmarked threads can be refreshed with a swipe.
+- Added thumbnail scale setting.
+- Changed default view mode to Catalog.
+- Updated translations from Clover's Crowdin.
+
 New in v3.20 build 20210829_1030
 - The other sites (besides 4chan) should work again.
 -- Updating from a previous release might show some "INVALID SITE" on the site list, those have to be manually removed.
