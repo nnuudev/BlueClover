@@ -587,9 +587,17 @@ public class WatchManager {
         }
     }
 
+    // Force an update, ignoring the timer in ChanThreadLoader
     public void forceUpdate() {
         handler.removeMessages(MESSAGE_UPDATE);
-        update(false);
+        handler.sendMessageDelayed(handler.obtainMessage(MESSAGE_UPDATE), FOREGROUND_INTERVAL);
+        waitingForPinWatchersForBackgroundUpdate = null;
+        for (Pin pin: getWatchingPins()) {
+            PinWatcher pinWatcher = getPinWatcher(pin);
+            if (pinWatcher != null && pinWatcher.update(true)) {
+                EventBus.getDefault().post(new PinChangedMessage(pin));
+            }
+        }
     }
 
     // Update the watching pins
