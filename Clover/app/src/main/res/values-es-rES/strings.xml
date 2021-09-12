@@ -28,14 +28,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="permission_app_settings">Ajustes de la aplicación</string>
     <string name="permission_grant">Conceder</string>
     <string name="update_later">Más tarde</string>
-    <string name="update_none">Clover está actualizado</string>
+    <string name="update_none">Blue Clover está actualizado</string>
     <string name="update_check_failed">No se han podido buscar actualizaciones.</string>
     <string name="update_install">Instalar</string>
     <string name="update_install_downloading">Descargando actualización</string>
     <string name="update_install_download_failed">Fallo en la descarga</string>
     <string name="update_install_download_move_failed">No se pudo mover el archivo descargado a la carpeta de descarga.</string>
     <string name="update_retry_title">Reintentar actualización</string>
-    <string name="update_retry">Clover no se ha actualizado todavía. Pulsa \"Reintentar\" para volver a intentar la instalación.</string>
+    <string name="update_retry">Blue Clover no se ha actualizado todavía. Pulsa \"Reintentar\\ para volver a intentar la instalación.</string>
     <string name="update_retry_button">Reintentar</string>
     <string name="update_storage_permission_required_title">Permiso de almacenamiento requerido</string>
     <string name="update_storage_permission_required">
@@ -94,7 +94,7 @@ Rehabilita este permiso en la configuración de la aplicación si lo deshabilita
     <string name="action_rename_pin">Renombrar marcador</string>
     <string name="action_rename">Renombrar</string>
     <string name="action_reply">Responder</string>
-    <string name="open_link_not_matched">Clover no puede abrir este enlace; en su lugar se abrirá en el navegador.</string>
+    <string name="open_link_not_matched">Blue Clover no puede abrir este enlace; en su lugar se abrirá en el navegador.</string>
     <string name="order_bump">Orden de bump</string>
     <string name="order_reply">Número de respuestas</string>
     <string name="order_image">Contador de Imágenes</string>
@@ -321,7 +321,7 @@ Active \"Reproducir vídeos con reproductor externo\" en las configuraciones."</
     <string name="settings_group_watch">Preferencias</string>
     <string name="setting_watch_info">Para ver nuevos posts en los marcadores, activa el observador de hilos</string>
     <string name="setting_watch_enable_background">Actualizar en segundo plano</string>
-    <string name="setting_watch_enable_background_description">Actualizar marcadores cuando Clover está en segundo plano</string>
+    <string name="setting_watch_enable_background_description">Actualizar marcadores cuando Blue Clover está en segundo plano</string>
     <string name="setting_watch_background_timeout">Intervalo de actualización de segundo plano</string>
     <string name="setting_watch_background_timeout_description">Intervalo entre actualizaciones cuando se pasa a segundo plano</string>
     <string name="setting_watch_notify_mode">Notificar sobre</string>
@@ -350,11 +350,6 @@ Active \"Reproducir vídeos con reproductor externo\" en las configuraciones."</
     <!-- Main About group -->
     <string name="settings_group_about">Acerca de</string>
     <string name="settings_update_check">Buscar actualizaciones</string>
-    <string name="settings_crash_reporting">Informe de accidentes</string>
-    <string name="settings_crash_reporting_description">
-"El reporte de crash crea reportes cuando algo mal pasa en Clover.
-Los reportes de crash no recolectan información personal."</string>
-    <string name="settings_crash_reporting_toggle_notice">La configuración se aplicara la próxima vez que la app inicie.</string>
     <string name="settings_about_license">Lanzado bajo la licencia GNU GPLv3</string>
     <string name="settings_about_license_description">Presione para ver licencia</string>
     <string name="settings_about_licenses">Licencias de código abierto</string>

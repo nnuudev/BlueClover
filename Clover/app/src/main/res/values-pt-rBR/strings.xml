@@ -29,14 +29,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="permission_app_settings">Definições do aplicativo</string>
     <string name="permission_grant">Dar</string>
     <string name="update_later">Mais tarde</string>
-    <string name="update_none">O Clover está atualizado</string>
+    <string name="update_none">O Blue Clover está atualizado</string>
     <string name="update_check_failed">Não foi possível verificar se há atualizações.</string>
     <string name="update_install">Instalar</string>
     <string name="update_install_downloading">Baixando atualizações</string>
     <string name="update_install_download_failed">Falha no download</string>
     <string name="update_install_download_move_failed">Falha ao mover o arquivo baixado para a pasta de downloads.</string>
     <string name="update_retry_title">Tente atualizar novamente</string>
-    <string name="update_retry">O Clover não estava atualizado ainda. Toque \"tentar novamente\" para tentar instalar mais uma vez.</string>
+    <string name="update_retry">O Blue Clover não estava atualizado ainda. Toque \"tentar novamente\" para tentar instalar mais uma vez.</string>
     <string name="update_retry_button">tentar novamente</string>
     <string name="update_storage_permission_required_title">É necessária permissão de armazenamento.</string>
     <string name="update_storage_permission_required">\"Garantir permissão para acessar o armazenamento é necessário para intalar a atualização.
@@ -94,7 +94,7 @@ Ative essa permissão novamente nas configurações do aplicativo caso tenha des
     <string name="action_rename_pin">Renomear favorito</string>
     <string name="action_rename">Renomear</string>
     <string name="action_reply">Responder</string>
-    <string name="open_link_not_matched">O Clover não conseguiu abrir esse link e tentará abrí-lo em seu navegador.</string>
+    <string name="open_link_not_matched">O Blue Clover não conseguiu abrir esse link e tentará abrí-lo em seu navegador.</string>
     <string name="order_bump">Ordem por bump</string>
     <string name="order_reply">Número de respostas</string>
     <string name="order_image">Número de imagens</string>
@@ -316,7 +316,7 @@ Ative \"Abrir videos em um player externo\" nas configurações para abrir video
     <string name="settings_group_watch">Configurações</string>
     <string name="setting_watch_info">Para observar favoritos por novos posts, habilite o observador de threads.</string>
     <string name="setting_watch_enable_background">Habilitar em segundo plano</string>
-    <string name="setting_watch_enable_background_description">Observar favoritos enquanto Clover for colocado em segundo plano</string>
+    <string name="setting_watch_enable_background_description">Observar favoritos enquanto Blue Clover for colocado em segundo plano</string>
     <string name="setting_watch_background_timeout">Intervalo de atualização em segundo plano</string>
     <string name="setting_watch_background_timeout_description">O intervalo entre atualizações quando colocado em segundo plano</string>
     <string name="setting_watch_notify_mode">Notificar sobre</string>
@@ -347,10 +347,6 @@ Ative \"Abrir videos em um player externo\" nas configurações para abrir video
     <!-- Main About group -->
     <string name="settings_group_about">Sobre</string>
     <string name="settings_update_check">Procurar atualizações</string>
-    <string name="settings_crash_reporting">Reportar crashes</string>
-    <string name="settings_crash_reporting_description">\"Reportar crashes cria um relatório dos erros no Clover.
-Relatorios de crashes não coletam informações pessoais identificáveis.\"    </string>
-    <string name="settings_crash_reporting_toggle_notice">A configuração será aplicada na próxima vez que o aplicativo for aberto.</string>
     <string name="settings_about_license">Lançado sob a licença GNU GPLv3</string>
     <string name="settings_about_license_description">Toque para ver a licença</string>
     <string name="settings_about_licenses">Licenças de código aberto</string>

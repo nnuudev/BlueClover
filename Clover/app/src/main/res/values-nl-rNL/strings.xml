@@ -29,14 +29,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="permission_app_settings">App-instellingen</string>
     <string name="permission_grant">Toestaan</string>
     <string name="update_later">Later</string>
-    <string name="update_none">Clover is up-to-date</string>
+    <string name="update_none">Blue Clover is up-to-date</string>
     <string name="update_check_failed">Updates controleren is mislukt.</string>
     <string name="update_install">Installeren</string>
     <string name="update_install_downloading">Update aan het downloaden</string>
     <string name="update_install_download_failed">Downloaden mislukt</string>
     <string name="update_install_download_move_failed">Kon het gedownloade bestand niet verplaatsen naar de Downloads map.</string>
     <string name="update_retry_title">Probeer update opnieuw</string>
-    <string name="update_retry">Clover is nog niet geüpdatet. Tik op \"opnieuw proberen\" om de installatie opnieuw te proberen.</string>
+    <string name="update_retry">Blue Clover is nog niet geüpdatet. Tik op \"opnieuw proberen\\ om de installatie opnieuw te proberen.</string>
     <string name="update_retry_button">opnieuw proberen</string>
     <string name="update_storage_permission_required_title">Opslagpermissie vereist</string>
     <string name="update_storage_permission_required">\"Permissie voor toegang tot de opslag is vereist voor het installeren van de update.
@@ -94,7 +94,7 @@ Zet de permissie opnieuw aan in de app-instellingen als je het uit hebt gezet.\"
     <string name="action_rename_pin">Hernoem bladwijzer</string>
     <string name="action_rename">Hernoemen</string>
     <string name="action_reply">Reageren</string>
-    <string name="open_link_not_matched">Clover kan deze link niet openen; we openen het in je browser.</string>
+    <string name="open_link_not_matched">Blue Clover kan deze link niet openen; we openen het in je browser.</string>
     <string name="order_bump">Stootvolgorde</string>
     <string name="order_reply">Aantal reacties</string>
     <string name="order_image">Aantal afbeeldingen</string>
@@ -317,7 +317,7 @@ Zet \"Speel video\'s af met een externe mediaspeler\" aan in de instellingen om 
     <string name="settings_group_watch">Instellingen</string>
     <string name="setting_watch_info">Zet de threadvolger aan om threads met bladwijzers te volgen voor nieuwe posts.</string>
     <string name="setting_watch_enable_background">Aanzetten in de achtergrond</string>
-    <string name="setting_watch_enable_background_description">Bladwijzers volgen wanneer Clover in de achtergrond geplaatst is</string>
+    <string name="setting_watch_enable_background_description">Bladwijzers volgen wanneer Blue Clover in de achtergrond geplaatst is</string>
     <string name="setting_watch_background_timeout">Achtergrond update-interval</string>
     <string name="setting_watch_background_timeout_description">Het interval tussen updates wanneer de app in de achtergrond is geplaatst</string>
     <string name="setting_watch_notify_mode">Melding geven bij</string>
@@ -348,10 +348,6 @@ Zet \"Speel video\'s af met een externe mediaspeler\" aan in de instellingen om 
     <!-- Main About group -->
     <string name="settings_group_about">Over deze app</string>
     <string name="settings_update_check">Op updates controleren</string>
-    <string name="settings_crash_reporting">Crashes rapporteren</string>
-    <string name="settings_crash_reporting_description">\"Crashes rapporteren zet crashrapportages aan in Clover.
-Crashrapportages verzamelen geen persoonlijk identificeerbare informatie.\"    </string>
-    <string name="settings_crash_reporting_toggle_notice">Instelling zal toegepast worden bij de volgende start.</string>
     <string name="settings_about_license">Onder de GNU GPLv3 vrijgegeven</string>
     <string name="settings_about_license_description">Tik om de licentie te zien</string>
     <string name="settings_about_licenses">Open Source-licenties</string>

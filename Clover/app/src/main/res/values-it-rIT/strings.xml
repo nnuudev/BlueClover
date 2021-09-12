@@ -30,14 +30,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="permission_app_settings">Impostazioni App</string>
     <string name="permission_grant">Concedi</string>
     <string name="update_later">Più tardi</string>
-    <string name="update_none">Clover è aggiornato</string>
+    <string name="update_none">Blue Clover è aggiornato</string>
     <string name="update_check_failed">Impossibile controllare gli aggiornamenti.</string>
     <string name="update_install">Installa</string>
     <string name="update_install_downloading">Scaricamento aggiornamento</string>
     <string name="update_install_download_failed">Scaricamento fallito</string>
     <string name="update_install_download_move_failed">È stato riscontrato un errore spostando il file nella cartella Download.</string>
     <string name="update_retry_title">Riprova l\'aggiornamento</string>
-    <string name="update_retry">Clover non è stato aggiornato. Premi \"riprova\" per riprovare l\'installazione.</string>
+    <string name="update_retry">Blue Clover non è stato aggiornato. Premi \"riprova\" per riprovare l\'installazione.</string>
     <string name="update_retry_button">riprova</string>
     <string name="update_storage_permission_required_title">Richiesta autorizzazione di archiviazione</string>
     <string name="update_storage_permission_required">\"Permission to access storage is required for installing the update.
@@ -95,7 +95,7 @@ Re-enable this permission in the app settings if you permanently disabled it.\"<
     <string name="action_rename_pin">Rinomina preferito</string>
     <string name="action_rename">Rinomina</string>
     <string name="action_reply">Rispondi</string>
-    <string name="open_link_not_matched">Clover non può aprire questo link; verrà invece aperto nel browser.</string>
+    <string name="open_link_not_matched">Blue Clover non può aprire questo link; verrà invece aperto nel browser.</string>
     <string name="order_bump">Ordine di bump</string>
     <string name="order_reply">Contatore di risposte</string>
     <string name="order_image">Contatore di immagini</string>
@@ -318,7 +318,7 @@ Abilita \"Riproduci video con un lettore esterno\" nelle impostazioni per riprod
     <string name="settings_group_watch">Impostazioni</string>
     <string name="setting_watch_info">To watch bookmarks for new posts, turn the thread watcher on.</string>
     <string name="setting_watch_enable_background">Abilita in background</string>
-    <string name="setting_watch_enable_background_description">Watch bookmarks when Clover is placed in the background</string>
+    <string name="setting_watch_enable_background_description">Watch bookmarks when Blue Clover is placed in the background</string>
     <string name="setting_watch_background_timeout">Background update interval</string>
     <string name="setting_watch_background_timeout_description">The interval between updates when placed in the background</string>
     <string name="setting_watch_notify_mode">Notify about</string>
@@ -349,11 +349,6 @@ Abilita \"Riproduci video con un lettore esterno\" nelle impostazioni per riprod
     <!-- Main About group -->
     <string name="settings_group_about">Informazioni</string>
     <string name="settings_update_check">Verifica aggiornamenti</string>
-    <string name="settings_crash_reporting">Segnalare gli errori</string>
-    <string name="settings_crash_reporting_description">\"Crash reporting creates reports of errors in Clover.
-Crash reports do not collect any personally identifiable information.\"
-    </string>
-    <string name="settings_crash_reporting_toggle_notice">Setting will be applied on the next app start.</string>
     <string name="settings_about_license">Released under the GNU GPLv3 license</string>
     <string name="settings_about_license_description">Toccare per vedere la licenza</string>
     <string name="settings_about_licenses">Licenze Open Source</string>
