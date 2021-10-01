@@ -1,3 +1,7 @@
+New in v3.20 build 20211001_1415
+- New G5 flags on /mlp/.
+-- Watch the movie!
+
 New in v3.20 build 20210908_1940
 - Re-enabled update manager.
 - Compact drawer inspired by Kuroba.
