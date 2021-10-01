@@ -212,9 +212,18 @@ public class ReplyLayout extends LoadView implements
                         "4CC","AN","ANF","APB","AU","BS","BP","BM","BB","CL","CHE","CB","CO","CG",
                         "DD","DAY","DER","DT","DIS","FAU","FLE","GI","LI","LT","LY","MA","MAU",
                         "MIN","NI","NUR","OCT","PAR","PM","PC","PCE","PLU","QC","RLU","S1L","SCO",
-                        "SHI","SIL","SP","SPI","STA","STL","SUN","SWB","TS","TX","VS","ZE","IZ",
-                        "PP","SS","TFA","TFO","TFP","TP","TFS","TFT","TFV","ADA","AB","SON","SUS",
+                        "SHI","SIL","SP","SPI","STA","STL","SUN","SWB","TS","TX","VS","ZE",
+                        "HT","IZ","PP","SPT","SS","ZS",
+                        "TFA","TFO","TFP","TP","TFS","TFT","TFV","ADA","AB","SON","SUS",
                         "EQA","EQF","EQP","EQR","ERA","EQS","EQT","EQI"};
+                if (boardFlags.containsKey("HT")) {
+                    boardFlags.put("HT", "G5 Hitch Trailblazer");
+                    //boardFlags.put("IZ", "G5 Izzy Moonbow");
+                    //boardFlags.put("PP", "G5 Pipp Petals");
+                    boardFlags.put("SPT", "G5 Sprout");
+                    //boardFlags.put("SS", "G5 Sunny Starscout");
+                    boardFlags.put("ZS", "G5 Zipp Storm");
+                }
                 sorted = new ArrayList<>(Arrays.asList(sortedMLP));
                 sorted.retainAll(boardFlags.keySet());
                 if (sorted.size() < boardFlags.keySet().size()) {
