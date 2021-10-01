@@ -216,14 +216,14 @@ public class ReplyLayout extends LoadView implements
                         "HT","IZ","PP","SPT","SS","ZS",
                         "TFA","TFO","TFP","TP","TFS","TFT","TFV","ADA","AB","SON","SUS",
                         "EQA","EQF","EQP","EQR","ERA","EQS","EQT","EQI"};
-                if (boardFlags.containsKey("HT")) {
+                //if (boardFlags.containsKey("HT")) {
                     boardFlags.put("HT", "G5 Hitch Trailblazer");
-                    //boardFlags.put("IZ", "G5 Izzy Moonbow");
-                    //boardFlags.put("PP", "G5 Pipp Petals");
+                    boardFlags.put("IZ", "G5 Izzy Moonbow");
+                    boardFlags.put("PP", "G5 Pipp Petals");
                     boardFlags.put("SPT", "G5 Sprout");
-                    //boardFlags.put("SS", "G5 Sunny Starscout");
+                    boardFlags.put("SS", "G5 Sunny Starscout");
                     boardFlags.put("ZS", "G5 Zipp Storm");
-                }
+                //}
                 sorted = new ArrayList<>(Arrays.asList(sortedMLP));
                 sorted.retainAll(boardFlags.keySet());
                 if (sorted.size() < boardFlags.keySet().size()) {
