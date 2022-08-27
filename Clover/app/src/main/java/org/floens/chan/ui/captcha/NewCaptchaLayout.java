@@ -118,7 +118,8 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
         String html = IOUtils.assetAsString(getContext(), "captcha/new_captcha.html");
         html = html.replace("__board__", board).replace("__thread_id__", String.valueOf(thread_id));
 
-        loadDataWithBaseURL(baseUrl, html, "text/html", "UTF-8", null);
+        String sysUrl = "https://sys.4chan.org";
+        loadDataWithBaseURL(sysUrl, html, "text/html", "UTF-8", null);
     }
 
     @Override
