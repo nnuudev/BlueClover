@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-<iframe id="iframe" style="position: absolute; top: 0; left: 0; right: 0; background:white; z-index: 666;"></iframe>
+<body style="overflow: hidden;">
+<iframe id="iframe" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: white; z-index: 666; width: 100%; height: 100%;"></iframe>
 <div id="t-root" style="width: 300px; margin: 2px auto; position: relative;">
     <div id="t-cnt" style="height: 80px; margin: 2px auto 0; position: relative;">
         <div id="t-bg" style="width: 100%; height: 100%; position: absolute; background-repeat: no-repeat; background-position: left top;"></div>
@@ -17,6 +17,121 @@
     <div id="t-msg" style="width: 100%; position: absolute; top: 50%; text-align: center; font-size: 14px; filter: inherit;">Loading...</div>
 </div>
 <script>
+
+// ---------- FROM https://addons.mozilla.org/en-US/firefox/addon/jkcs/ ----------
+
+  function black(x) {
+    return x < 64;
+  }
+  function calculateDisorder(imgdata) {
+    var a = imgdata.data;
+    var w = imgdata.width;
+    var h = imgdata.height;
+    var pic = [];
+    var visited = [];
+    for (var c = 0; c < w * h; c++) {
+      if (visited[c])
+        continue;
+      if (!black(a[c * 4]))
+        continue;
+      var blackCount = 0;
+      var items = [];
+      var toVisit = [c];
+      while (toVisit.length > 0) {
+        var cc = toVisit[toVisit.length - 1];
+        toVisit.splice(toVisit.length - 1, 1);
+        if (visited[cc])
+          continue;
+        visited[cc] = 1;
+        if (black(a[cc * 4])) {
+          items.push(cc);
+          blackCount++;
+          toVisit.push(cc + 1);
+          toVisit.push(cc - 1);
+          toVisit.push(cc + w);
+          toVisit.push(cc - w);
+        }
+      }
+      if (blackCount >= 24) {
+        items.forEach(function(x) {
+          pic[x] = 1;
+        });
+      }
+    }
+    var res = 0;
+    var total = 0;
+    for (var c = 0; c < w * h - w; c++) {
+      if (pic[c] !== pic[c + w])
+        res += 1;
+      if (pic[c])
+        total += 1;
+    }
+    return res / (total === 0 ? 1 : total);
+  }
+  function imageFromCanvas(img, bg, off) {
+    var h = img.height;
+    var w = img.width;
+    var th = 80;
+    var ph = 0;
+    var pw = 16;
+    var scale2 = th / h;
+    var canvas = document.createElement("canvas");
+    canvas.height = w * scale2 + pw * 2;
+    canvas.width = th;
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "rgb(238,238,238)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.scale(-scale2, scale2);
+    ctx.rotate(90 * Math.PI / 180);
+    var draw = function(off2) {
+      if (bg) {
+        var border = 4;
+        ctx.drawImage(
+          bg,
+          -off2 + border,
+          0,
+          w - border * 2,
+          h,
+          -w / 2 + border,
+          -h / 2,
+          w - border * 2,
+          h
+        );
+      }
+      ctx.drawImage(img, -w / 2, -h / 2, w, h);
+    };
+    if (bg && off == null) {
+      var bestDisorder = 999;
+      var bestImagedata = null;
+      var bestOff = -1;
+      for (var off2 = 0; off2 >= -50; off2--) {
+        draw(off2);
+        var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var disorder = calculateDisorder(imgdata);
+        if (disorder < bestDisorder) {
+          bestDisorder = disorder;
+          bestImagedata = imgdata;
+          bestOff = off2;
+        }
+      }
+      setTimeout(function() {
+        var bg2 = document.getElementById("t-bg");
+        var slider = document.getElementById("t-slider");
+        if (!bg2 || !slider)
+          return;
+        slider.value = -bestOff * 2;
+	slider.dispatchEvent(new Event('input'));
+        bg2.style.backgroundPositionX = bestOff + "px";
+      }, 1);
+      return bestImagedata;
+    } else {
+      draw(off);
+      return ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+// ---------- END OF https://addons.mozilla.org/en-US/firefox/addon/jkcs/ ----------
 
 function buildFromJson(data) {
     if (data.error) {
@@ -55,6 +170,19 @@ function buildFromJson(data) {
             var m = -Math.floor((+this.value) / 100 * this.twisterDelta);
             bgNode.style.backgroundPositionX = m + 'px';
         }, false);
+        // autoslide
+        var img_fg = new Image();
+        var img_bg = new Image();
+        var canvas_fg = document.createElement("canvas");
+        img_fg.setAttribute("src", 'data:image/png;base64,' + data.img);
+        img_fg.removeAttribute("width");
+        img_fg.onload = function() {
+            img_bg.setAttribute("src", 'data:image/png;base64,' + data.bg);
+            img_bg.removeAttribute("width");
+        };
+        img_bg.onload = function() {
+	    imageFromCanvas(img_fg, img_bg, null);
+	};
     }
     document.getElementById("t-resp").focus();
     CaptchaCallback.onCaptchaLoaded();
