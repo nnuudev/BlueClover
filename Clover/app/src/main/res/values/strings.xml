@@ -168,6 +168,9 @@ Re-enable this permission in the app settings if you permanently disabled it."</
     <string name="thread_pin_hint">Bookmark this thread</string>
     <string name="thread_view_archive">Archive</string>
     <string name="thread_open_external_archive">External archive</string>
+    <string name="thread_no_external_archives">No archives for this board or site.</string>
+    <string name="thread_view_my_posts">View my posts</string>
+    <string name="thread_no_posts_of_mine">You didn\'t post in this thread.</string>
 
     <string name="thread_empty_setup_feature" translatable="false">&#128564;</string>
     <string name="thread_empty_setup_title">Nothing to show</string>

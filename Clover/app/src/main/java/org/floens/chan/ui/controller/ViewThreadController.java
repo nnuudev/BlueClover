@@ -96,6 +96,7 @@ public class ViewThreadController extends ThreadController implements ThreadLayo
             menuOverflowBuilder.withSubItem(R.string.thread_open_external_archive, this::openExternalArchiveClicked);
         }
         menuOverflowBuilder
+                .withSubItem(R.string.thread_view_my_posts, this::showMyPosts)
                 .withSubItem(R.string.action_share, this::shareClicked)
                 .withSubItem(R.string.action_scroll_to_top, this::upClicked)
                 .withSubItem(R.string.action_scroll_to_bottom, this::downClicked)
@@ -141,7 +142,7 @@ public class ViewThreadController extends ThreadController implements ThreadLayo
             dialogView.attachToDialog(dialog);
             dialog.show();
         } else {
-            Toast.makeText(context, "No archives for this board or site.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.thread_no_external_archives, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -149,6 +150,12 @@ public class ViewThreadController extends ThreadController implements ThreadLayo
         Loadable loadable = threadLayout.getPresenter().getLoadable();
         String link = loadable.site.resolvable().desktopUrl(loadable, null);
         AndroidUtils.openLinkInBrowser((Activity) context, link);
+    }
+
+    private void showMyPosts(ToolbarMenuSubItem item) {
+        if (!threadLayout.getPresenter().onShowMyPosts()) {
+            Toast.makeText(context, R.string.thread_no_posts_of_mine, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void shareClicked(ToolbarMenuSubItem item) {

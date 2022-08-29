@@ -24,6 +24,7 @@ import android.text.TextUtils;
 import org.floens.chan.Chan;
 import org.floens.chan.R;
 import org.floens.chan.core.database.DatabaseManager;
+import org.floens.chan.core.database.DatabaseSavedReplyManager;
 import org.floens.chan.core.exception.ChanLoaderException;
 import org.floens.chan.core.manager.WatchManager;
 import org.floens.chan.core.model.ChanThread;
@@ -624,6 +625,25 @@ public class ThreadPresenter implements
         }
         if (posts.size() > 0) {
             threadPresenterCallback.showPostsPopup(post, posts);
+        }
+    }
+
+    public boolean onShowMyPosts() {
+        ChanThread thread = chanLoader.getThread();
+        if (thread == null)
+            return false;
+        DatabaseSavedReplyManager databaseSavedReplyManager = databaseManager.getDatabaseSavedReplyManager();
+        List<Post> posts = new ArrayList<>();
+        for (Post post : thread.posts) {
+            if (databaseSavedReplyManager.isSaved(post.board, post.no)) {
+                posts.add(post);
+            }
+        }
+        if (posts.size() > 0) {
+            threadPresenterCallback.showPostsPopup(thread.op, posts);
+            return true;
+        } else {
+            return false;
         }
     }
 
