@@ -29,6 +29,7 @@ import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.webkit.ConsoleMessage;
+import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -47,6 +48,8 @@ import org.floens.chan.utils.Logger;
 
 public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInterface {
     private static final String TAG = "NewShitCaptchaLayout";
+
+    private static String cf_clearance = null;
 
     private AuthenticationLayoutCallback callback;
     private String baseUrl;
@@ -118,8 +121,10 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
         String html = IOUtils.assetAsString(getContext(), "captcha/new_captcha.html");
         html = html.replace("__board__", board).replace("__thread_id__", String.valueOf(thread_id));
 
-        String sysUrl = "https://sys.4chan.org";
-        loadDataWithBaseURL(sysUrl, html, "text/html", "UTF-8", null);
+        if (cf_clearance != null) {
+            CookieManager.getInstance().setCookie(baseUrl, "cf_clearance=" + cf_clearance);
+        }
+        loadDataWithBaseURL(baseUrl, html, "text/html", "UTF-8", null);
     }
 
     @Override
@@ -157,6 +162,15 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
     }
 
     private void onCaptchaLoaded() {
+        String cookies = CookieManager.getInstance().getCookie(baseUrl);
+        if (cookies != null) {
+            for (String cookie : cookies.split(";")) {
+                if (cookie.startsWith("cf_clearance=")) {
+                    cf_clearance = cookie.split("=")[1];
+                    break;
+                }
+            }
+        }
         AndroidUtils.requestViewAndKeyboardFocus(this);
     }
 

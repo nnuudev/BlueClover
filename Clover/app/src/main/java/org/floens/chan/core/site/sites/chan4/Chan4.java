@@ -361,7 +361,7 @@ public class Chan4 extends SiteBase {
                 case V2NOJS:
                     return SiteAuthentication.fromCaptcha2nojs(CAPTCHA_KEY, "https://boards.4chan.org");
                 case NEWCAPTCHA:
-                    return SiteAuthentication.fromNewCaptcha("https://boards.4chan.org");
+                    return SiteAuthentication.fromNewCaptcha("https://sys.4chan.org");
                 default:
                     throw new IllegalArgumentException();
             }
