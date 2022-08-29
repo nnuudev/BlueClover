@@ -8,7 +8,7 @@ On August 25th 2022, 4chan changed the captcha *again*, breaking most third-part
 
 A final update has been released as a last-resort attempt to make Blue Clover usable, but its use is completely discouraged. Some key points about this update:
 
-- The Cloudflare cookie is never stored, the app will try to solve the Cloudflare challenge *every time* you request a captcha, not only every time you post but also when you click on the wheel to request a different captcha because the one you got is illegible.
+- The Cloudflare cookie is stored only *temporarily*. When you close the app, the cookie is discarded, and the app will try to solve the Cloudflare challenge again the next time you request a captcha. Keep in mind that Cloudflare also forces a new check every time your phone gets a new IP anyway.
 - The challenge is solved using the phone's native WebView. It usually takes 5-20 seconds, but some old versions of Android seem to have problems with it and it might take longer than one minute or even completely refuse to solve the challenge at all. You can try updating Android System WebView, but it's not guaranteed to work.
 - **This version will not work with Android 4.4.** Since the app was specifically created to maintain compatibility with KitKat (see below), this release completely defeated the original purpose of the app and therefore this repository will not be updated again.
 
