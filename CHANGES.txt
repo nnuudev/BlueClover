@@ -1,3 +1,7 @@
+New in v3.20 build 20220829_2240
+- Support for Cloudflare garbage is a bit prettier.
+- Added a "my posts" button.
+
 New in v3.20 build 20220827_1000
 - Basic support for Cloudflare garbage (see README.md).
 
