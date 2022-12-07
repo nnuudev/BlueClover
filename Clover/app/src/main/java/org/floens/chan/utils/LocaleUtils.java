@@ -21,6 +21,8 @@ public class LocaleUtils {
         // see https://stackoverflow.com/questions/40398528
         new WebView(context).destroy();
 
+        Locale.setDefault(Locale.ENGLISH);
+
         Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();
 

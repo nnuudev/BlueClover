@@ -98,8 +98,6 @@ public class Chan extends Application implements
     }
 
     public void initialize() {
-        LocaleUtils.overrideLocaleToEnglishIfNeeded(this);
-
         final long startTime = Time.startTiming();
 
         registerActivityLifecycleCallbacks(this);

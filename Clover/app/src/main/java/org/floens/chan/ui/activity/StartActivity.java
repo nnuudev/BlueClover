@@ -479,6 +479,7 @@ public class StartActivity extends AppCompatActivity implements
         for (Controller controller : stack) {
             controller.onConfigurationChanged(newConfig);
         }
+        LocaleUtils.overrideLocaleToEnglishIfNeeded(this);
     }
 
     @Override
