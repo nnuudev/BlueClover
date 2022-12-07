@@ -204,7 +204,7 @@ public class ThreadPresenter implements
             searchQuery = null;
         }
 
-        if (chanLoader.getThread() != null) {
+        if (chanLoader != null && chanLoader.getThread() != null) {
             showPosts();
         }
     }
