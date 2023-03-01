@@ -46,7 +46,7 @@ public abstract class ImageSearch {
             }
 
             public String getUrl(String imageUrl) {
-                return "https://www.google.com/searchbyimage?image_url=" + imageUrl;
+                return "https://www.google.com/searchbyimage?sbisrc=sbisrc&image_url=" + imageUrl + "&safe=off";
             }
         });
 
