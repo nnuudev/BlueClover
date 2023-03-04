@@ -32,6 +32,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,16 +53,37 @@ public class ArchivesManager {
     }
 
     private ArchivesManager() {
-        //setup the archives list from the internal file, populated when you build the application
-        try {
-            archivesList = new JSONArray(IOUtils.assetAsString(getAppContext(), "archives.json"));
-        } catch (Exception ignored) { }
+        final File cachedJson = new File(getAppContext().getCacheDir(), "archives.json");
+
+        if (cachedJson.exists()) {
+            // used the cached json
+            try {
+                FileInputStream cachedJsonFIS = new FileInputStream(cachedJson);
+                archivesList = new JSONArray(IOUtils.readString(cachedJsonFIS));
+                cachedJsonFIS.close();
+            } catch (Exception exception) { }
+        } else {
+            // setup the archives list from the internal file, populated when you build the application
+            try {
+                archivesList = new JSONArray(IOUtils.assetAsString(getAppContext(), "archives.json"));
+            } catch (Exception ignored) {
+            }
+        }
 
         // fresh copy request, in case of updates (infrequent)
-        // TODO response should be cached, instead of downloading it every time
-        RequestQueue requestQueue = Chan.getInstance().injector().instance(RequestQueue.class);
+        RequestQueue requestQueue = Chan.injector().instance(RequestQueue.class);
         requestQueue.add(new JsonArrayRequest("https://4chenz.github.io/archives.json/archives.json",
-                jsonArray -> archivesList = jsonArray, null));
+                jsonArray -> {
+                    archivesList = jsonArray;
+                    // caching response (it'll be used next time)
+                    try {
+                        ByteArrayInputStream byteArray = new ByteArrayInputStream(jsonArray.toString().getBytes("UTF-8"));
+                        FileOutputStream cachedJsonFOS = new FileOutputStream(cachedJson);
+                        IOUtils.copy(byteArray, cachedJsonFOS);
+                        cachedJsonFOS.close();
+                        byteArray.close();
+                    } catch (Exception exception) { }
+                }, null));
     }
 
     public List<Pair<String, String>> archivesForBoard(Board b) {
