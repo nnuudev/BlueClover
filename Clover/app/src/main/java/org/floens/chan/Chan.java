@@ -92,7 +92,7 @@ public class Chan extends Application implements
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
+        super.attachBaseContext(LocaleUtils.getEnglishContextIfNeeded(base));
 
         AndroidUtils.init(this);
     }
