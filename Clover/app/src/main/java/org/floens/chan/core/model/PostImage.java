@@ -95,6 +95,7 @@ public class PostImage {
         private int imageHeight;
         private boolean spoiler;
         private long size;
+        private String md5;
 
         public Builder() {
         }
@@ -147,6 +148,11 @@ public class PostImage {
 
         public Builder size(long size) {
             this.size = size;
+            return this;
+        }
+
+        public Builder md5(String md5) {
+            this.md5 = md5;
             return this;
         }
 

@@ -103,6 +103,7 @@ public class FutabaChanReader implements ChanReader {
         long fileSize = 0;
         boolean fileSpoiler = false;
         String fileName = null;
+        String md5 = null;
 
         List<PostImage> files = new ArrayList<>();
 
@@ -218,6 +219,9 @@ public class FutabaChanReader implements ChanReader {
 
                     reader.endArray();
                     break;
+                case "md5":
+                    md5 = reader.nextString();
+                    break;
                 default:
                     // Unknown/ignored key
                     reader.skipValue();
@@ -241,6 +245,7 @@ public class FutabaChanReader implements ChanReader {
                     .imageHeight(fileHeight)
                     .spoiler(fileSpoiler)
                     .size(fileSize)
+                    .md5(md5)
                     .build();
             // Insert it at the beginning.
             files.add(0, image);
@@ -301,6 +306,7 @@ public class FutabaChanReader implements ChanReader {
         int fileHeight = 0;
         boolean fileSpoiler = false;
         String fileName = null;
+        String md5 = null;
 
         while (reader.hasNext()) {
             switch (reader.nextName()) {
@@ -325,6 +331,9 @@ public class FutabaChanReader implements ChanReader {
                 case "filename":
                     fileName = reader.nextString();
                     break;
+                case "md5":
+                    md5 = reader.nextString();
+                    break;
                 default:
                     reader.skipValue();
                     break;
@@ -347,6 +356,7 @@ public class FutabaChanReader implements ChanReader {
                     .imageHeight(fileHeight)
                     .spoiler(fileSpoiler)
                     .size(fileSize)
+                    .md5(md5)
                     .build();
         }
         return null;
