@@ -43,6 +43,8 @@ import org.floens.chan.R;
 import org.floens.chan.core.model.orm.Loadable;
 import org.floens.chan.core.settings.ChanSettings;
 import org.floens.chan.core.site.SiteAuthentication;
+import org.floens.chan.ui.theme.Theme;
+import org.floens.chan.ui.theme.ThemeHelper;
 import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.IOUtils;
 import org.floens.chan.utils.Logger;
@@ -123,8 +125,14 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
 
     @Override
     public void hardReset() {
+        Theme theme = ThemeHelper.theme();
+        String style = String.format("color: #%s; background: #%s",
+                Integer.toHexString(theme.textPrimary).substring(2),
+                Integer.toHexString(getAttrColor(getContext(), R.attr.backcolor)).substring(2));
         String html = IOUtils.assetAsString(getContext(), "captcha/new_captcha.html");
-        html = html.replace("__board__", board).replace("__thread_id__", String.valueOf(thread_id));
+        html = html.replace("__board__", board)
+                .replace("__thread_id__", String.valueOf(thread_id))
+                .replace("__style__", style);
 
         if (cf_clearance != null) {
             CookieManager.getInstance().setCookie(baseUrl, "cf_clearance=" + cf_clearance);

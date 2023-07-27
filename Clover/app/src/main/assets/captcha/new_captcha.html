@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="overflow: hidden;">
-<iframe id="iframe" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: white; z-index: 666; width: 100%; height: 100%;"></iframe>
+<body style="overflow: hidden; __style__">
+<iframe id="iframe" style="__style__; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 666; width: 100%; height: 100%;"></iframe>
 <div id="t-root" style="width: 300px; margin: 2px auto; position: relative;">
     <div id="t-cnt" style="height: 80px; margin: 2px auto 0; position: relative;">
         <div id="t-bg" style="width: 100%; height: 100%; position: absolute; background-repeat: no-repeat; background-position: left top;"></div>
@@ -137,6 +137,12 @@ function buildFromJson(data) {
     if (data.error) {
         var error = data.error + '\n(try again in ' + data.cd + 's)';
         document.getElementById('t-msg').textContent = error;
+        data.cd = +data.cd - 1;
+        if (data.cd == 0) {
+            setTimeout((function() { requestCaptcha("__board__", "__thread_id__"); }), 1000);
+        } else {
+            setTimeout((function() { buildFromJson(data); }), 1000);
+        }
         return;
     } else {
         document.getElementById('t-msg').style.display = 'none';
