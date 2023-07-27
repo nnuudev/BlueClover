@@ -1,6 +1,6 @@
-New in v3.20 build 20230727_1305
+New in v3.20 build 20230727_1405
 - Added option to change user agents.
-- Improved force English locale setting.
+- Removed non-English locales (sorry).
 - Fixed crash when clicking cross-thread links.
 - Fixed Google image search.
 - Removed 4chan pass mentions from error messages.
