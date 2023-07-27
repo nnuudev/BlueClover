@@ -1,3 +1,11 @@
+New in v3.20 build 20230727_1305
+- Added option to change user agents.
+- Improved force English locale setting.
+- Fixed crash when clicking cross-thread links.
+- Fixed Google image search.
+- Removed 4chan pass mentions from error messages.
+- Captcha should honor the selected theme's colors.
+
 New in v3.20 build 20220829_2240
 - Support for Cloudflare garbage is a bit prettier.
 - Added a "my posts" button.
