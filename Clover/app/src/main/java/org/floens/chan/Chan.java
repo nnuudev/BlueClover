@@ -37,7 +37,6 @@ import org.floens.chan.ui.activity.ActivityResultHelper;
 import org.floens.chan.ui.activity.RuntimePermissionsHelper;
 import org.floens.chan.ui.activity.StartActivity;
 import org.floens.chan.utils.AndroidUtils;
-import org.floens.chan.utils.LocaleUtils;
 import org.floens.chan.utils.Logger;
 import org.floens.chan.utils.Time;
 
@@ -93,7 +92,7 @@ public class Chan extends Application implements
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleUtils.getEnglishContextIfNeeded(base));
+        super.attachBaseContext(base);
 
         AndroidUtils.init(this);
     }

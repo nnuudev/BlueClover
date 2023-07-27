@@ -62,7 +62,6 @@ import org.floens.chan.ui.helper.VersionHandler;
 import org.floens.chan.ui.state.ChanState;
 import org.floens.chan.ui.theme.ThemeHelper;
 import org.floens.chan.utils.AndroidUtils;
-import org.floens.chan.utils.LocaleUtils;
 import org.floens.chan.utils.Logger;
 
 import java.util.ArrayList;
@@ -111,8 +110,6 @@ public class StartActivity extends AppCompatActivity implements
         if (intentMismatchWorkaround()) {
             return;
         }
-
-        LocaleUtils.overrideLocaleToEnglishIfNeeded(this);
 
         ThemeHelper.getInstance().setupContext(this);
 
@@ -479,7 +476,6 @@ public class StartActivity extends AppCompatActivity implements
         for (Controller controller : stack) {
             controller.onConfigurationChanged(newConfig);
         }
-        LocaleUtils.overrideLocaleToEnglishIfNeeded(this);
     }
 
     @Override

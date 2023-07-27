@@ -38,7 +38,6 @@ import org.floens.chan.ui.settings.StringSettingView;
 import de.greenrobot.event.EventBus;
 
 public class BehaviourSettingsController extends SettingsController {
-    private SettingView forceEnglishSetting;
     private SettingView useNewCaptchaWindow;
 
     public BehaviourSettingsController(Context context) {
@@ -52,15 +51,6 @@ public class BehaviourSettingsController extends SettingsController {
 
         setupLayout();
         rebuildPreferences();
-    }
-
-    @Override
-    public void onPreferenceChange(SettingView item) {
-        super.onPreferenceChange(item);
-        if (item == forceEnglishSetting) {
-            Toast.makeText(context, R.string.setting_force_english_locale_toggle_notice,
-                    Toast.LENGTH_LONG).show();
-        }
     }
 
     private void rebuildPreferences() {
@@ -77,11 +67,6 @@ public class BehaviourSettingsController extends SettingsController {
         // General group
         {
             SettingsGroup general = new SettingsGroup(R.string.settings_group_general);
-
-            forceEnglishSetting = general.add(new BooleanSettingView(this,
-                    ChanSettings.forceEnglishLocale,
-                    R.string.setting_force_english_locale,
-                    R.string.setting_force_english_locale_toggle_notice));
 
             general.add(new BooleanSettingView(this,
                     ChanSettings.autoRefreshThread,
