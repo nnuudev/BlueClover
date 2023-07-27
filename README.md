@@ -6,11 +6,13 @@
 
 On August 25th 2022, 4chan changed the captcha *again*, breaking most third-party apps *again*. At the time of writing this notice, the only app that seems to work correctly is [KurobaEx](https://github.com/K1rakishou/Kuroba-Experimental), which also includes an automatic captcha solver, therefore it's highly recommended to just switch to that app.
 
-A final update has been released as a last-resort attempt to make Blue Clover usable, but its use is completely discouraged. Some key points about this update:
+A ~~final~~\* update has been released as a last-resort attempt to make Blue Clover usable, but its use is completely discouraged. Some key points about this update:
 
 - The Cloudflare cookie is stored only *temporarily*. When you close the app, the cookie is discarded, and the app will try to solve the Cloudflare challenge again the next time you request a captcha. Keep in mind that Cloudflare also forces a new check every time your phone gets a new IP anyway.
 - The challenge is solved using the phone's native WebView. It usually takes 5-20 seconds, but some old versions of Android seem to have problems with it and it might take longer than one minute or even completely refuse to solve the challenge at all. You can try updating Android System WebView, but it's not guaranteed to work.
-- **This version will not work with Android 4.4.** Since the app was specifically created to maintain compatibility with KitKat (see below), this release completely defeated the original purpose of the app and therefore this repository will not be updated again.
+- **This version will not work with Android 4.4.** Since the app was specifically created to maintain compatibility with KitKat (see below), this change completely defeated the original purpose of the app and therefore this repository will not be updated again. *For real life.*
+
+\***(2023-07-27):** Recent changes to Cloudflare made it impossible to get a captcha with the so-called *final* version mentioned above. For the sake of fighting the establishment, a new option to set a custom User-Agent was added under Settings > Behavior. The default settings *might* work on some devices, but it's not guaranteed that this app can actually post anymore.
 
 ***See ya!***
 
