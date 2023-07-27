@@ -256,8 +256,12 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
         } else {
             String errorMessage = getString(R.string.reply_error);
             if (replyResponse.errorMessage != null) {
+                String cleanMessage = replyResponse.errorMessage
+                        .split("4chan Pass users ", 2)[0]
+                        .replace("Duplicate file exists. here.", "Duplicate file exists.")
+                        .replace("[More Info]", "").trim();
                 errorMessage = getAppContext().getString(
-                        R.string.reply_error_message, replyResponse.errorMessage);
+                        R.string.reply_error_message, cleanMessage);
             }
 
             Logger.e(TAG, "onPostComplete error", errorMessage);
