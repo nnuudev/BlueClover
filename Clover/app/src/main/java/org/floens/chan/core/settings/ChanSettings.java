@@ -200,6 +200,9 @@ public class ChanSettings {
 
     public static final BooleanSetting dnsOverHttps;
 
+    public static final StringSetting customUserAgent;
+    public static final StringSetting customUserAgentWebView;
+
     static {
         SettingProvider p = new SharedPreferencesSettingProvider(AndroidUtils.getPreferences());
 
@@ -298,6 +301,9 @@ public class ChanSettings {
         reencodeHintShown = new BooleanSetting(p, "preference_reencode_hint_already_shown", false);
 
         dnsOverHttps = new BooleanSetting(p, "dns_over_https", false);
+
+        customUserAgent = new StringSetting(p, "custom_user_agent", "Kuroba-dev/v4.13.6-1d48096");
+        customUserAgentWebView = new StringSetting(p, "custom_user_agent_webview", "");
 
         // Old (but possibly still in some users phone)
         // preference_board_view_mode default "list"

@@ -195,6 +195,18 @@ public class BehaviourSettingsController extends SettingsController {
 
                 groups.add(doh);
             }
+
+            // User-Agent group because I don't really want to think where to put it
+            {
+                SettingsGroup ua = new SettingsGroup(R.string.setting_group_user_agent);
+
+                ua.add(new StringSettingView(this, ChanSettings.customUserAgent,
+                        R.string.setting_group_user_agent_ua, R.string.setting_group_user_agent_ua));
+                ua.add(new StringSettingView(this, ChanSettings.customUserAgentWebView,
+                        R.string.setting_group_user_agent_ua_webview, R.string.setting_group_user_agent_ua_webview));
+
+                groups.add(ua);
+            }
         }
     }
 

@@ -31,6 +31,7 @@ import org.floens.chan.core.di.AppModule;
 import org.floens.chan.core.di.NetModule;
 import org.floens.chan.core.di.UserAgentProvider;
 import org.floens.chan.core.manager.BoardManager;
+import org.floens.chan.core.settings.ChanSettings;
 import org.floens.chan.core.site.SiteService;
 import org.floens.chan.ui.activity.ActivityResultHelper;
 import org.floens.chan.ui.activity.RuntimePermissionsHelper;
@@ -184,7 +185,7 @@ public class Chan extends Application implements
     }
 
     private String createUserAgent() {
-        return BuildConfig.USER_AGENT;
+        return ChanSettings.customUserAgent.get();
     }
 
     public RuntimePermissionsHelper getRuntimePermissionsHelper() {

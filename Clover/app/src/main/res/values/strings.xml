@@ -516,6 +516,11 @@ Crash reports do not collect any personally identifiable information."
     <string name="setting_group_dns_enable">Enable DOH (Cloudflare)</string>
     <string name="setting_group_dns_enable_description">Requires app restart to take effect</string>
 
+    <!-- Custom User-Agent group -->
+    <string name="setting_group_user_agent">Custom User-Agent</string>
+    <string name="setting_group_user_agent_ua">User-Agent for posting</string>
+    <string name="setting_group_user_agent_ua_webview">User-Agent for WebViews (empty for default)</string>
+
     <!-- Media -->
     <string name="settings_screen_media">Media</string>
 

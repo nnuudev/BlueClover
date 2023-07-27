@@ -41,6 +41,7 @@ import androidx.annotation.NonNull;
 import org.floens.chan.BuildConfig;
 import org.floens.chan.R;
 import org.floens.chan.core.model.orm.Loadable;
+import org.floens.chan.core.settings.ChanSettings;
 import org.floens.chan.core.site.SiteAuthentication;
 import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.IOUtils;
@@ -85,7 +86,11 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
 
         WebSettings settings = getSettings();
         settings.setJavaScriptEnabled(true);
-        settings.setUserAgentString(BuildConfig.USER_AGENT);
+
+        String userAgent = ChanSettings.customUserAgentWebView.get();
+        if (!userAgent.isEmpty()) {
+            settings.setUserAgentString(userAgent);
+        }
 
         setWebChromeClient(new WebChromeClient() {
             @Override
