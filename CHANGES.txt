@@ -1,5 +1,6 @@
-New in v3.20 build 20231025_1000
+New in v3.20 build 20231025_1616
 - Fixed crash caused by WebView 117.
+- For real life, now with a non-broken APK!
 
 New in v3.20 build 20230727_1405
 - Added option to change user agents.
