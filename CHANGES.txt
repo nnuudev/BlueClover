@@ -1,3 +1,6 @@
+New in v3.20 build 20231025_1000
+- Fixed crash caused by WebView 117.
+
 New in v3.20 build 20230727_1405
 - Added option to change user agents.
 - Removed non-English locales (sorry).
