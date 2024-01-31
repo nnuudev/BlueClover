@@ -53,6 +53,7 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
     private static final String TAG = "NewShitCaptchaLayout";
 
     private static String cf_clearance = null;
+    private static String ticket = "";
 
     private AuthenticationLayoutCallback callback;
     private String baseUrl;
@@ -137,7 +138,8 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
         String html = IOUtils.assetAsString(getContext(), "captcha/new_captcha.html");
         html = html.replace("__board__", board)
                 .replace("__thread_id__", String.valueOf(thread_id))
-                .replace("__style__", style);
+                .replace("__style__", style)
+                .replace("__ticket__", ticket);
 
         if (cf_clearance != null) {
             CookieManager.getInstance().setCookie(baseUrl, "cf_clearance=" + cf_clearance);
@@ -223,6 +225,16 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
                 @Override
                 public void run() {
                     layout.onCaptchaEntered(challenge, response);
+                }
+            });
+        }
+
+        @JavascriptInterface
+        public void saveTicket(final String ticket) {
+            AndroidUtils.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    NewCaptchaLayout.ticket = ticket;
                 }
             });
         }
