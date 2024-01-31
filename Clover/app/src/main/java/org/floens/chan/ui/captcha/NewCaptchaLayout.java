@@ -186,7 +186,7 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
         if (cookies != null) {
             for (String cookie : cookies.split(";")) {
                 if (cookie.startsWith("cf_clearance=")) {
-                    cf_clearance = cookie.split("=")[1];
+                    cf_clearance = cookie.substring(13);
                     break;
                 }
             }
