@@ -34,15 +34,25 @@ import org.floens.chan.core.settings.Setting;
 public class StringSettingView extends SettingView implements View.OnClickListener {
     private final Setting<String> setting;
     private final String dialogTitle;
+    private final boolean singleLine;
 
     public StringSettingView(SettingsController settingsController, Setting<String> setting, int name, int dialogTitle) {
-        this(settingsController, setting, getString(name), getString(dialogTitle));
+        this(settingsController, setting, getString(name), getString(dialogTitle), true);
+    }
+
+    public StringSettingView(SettingsController settingsController, Setting<String> setting, int name, int dialogTitle, boolean singleLine) {
+        this(settingsController, setting, getString(name), getString(dialogTitle), singleLine);
     }
 
     public StringSettingView(SettingsController settingsController, Setting<String> setting, String name, String dialogTitle) {
+        this(settingsController, setting, name, dialogTitle, true);
+    }
+
+    public StringSettingView(SettingsController settingsController, Setting<String> setting, String name, String dialogTitle, boolean singleLine) {
         super(settingsController, name);
         this.setting = setting;
         this.dialogTitle = dialogTitle;
+        this.singleLine = singleLine;
     }
 
     @Override
@@ -64,7 +74,7 @@ public class StringSettingView extends SettingView implements View.OnClickListen
         final EditText editText = new EditText(v.getContext());
         editText.setImeOptions(EditorInfo.IME_FLAG_NO_FULLSCREEN);
         editText.setText(setting.get());
-        editText.setSingleLine(true);
+        editText.setSingleLine(singleLine);
         editText.setSelection(editText.getText().length());
 
         container.addView(editText, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

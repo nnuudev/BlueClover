@@ -23,6 +23,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
+import org.floens.chan.BuildConfig;
 import org.floens.chan.R;
 import org.floens.chan.core.database.DatabaseManager;
 import org.floens.chan.core.settings.ChanSettings;
@@ -189,6 +190,11 @@ public class BehaviourSettingsController extends SettingsController {
                         R.string.setting_group_user_agent_ua, R.string.setting_group_user_agent_ua));
                 ua.add(new StringSettingView(this, ChanSettings.customUserAgentWebView,
                         R.string.setting_group_user_agent_ua_webview, R.string.setting_group_user_agent_ua_webview));
+                if (BuildConfig.FLAVOR.equals("dev")) {
+                    // please see the note about this setting in NewCaptchaLayout
+                    ua.add(new StringSettingView(this, ChanSettings.customCFClearanceCommand,
+                            R.string.setting_group_user_agent_cfcommand, R.string.setting_group_user_agent_cfcommand, false));
+                }
 
                 groups.add(ua);
             }

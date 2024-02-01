@@ -201,6 +201,7 @@ public class ChanSettings {
 
     public static final StringSetting customUserAgent;
     public static final StringSetting customUserAgentWebView;
+    public static final StringSetting customCFClearanceCommand;
 
     static {
         SettingProvider p = new SharedPreferencesSettingProvider(AndroidUtils.getPreferences());
@@ -301,6 +302,7 @@ public class ChanSettings {
 
         customUserAgent = new StringSetting(p, "custom_user_agent", "Kuroba-dev/v4.13.6-1d48096");
         customUserAgentWebView = new StringSetting(p, "custom_user_agent_webview", "");
+        customCFClearanceCommand = new StringSetting(p, "custom_cfclearance_command", "");
 
         // Old (but possibly still in some users phone)
         // preference_board_view_mode default "list"

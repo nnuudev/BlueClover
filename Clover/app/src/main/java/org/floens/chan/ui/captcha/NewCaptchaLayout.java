@@ -49,6 +49,9 @@ import org.floens.chan.utils.AndroidUtils;
 import org.floens.chan.utils.IOUtils;
 import org.floens.chan.utils.Logger;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInterface {
     private static final String TAG = "NewShitCaptchaLayout";
 
@@ -140,6 +143,42 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
                 .replace("__style__", style)
                 .replace("__ticket__", ticket);
 
+        if (BuildConfig.FLAVOR.equals("dev")) {
+            // ** This is DISABLED in the default release **
+            // It sets the value for cf_clearance using a command specified by the user,
+            // where the command is a multi-line string, with each argument in a different line.
+            // For example,
+            //      echo
+            //      Y2ZfY2xlYXJhbmNl...
+            // would call "echo Y2ZfY2xlYXJhbmNl...", and set the cookie to "Y2ZfY2xlYXJhbmNl..."
+            // If the phone is rooted, it can be used with sudo to get the cookie from a browser.
+            // For example,
+            //      su
+            //      -c
+            //      sqlite3 /data/data/com.opera.browser/app_opera/cookies 'select value from cookies where host_key = ".4chan.org" and name = "cf_clearance";'
+            // (in this case, the user-agent to request captchas should be the one of the browser)
+            // Please note that running arbitrary commands is a HUGE SECURITY RISK and that's
+            // why this part is disabled in the release APKs. This code is only included for
+            // debugging purposes, if you want to use this feature you'll have to compile the
+            // app yourself.
+            String command = ChanSettings.customCFClearanceCommand.get();
+            if (!command.isEmpty()) {
+                StringBuffer output = new StringBuffer();
+                try {
+                    Process process = Runtime.getRuntime().exec(command.split("\n"));
+                    process.waitFor();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    String line = "";
+                    while ((line = reader.readLine()) != null) {
+                        output.append(line + "\n");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                String cf_clearance = output.toString().trim();
+                CookieManager.getInstance().setCookie(baseUrl, "cf_clearance=" + cf_clearance);
+            }
+        }
         loadDataWithBaseURL(baseUrl, html, "text/html", "UTF-8", null);
     }
 
