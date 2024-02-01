@@ -88,6 +88,8 @@ public class FiltersController extends Controller implements
                 return getString(R.string.filter_subject);
             case FILENAME:
                 return getString(R.string.filter_filename);
+            case COUNTRY:
+                return getString(R.string.filter_country);
         }
         return null;
     }

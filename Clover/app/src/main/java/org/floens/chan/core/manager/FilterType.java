@@ -26,7 +26,8 @@ public enum FilterType {
     COMMENT(0x4, true),
     ID(0x8, true),
     SUBJECT(0x10, true),
-    FILENAME(0x20, true);
+    FILENAME(0x20, true),
+    COUNTRY(0x40, false);
 
     public final int flag;
     public final boolean isRegex;

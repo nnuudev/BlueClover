@@ -223,7 +223,7 @@ Re-enable this permission in the app settings if you permanently disabled it."</
 Filters act on a given pattern and a place to search the pattern.<br>
 If the pattern matches then the post can be hidden or highlighted.<br>
 
-<h4>For tripcodes and names:</h4>
+<h4>For tripcodes, names and country names:</h4>
 <p>
     It will match the given pattern exact.<br>
     <tt>!Ep8pui8Vw2</tt> will match the tripcode <i>!Ep8pui8Vw2</i> but not <i>Ep8pu</i>.
@@ -250,6 +250,7 @@ If the pattern matches then the post can be hidden or highlighted.<br>
     <string name="filter_id">ID</string>
     <string name="filter_subject">Subject</string>
     <string name="filter_filename">Filename</string>
+    <string name="filter_country">Country name</string>
 
     <string name="board_select_all">Select all</string>
     <string name="board_select_none">Select none</string>

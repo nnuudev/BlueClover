@@ -24,6 +24,7 @@ import androidx.annotation.AnyThread;
 import org.floens.chan.core.database.DatabaseFilterManager;
 import org.floens.chan.core.database.DatabaseManager;
 import org.floens.chan.core.model.Post;
+import org.floens.chan.core.model.PostHttpIcon;
 import org.floens.chan.core.model.PostImage;
 import org.floens.chan.core.model.orm.Board;
 import org.floens.chan.core.model.orm.Filter;
@@ -171,6 +172,14 @@ public class FilterEngine {
 
         if ((filter.type & FilterType.SUBJECT.flag) != 0 && matches(filter, FilterType.SUBJECT.isRegex, post.subject, false)) {
             return true;
+        }
+
+        if (post.httpIcons != null) {
+            for (PostHttpIcon postHttpIcon : post.httpIcons) {
+                if ((filter.type & FilterType.COUNTRY.flag) != 0 && matches(filter, FilterType.COUNTRY.isRegex, postHttpIcon.name, false)) {
+                    return true;
+                }
+            }
         }
 
         if (post.images != null) {
