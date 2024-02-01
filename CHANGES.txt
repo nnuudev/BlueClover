@@ -1,3 +1,9 @@
+New in v3.20 build 20240201_1230
+- Quick and dirty support for making threads after the latest changes.
+- Cloudflare cookie handling improved, now it should be properly saved and it's used in the report window too.
+- Filtering by poster ID is now done using a regex, posts without an ID ("imptrash") can be filtered with /^$/.
+- Added support for filtering countries by name (exact string match).
+
 New in v3.20 build 20231025_1616
 - Fixed crash caused by WebView 117.
 - For real life, now with a non-broken APK!
