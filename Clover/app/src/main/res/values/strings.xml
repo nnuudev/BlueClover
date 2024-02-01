@@ -223,13 +223,13 @@ Re-enable this permission in the app settings if you permanently disabled it."</
 Filters act on a given pattern and a place to search the pattern.<br>
 If the pattern matches then the post can be hidden or highlighted.<br>
 
-<h4>For tripcodes, names and IDs:</h4>
+<h4>For tripcodes and names:</h4>
 <p>
     It will match the given pattern exact.<br>
     <tt>!Ep8pui8Vw2</tt> will match the tripcode <i>!Ep8pui8Vw2</i> but not <i>Ep8pu</i>.
 </p>
 
-<h4>For comments, subjects and filenames:</h4>
+<h4>For comments, subjects, filenames and IDs:</h4>
 <p>
     These filters are pattern based, and have three modes:<br>
     <br>
