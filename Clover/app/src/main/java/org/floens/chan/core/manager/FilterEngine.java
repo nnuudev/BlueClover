@@ -174,9 +174,9 @@ public class FilterEngine {
             return true;
         }
 
-        if (post.httpIcons != null) {
+        if ((filter.type & FilterType.COUNTRY.flag) != 0 && post.httpIcons != null) {
             for (PostHttpIcon postHttpIcon : post.httpIcons) {
-                if ((filter.type & FilterType.COUNTRY.flag) != 0 && matches(filter, FilterType.COUNTRY.isRegex, postHttpIcon.name, false)) {
+                if (matches(filter, FilterType.COUNTRY.isRegex, postHttpIcon.name, false)) {
                     return true;
                 }
             }
