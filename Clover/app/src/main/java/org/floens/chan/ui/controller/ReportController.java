@@ -19,6 +19,7 @@ package org.floens.chan.ui.controller;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.MotionEvent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -49,7 +50,15 @@ public class ReportController extends Controller {
         Site site = post.board.getSite();
         HttpUrl url = site.endpoints().report(post);
 
-        WebView webView = new WebView(context);
+        WebView webView = new WebView(context) {
+            @Override
+            public boolean onTouchEvent(MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN && event.getY() < getMeasuredHeight() * 0.75f) {
+                    requestDisallowInterceptTouchEvent(true);
+                }
+                return super.onTouchEvent(event);
+            }
+        };
 
         siteRequestModifier = site.requestModifier();
         if (siteRequestModifier != null) {

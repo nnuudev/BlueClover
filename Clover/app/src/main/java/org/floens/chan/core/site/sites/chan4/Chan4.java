@@ -302,7 +302,21 @@ public class Chan4 extends SiteBase {
         @Override
         public void modifyWebView(WebView webView) {
             CookieManager cookieManager = CookieManager.getInstance();
+            String baseUrl = actions().postAuthenticate().baseUrl;
+            String cf_clearance = null;
+            String cookies = CookieManager.getInstance().getCookie(baseUrl);
+            if (cookies != null) {
+                for (String cookie : cookies.split(";")) {
+                    if (cookie.startsWith("cf_clearance=")) {
+                        cf_clearance = cookie.substring(13);
+                        break;
+                    }
+                }
+            }
             cookieManager.removeAllCookie();
+            if (cf_clearance != null) {
+                CookieManager.getInstance().setCookie(baseUrl, "cf_clearance=" + cf_clearance);
+            }
         }
     };
 

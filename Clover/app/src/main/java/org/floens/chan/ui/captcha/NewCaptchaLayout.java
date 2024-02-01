@@ -52,7 +52,6 @@ import org.floens.chan.utils.Logger;
 public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInterface {
     private static final String TAG = "NewShitCaptchaLayout";
 
-    private static String cf_clearance = null;
     private static String ticket = "";
 
     private AuthenticationLayoutCallback callback;
@@ -141,9 +140,6 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
                 .replace("__style__", style)
                 .replace("__ticket__", ticket);
 
-        if (cf_clearance != null) {
-            CookieManager.getInstance().setCookie(baseUrl, "cf_clearance=" + cf_clearance);
-        }
         loadDataWithBaseURL(baseUrl, html, "text/html", "UTF-8", null);
     }
 
@@ -182,15 +178,6 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
     }
 
     private void onCaptchaLoaded() {
-        String cookies = CookieManager.getInstance().getCookie(baseUrl);
-        if (cookies != null) {
-            for (String cookie : cookies.split(";")) {
-                if (cookie.startsWith("cf_clearance=")) {
-                    cf_clearance = cookie.substring(13);
-                    break;
-                }
-            }
-        }
         AndroidUtils.requestViewAndKeyboardFocus(this);
     }
 
