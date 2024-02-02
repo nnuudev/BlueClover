@@ -483,6 +483,8 @@ Crash reports do not collect any personally identifiable information."
     <string name="setting_controller_swipeable">Allow screens to be swiped away</string>
     <string name="setting_clear_thread_hides">Clear all thread hides</string>
     <string name="setting_cleared_thread_hides">Cleared all thread hides</string>
+    <string name="setting_clear_webview_cookies">Clear all WebView cookies</string>
+    <string name="setting_cleared_webview_cookies">Cleared all WebView cookies</string>
 
     <!-- Behavior reply group -->
     <string name="settings_group_reply">Reply</string>

@@ -20,7 +20,7 @@ package org.floens.chan.ui.controller;
 import static org.floens.chan.Chan.injector;
 
 import android.content.Context;
-import android.view.View;
+import android.webkit.CookieManager;
 import android.widget.Toast;
 
 import org.floens.chan.BuildConfig;
@@ -81,6 +81,7 @@ public class BehaviourSettingsController extends SettingsController {
                     R.string.setting_controller_swipeable, 0)));
 
             setupClearThreadHidesSetting(general);
+            setupClearWebViewCookiesSetting(general);
 
             groups.add(general);
         }
@@ -202,17 +203,23 @@ public class BehaviourSettingsController extends SettingsController {
     }
 
     private void setupClearThreadHidesSetting(SettingsGroup post) {
-        post.add(new LinkSettingView(this, R.string.setting_clear_thread_hides, 0, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: don't do this here.
-                DatabaseManager databaseManager = injector().instance(DatabaseManager.class);
-                databaseManager.runTask(
-                        databaseManager.getDatabaseHideManager().clearAllThreadHides());
-                Toast.makeText(context, R.string.setting_cleared_thread_hides, Toast.LENGTH_LONG)
-                        .show();
-                EventBus.getDefault().post(new RefreshUIMessage("clearhides"));
-            }
+        post.add(new LinkSettingView(this, R.string.setting_clear_thread_hides, 0, v -> {
+            // TODO: don't do this here.
+            DatabaseManager databaseManager = injector().instance(DatabaseManager.class);
+            databaseManager.runTask(
+                    databaseManager.getDatabaseHideManager().clearAllThreadHides());
+            Toast.makeText(context, R.string.setting_cleared_thread_hides, Toast.LENGTH_LONG)
+                    .show();
+            EventBus.getDefault().post(new RefreshUIMessage("clearhides"));
+        }));
+    }
+
+    private void setupClearWebViewCookiesSetting(SettingsGroup post) {
+        post.add(new LinkSettingView(this, R.string.setting_clear_webview_cookies, 0, v -> {
+            // TODO: wait for Floens to come back and fix this.
+            CookieManager.getInstance().removeAllCookie();
+            Toast.makeText(context, R.string.setting_cleared_webview_cookies, Toast.LENGTH_LONG)
+                    .show();
         }));
     }
 }
