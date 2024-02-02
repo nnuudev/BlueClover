@@ -1,3 +1,8 @@
+New in v3.20 build 20240202_1300
+- Added a "Recover" button to the "Post successful" message in case it wasn't actually successful. Barely tested, might fail.
+- The Cloudflare cookie should be saved when closing the app, I think (you can clear cookies in Settings > Behavior).
+- Filenames when using the "Remove filename" option are now random instead of just the current date.
+
 New in v3.20 build 20240201_1230
 - Quick and dirty support for making threads after the latest changes.
 - Cloudflare cookie handling improved, now it should be properly saved and it's used in the report window too.
