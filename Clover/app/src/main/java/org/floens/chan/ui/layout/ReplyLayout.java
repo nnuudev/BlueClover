@@ -437,7 +437,7 @@ public class ReplyLayout extends LoadView implements
 
                     if (total > 0) {
                         handler.post(() -> {
-                            String[] filenameParts = clipboardURL.getFile().split("/");
+                            String[] filenameParts = clipboardURL.getFile().split("\\?")[0].split("/");
                             String filename = filenameParts[filenameParts.length - 1].trim();
                             if (filename.length() == 0) {
                                 filename = "file";
