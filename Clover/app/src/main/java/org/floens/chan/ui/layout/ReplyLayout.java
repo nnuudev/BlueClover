@@ -20,6 +20,7 @@ package org.floens.chan.ui.layout;
 import static org.floens.chan.Chan.inject;
 import static org.floens.chan.ui.theme.ThemeHelper.theme;
 import static org.floens.chan.utils.AndroidUtils.dp;
+import static org.floens.chan.utils.AndroidUtils.fixSnackbarText;
 import static org.floens.chan.utils.AndroidUtils.getAttrColor;
 import static org.floens.chan.utils.AndroidUtils.getString;
 import static org.floens.chan.utils.AndroidUtils.setRoundItemBackground;
@@ -51,6 +52,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.floens.chan.R;
 import org.floens.chan.core.model.ChanThread;
@@ -620,7 +623,15 @@ public class ReplyLayout extends LoadView implements
 
     @Override
     public void onPosted() {
-        Toast.makeText(getContext(), R.string.reply_success, Toast.LENGTH_SHORT).show();
+        Snackbar postSuccessfulNotification = Snackbar.make(this, R.string.reply_success, Snackbar.LENGTH_LONG);
+        postSuccessfulNotification.setAction(R.string.reply_success_recover, new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.reloadLastReply();
+                callback.openReply(true);
+            }
+        }).show();
+        fixSnackbarText(getContext(), postSuccessfulNotification);
         callback.openReply(false);
         callback.requestNewPostLoad();
     }

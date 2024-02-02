@@ -74,6 +74,7 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
     private Loadable loadable;
     private Board board;
     private Reply draft;
+    private Reply lastReply;
 
     private Page page = Page.INPUT;
     private boolean moreOpen;
@@ -240,6 +241,7 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
             highlightQuotes();
             String name = draft.name;
             String flag = draft.flag;
+            lastReply = draft;
             draft = new Reply();
             draft.name = name;
             draft.flag = flag;
@@ -514,6 +516,18 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
         draft.file = reply.file;
         draft.fileName = reply.fileName;
         showPreview(draft.fileName, draft.file);
+    }
+
+    public void reloadLastReply() {
+        if (lastReply != null) {
+            // I can't believe this works
+            // (which means, I'm probably breaking something somewhere)
+            draft = lastReply;
+            callback.loadDraftIntoViews(draft);
+            if (draft.file != null) {
+                showPreview(draft.fileName, draft.file);
+            }
+        }
     }
 
     public interface ReplyPresenterCallback {
