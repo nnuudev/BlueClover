@@ -623,7 +623,7 @@ public class ReplyLayout extends LoadView implements
 
     @Override
     public void onPosted() {
-        Snackbar postSuccessfulNotification = Snackbar.make(this, R.string.reply_success, Snackbar.LENGTH_LONG);
+        Snackbar postSuccessfulNotification = Snackbar.make(this, R.string.reply_success, 5000);
         postSuccessfulNotification.setAction(R.string.reply_success_recover, new OnClickListener() {
             @Override
             public void onClick(View v) {
