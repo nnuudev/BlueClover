@@ -33,6 +33,7 @@ import org.floens.chan.utils.ImageDecoder;
 import org.floens.chan.utils.Logger;
 
 import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -195,7 +196,11 @@ public class ImageReencodingPresenter {
     }
 
     private String getNewImageName() {
-        return String.valueOf(System.currentTimeMillis());
+        Random random = new Random();
+        long now = System.currentTimeMillis();
+        long offset = random.nextInt(31536000) * 1000L; // go back up to one year
+        long newTime = (now - offset) * 1000L - random.nextInt(1000);
+        return String.valueOf(newTime);
     }
 
     public static class ImageOptions {
