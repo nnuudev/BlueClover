@@ -24,6 +24,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.webkit.WebSettings;
 
 import org.codejargon.feather.Feather;
 import org.floens.chan.core.database.DatabaseManager;
@@ -184,7 +185,12 @@ public class Chan extends Application implements
     }
 
     private String createUserAgent() {
-        return ChanSettings.customUserAgent.get();
+        String customUserAgent = ChanSettings.customUserAgent.get();
+        if (!customUserAgent.isEmpty()) {
+            return customUserAgent;
+        } else {
+            return WebSettings.getDefaultUserAgent(this);
+        }
     }
 
     public RuntimePermissionsHelper getRuntimePermissionsHelper() {

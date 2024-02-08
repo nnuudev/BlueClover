@@ -92,7 +92,7 @@ public class NewCaptchaLayout extends WebView implements AuthenticationLayoutInt
         WebSettings settings = getSettings();
         settings.setJavaScriptEnabled(true);
 
-        String userAgent = ChanSettings.customUserAgentWebView.get();
+        String userAgent = ChanSettings.customUserAgent.get();
         if (!userAgent.isEmpty()) {
             settings.setUserAgentString(userAgent);
         }

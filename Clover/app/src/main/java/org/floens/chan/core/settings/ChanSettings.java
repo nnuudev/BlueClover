@@ -200,7 +200,6 @@ public class ChanSettings {
     public static final BooleanSetting dnsOverHttps;
 
     public static final StringSetting customUserAgent;
-    public static final StringSetting customUserAgentWebView;
     public static final StringSetting customCFClearanceCommand;
 
     static {
@@ -300,8 +299,7 @@ public class ChanSettings {
 
         dnsOverHttps = new BooleanSetting(p, "dns_over_https", false);
 
-        customUserAgent = new StringSetting(p, "custom_user_agent", "Kuroba-dev/v4.13.6-1d48096");
-        customUserAgentWebView = new StringSetting(p, "custom_user_agent_webview", "");
+        customUserAgent = new StringSetting(p, "custom_user_agent", "");
         customCFClearanceCommand = new StringSetting(p, "custom_cfclearance_command", "");
 
         // Old (but possibly still in some users phone)

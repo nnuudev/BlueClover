@@ -520,8 +520,7 @@ Crash reports do not collect any personally identifiable information."
 
     <!-- Custom User-Agent group -->
     <string name="setting_group_user_agent">Custom User-Agent</string>
-    <string name="setting_group_user_agent_ua">User-Agent for posting</string>
-    <string name="setting_group_user_agent_ua_webview">User-Agent for WebViews (empty for default)</string>
+    <string name="setting_group_user_agent_ua">Custom User-Agent (empty for system default, requires restart)</string>
     <string name="setting_group_user_agent_cfcommand">[DEBUG] Shell command to set cf_clearance</string>
 
     <!-- Media -->

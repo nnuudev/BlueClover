@@ -17,6 +17,7 @@
  */
 package org.floens.chan.core.site.sites.chan4;
 
+import android.webkit.CookieManager;
 import android.webkit.WebView;
 
 import androidx.annotation.Nullable;
@@ -295,7 +296,23 @@ public class Chan4 extends SiteBase {
 
     private SiteRequestModifier siteRequestModifier = new SiteRequestModifier() {
         @Override
-        public void modifyHttpCall(HttpCall httpCall, Request.Builder requestBuilder) { }
+        public void modifyHttpCall(HttpCall httpCall, Request.Builder requestBuilder) {
+            requestBuilder.addHeader("Host", "sys.4chan.org");
+            requestBuilder.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
+            requestBuilder.addHeader("Accept-Language", "en-US,en;q=0.5");
+            requestBuilder.addHeader("Accept-Encoding", "identity");
+            requestBuilder.addHeader("Origin", "https://boards.4chan.org");
+            requestBuilder.addHeader("Connection", "Keep-Alive");
+            requestBuilder.addHeader("Referer", "https://boards.4chan.org/");
+            String cookies = CookieManager.getInstance().getCookie("https://sys.4chan.org");
+            if (cookies != null) {
+                requestBuilder.addHeader("Cookie", cookies);
+            }
+            requestBuilder.addHeader("Sec-Fetch-Dest", "document");
+            requestBuilder.addHeader("Sec-Fetch-Mode", "navigate");
+            requestBuilder.addHeader("Sec-Fetch-Site", "same-site");
+            requestBuilder.addHeader("Sec-Fetch-User", "?1");
+        }
 
         @Override
         public void modifyWebView(WebView webView) { }

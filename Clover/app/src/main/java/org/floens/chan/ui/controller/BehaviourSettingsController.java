@@ -189,8 +189,6 @@ public class BehaviourSettingsController extends SettingsController {
 
                 ua.add(new StringSettingView(this, ChanSettings.customUserAgent,
                         R.string.setting_group_user_agent_ua, R.string.setting_group_user_agent_ua));
-                ua.add(new StringSettingView(this, ChanSettings.customUserAgentWebView,
-                        R.string.setting_group_user_agent_ua_webview, R.string.setting_group_user_agent_ua_webview));
                 if (BuildConfig.FLAVOR.equals("dev")) {
                     // please see the note about this setting in NewCaptchaLayout
                     ua.add(new StringSettingView(this, ChanSettings.customCFClearanceCommand,
