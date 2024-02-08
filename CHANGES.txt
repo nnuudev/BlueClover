@@ -1,3 +1,7 @@
+New in v3.20 build 20240208_0025
+- Fixed posting with a bunch of code stolen from Kuroba-Ex. Go to Settings > Behavior, set the Custom User-Agent to an empty string, and restart the app. It fails a lot, it will tell you that the captcha is wrong at random, and posts will keep disappearing. Consider using other app instead.
+- Because of the barely usable state of the app, don't expect more fixes when 4chan will break the app again tomorrow or the day after tomorrow because at this point it doesn't make sense anymore. It was a good run, but the app has been officially abandoned for more than a year now, we all knew some day it would be over.
+
 New in v3.20 build 20240202_1300
 - Added a "Recover" button to the "Post successful" message in case it wasn't actually successful. Barely tested, might fail.
 - The Cloudflare cookie should be saved when closing the app, I think (you can clear cookies in Settings > Behavior).
