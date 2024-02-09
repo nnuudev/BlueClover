@@ -21,9 +21,11 @@ import static org.floens.chan.Chan.injector;
 
 import android.content.Context;
 import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.Toast;
 
 import org.floens.chan.BuildConfig;
+import org.floens.chan.Chan;
 import org.floens.chan.R;
 import org.floens.chan.core.database.DatabaseManager;
 import org.floens.chan.core.settings.ChanSettings;
@@ -81,7 +83,7 @@ public class BehaviourSettingsController extends SettingsController {
                     R.string.setting_controller_swipeable, 0)));
 
             setupClearThreadHidesSetting(general);
-            setupClearWebViewCookiesSetting(general);
+            setupClearSavedCookiesSetting(general);
 
             groups.add(general);
         }
@@ -212,11 +214,13 @@ public class BehaviourSettingsController extends SettingsController {
         }));
     }
 
-    private void setupClearWebViewCookiesSetting(SettingsGroup post) {
-        post.add(new LinkSettingView(this, R.string.setting_clear_webview_cookies, 0, v -> {
+    private void setupClearSavedCookiesSetting(SettingsGroup post) {
+        post.add(new LinkSettingView(this, R.string.setting_clear_saved_cookies, 0, v -> {
             // TODO: wait for Floens to come back and fix this.
             CookieManager.getInstance().removeAllCookie();
-            Toast.makeText(context, R.string.setting_cleared_webview_cookies, Toast.LENGTH_LONG)
+            CookieSyncManager.createInstance(Chan.getInstance());
+            CookieSyncManager.getInstance().sync();
+            Toast.makeText(context, R.string.setting_cleared_saved_cookies, Toast.LENGTH_LONG)
                     .show();
         }));
     }

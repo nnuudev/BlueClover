@@ -18,17 +18,25 @@
 package org.floens.chan.core.site.sites.chan4;
 
 import android.text.TextUtils;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 
 import androidx.annotation.Nullable;
 
+import org.floens.chan.Chan;
 import org.floens.chan.core.site.Site;
 import org.floens.chan.core.site.common.CommonReplyHttpCall;
 import org.floens.chan.core.site.http.ProgressRequestBody;
 import org.floens.chan.core.site.http.Reply;
 
+import java.util.Locale;
+
+import okhttp3.Call;
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class Chan4ReplyCall extends CommonReplyHttpCall {
     public Chan4ReplyCall(Site site, Reply reply) {
@@ -101,5 +109,21 @@ public class Chan4ReplyCall extends CommonReplyHttpCall {
                 "upfile",
                 reply.fileName,
                 requestBody);
+    }
+
+    @Override
+    public void onResponse(Call call, Response response) {
+        super.onResponse(call, response);
+        // jesus christ how horrifying
+        CookieManager cookieManager = CookieManager.getInstance();
+        Headers headers = response.headers();
+        for (int i = 0; i < headers.size(); i++) {
+            if (headers.name(i).toLowerCase(Locale.ENGLISH).equals("set-cookie")) {
+                String val = headers.value(i).split(";")[0];
+                cookieManager.setCookie("https://sys.4chan.org", val);
+            }
+        }
+        CookieSyncManager.createInstance(Chan.getInstance());
+        CookieSyncManager.getInstance().sync();
     }
 }
