@@ -1,3 +1,7 @@
+New in v3.20 build 20240209_1440
+- Out of sheer desperation, the app now saves all cookies from 4chan, hopefully this will help dealing with the cooldowns and all that stuff. Barely tested, might fail, feel free to use the previous build if this one is too broken (they all use the same build number, you can downgrade without uninstalling first).
+PLEASE NOTE: Cookies are used to track you after you switch to a new IP. If you don't want to be tracked (*cough* you filthy ban evader *cough*), you MUST clear the cookies manually by going to Settings > Behavior > Clear all saved cookies.
+
 New in v3.20 build 20240208_0025
 - Fixed posting with a bunch of code stolen from Kuroba-Ex. Go to Settings > Behavior, set the Custom User-Agent to an empty string, and restart the app. It fails a lot, it will tell you that the captcha is wrong at random, and posts will keep disappearing. Consider using other app instead.
 - Because of the barely usable state of the app, don't expect more fixes when 4chan will break the app again tomorrow or the day after tomorrow because at this point it doesn't make sense anymore. It was a good run, but the app has been officially abandoned for more than a year now, we all knew some day it would be over.
