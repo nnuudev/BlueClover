@@ -162,17 +162,8 @@ function buildFromJson(data) {
             setTimeout((function() { buildFromJson(data); }), 1000);
         }
         return;
-    } else {
-        document.getElementById('t-msg').style.display = 'none';
     }
     document.getElementById('t-challenge').value = data.challenge;
-    if (data.challenge == "noop") {
-        globalOnCaptchaEntered();
-        return;
-    }
-    var imgCntNode = document.getElementById('t-cnt');
-    imgCntNode.style.width = data.img_width + 'px';
-    imgCntNode.style.height = data.img_height + 'px';
     var respNode = document.getElementById('t-resp');
     respNode.style.display = 'inline';
     respNode.addEventListener("keyup", function(event) {
@@ -183,30 +174,44 @@ function buildFromJson(data) {
     var submitNode = document.getElementById('t-submit');
     submitNode.style.display = 'inline';
     submitNode.addEventListener('click', globalOnCaptchaEntered, false);
-    document.getElementById('t-fg').style.backgroundImage = 'url(data:image/png;base64,' + data.img + ')';
-    if (data.bg) {
-        var bgNode = document.getElementById('t-bg');
-        bgNode.style.backgroundImage = 'url(data:image/png;base64,' + data.bg + ')';
-        var sliderNode = document.getElementById('t-slider');
-        sliderNode.style.display = 'block';
-        sliderNode.twisterDelta = data.bg_width - data.img_width;
-        sliderNode.addEventListener('input', function() {
-            var m = -Math.floor((+this.value) / 100 * this.twisterDelta);
-            bgNode.style.backgroundPositionX = m + 'px';
-        }, false);
-        // autoslide
-        var img_fg = new Image();
-        var img_bg = new Image();
-        var canvas_fg = document.createElement("canvas");
-        img_fg.setAttribute("src", 'data:image/png;base64,' + data.img);
-        img_fg.removeAttribute("width");
-        img_fg.onload = function() {
-            img_bg.setAttribute("src", 'data:image/png;base64,' + data.bg);
-            img_bg.removeAttribute("width");
-        };
-        img_bg.onload = function() {
-            imageFromCanvas(img_fg, img_bg, null);
-        };
+    if (data.img) {
+        document.getElementById('t-msg').style.display = 'none';
+        var imgCntNode = document.getElementById('t-cnt');
+        imgCntNode.style.width = data.img_width + 'px';
+        imgCntNode.style.height = data.img_height + 'px';
+        document.getElementById('t-fg').style.backgroundImage = 'url(data:image/png;base64,' + data.img + ')';
+        if (data.bg) {
+            var bgNode = document.getElementById('t-bg');
+            bgNode.style.backgroundImage = 'url(data:image/png;base64,' + data.bg + ')';
+            var sliderNode = document.getElementById('t-slider');
+            sliderNode.style.display = 'block';
+            sliderNode.twisterDelta = data.bg_width - data.img_width;
+            sliderNode.addEventListener('input', function() {
+                var m = -Math.floor((+this.value) / 100 * this.twisterDelta);
+                bgNode.style.backgroundPositionX = m + 'px';
+            }, false);
+            // autoslide
+            var img_fg = new Image();
+            var img_bg = new Image();
+            var canvas_fg = document.createElement("canvas");
+            img_fg.setAttribute("src", 'data:image/png;base64,' + data.img);
+            img_fg.removeAttribute("width");
+            img_fg.onload = function() {
+                img_bg.setAttribute("src", 'data:image/png;base64,' + data.bg);
+                img_bg.removeAttribute("width");
+            };
+            img_bg.onload = function() {
+                imageFromCanvas(img_fg, img_bg, null);
+            };
+        }
+    } else if (data.challenge == "noop") {
+        document.getElementById('t-msg-main').textContent = 'Verification not required.';
+        document.getElementById('t-msg-secondary').textContent = '';
+        respNode.style.visibility = 'hidden';
+    } else {
+        document.getElementById('t-msg-main').textContent = 'The captcha couldn\'t be parsed.';
+        document.getElementById('t-msg-secondary').textContent = 'IT\'S OVER';
+        respNode.style.visibility = 'hidden';
     }
     document.getElementById("t-resp").focus();
     CaptchaCallback.onCaptchaLoaded();
