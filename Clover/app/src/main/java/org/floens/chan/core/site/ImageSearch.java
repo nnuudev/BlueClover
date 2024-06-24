@@ -42,11 +42,11 @@ public abstract class ImageSearch {
             }
 
             public String getName() {
-                return "Google";
+                return "Google Lens";
             }
 
             public String getUrl(String imageUrl) {
-                return "https://www.google.com/searchbyimage?sbisrc=sbisrc&image_url=" + imageUrl + "&safe=off";
+                return "https://lens.google.com/uploadbyurl?url=" + imageUrl + "&safe=off";
             }
         });
 
