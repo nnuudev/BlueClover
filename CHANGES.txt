@@ -1,3 +1,8 @@
+New in v3.20 build 20240624_1330
+- Trying to reencode WebPee garbage no longer crashes the app.
+- Replaced Google Images with Google Lens.
+- Added Gruvbox Black theme stolen from KurobaEx.
+
 New in v3.20 build 20240209_1440
 - Out of sheer desperation, the app now saves all cookies from 4chan, hopefully this will help dealing with the cooldowns and all that stuff. Barely tested, might fail, feel free to use the previous build if this one is too broken (they all use the same build number, you can downgrade without uninstalling first).
 PLEASE NOTE: Cookies are used to track you after you switch to a new IP. If you don't want to be tracked (*cough* you filthy ban evader *cough*), you MUST clear the cookies manually by going to Settings > Behavior > Clear all saved cookies.
