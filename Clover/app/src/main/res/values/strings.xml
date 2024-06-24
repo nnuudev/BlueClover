@@ -302,6 +302,7 @@ If the pattern matches then the post can be hidden or highlighted.<br>
     <string name="reply_file_name">File name</string>
     <string name="reply_file_too_big">Warning: File size too big (%1$s / %2$s)</string>
     <string name="reply_webm_too_big">Warning: WebM size too big (%1$s / %2$s)</string>
+    <string name="reply_file_is_webp">Warning: Trying to post a WebP file</string>
     <string name="reply_file_open_failed">Failed to open file</string>
     <string name="reply_spoiler_image">Spoiler image</string>
     <string name="reply_no_preview">No preview</string>
@@ -608,7 +609,7 @@ Tap the toolbar menu to change its color."
     <string name="captcha_layout_v2_refresh_cookies" tools:ignore="MissingTranslation">Refresh cookies</string>
 
     <string name="image_quality">Image quality: %1$d</string>
-    <string name="scale_reduce">Reduce: %1$dx</string>
+    <string name="scale_reduce">Reduce: 1/%1$d</string>
     <string name="could_not_decode_image_bitmap">Could not decode image bitmap</string>
     <string name="could_not_apply_image_options">Could not apply new image options. Error message is %1$s</string>
     <string name="image_options_remove_filename">Remove filename</string>

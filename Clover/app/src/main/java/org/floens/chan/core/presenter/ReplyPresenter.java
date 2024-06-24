@@ -47,6 +47,7 @@ import org.floens.chan.utils.Logger;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -496,13 +497,15 @@ public class ReplyPresenter implements AuthenticationLayoutCallback, ImagePickDe
         callback.setFileName(name);
         previewOpen = true;
 
-        boolean probablyWebm = file.getName().endsWith(".webm");
+        boolean probablyWebm = name.toLowerCase(Locale.ENGLISH).endsWith(".webm");
         int maxSize = probablyWebm ? board.maxWebmSize : board.maxFileSize;
         if (file.length() > maxSize) {
             String fileSize = getReadableFileSize(file.length());
             String maxSizeString = getReadableFileSize(maxSize);
             String text = getRes().getString(probablyWebm ? R.string.reply_webm_too_big : R.string.reply_file_too_big, fileSize, maxSizeString);
             callback.openPreviewMessage(true, text);
+        } else if (name.toLowerCase(Locale.ENGLISH).endsWith(".webp")) {
+            callback.openPreviewMessage(true, getRes().getString(R.string.reply_file_is_webp));
         } else {
             callback.openPreviewMessage(false, null);
         }

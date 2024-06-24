@@ -33,6 +33,7 @@ import org.floens.chan.utils.ImageDecoder;
 import org.floens.chan.utils.Logger;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -162,10 +163,6 @@ public class ImageReencodingPresenter {
             try {
                 callback.disableOrEnableButtons(false);
 
-                if (imageOptions.getRemoveFilename()) {
-                    reply.fileName = getNewImageName();
-                }
-
                 reply.file = BitmapUtils.reencodeBitmapFile(
                         reply.file,
                         imageOptions.getFixExif(),
@@ -173,6 +170,15 @@ public class ImageReencodingPresenter {
                         imageOptions.getChangeImageChecksum(),
                         imageOptions.getReencode()
                 );
+
+                if (imageOptions.getRemoveFilename()) {
+                    reply.fileName = getNewImageName();
+                } else if (imageOptions.getReencode() != null && imageOptions.getReencode().getReencodeType() != ReencodeType.AS_IS) {
+                    int lastDotInFilename = reply.fileName.lastIndexOf(".");
+                    if (lastDotInFilename != -1)
+                        reply.fileName = reply.fileName.substring(0, lastDotInFilename);
+                    reply.fileName += "." + imageOptions.getReencode().getReencodeType().name().substring(3).toLowerCase(Locale.ENGLISH);
+                }
             } catch (Throwable error) {
                 Logger.e(TAG, "Error while trying to re-encode bitmap file", error);
                 callback.disableOrEnableButtons(true);

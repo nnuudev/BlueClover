@@ -85,6 +85,10 @@ public class BitmapUtils {
         } else if (reencodeType == ImageReencodingPresenter.ReencodeType.AS_PNG) {
             compressFormat = Bitmap.CompressFormat.PNG;
         }
+        // if the user had a WebPee image and forgot to reencode it, he gets a free JPEG instead
+        if (compressFormat == Bitmap.CompressFormat.WEBP) {
+            compressFormat = Bitmap.CompressFormat.JPEG;
+        }
 
         try {
             BitmapFactory.Options opt = new BitmapFactory.Options();
@@ -241,7 +245,8 @@ public class BitmapUtils {
                 }
             }
 
-            throw new IllegalArgumentException("File " + file.getName() + " is neither PNG nor JPEG");
+            // it's neither JPEG nor PNG, so let's just imagine it's a WebPee
+            return Bitmap.CompressFormat.WEBP;
         }
     }
 }

@@ -113,6 +113,9 @@ public class ImageReencodeOptionsController extends Controller implements
             reencodeImageAsPng.setEnabled(false);
         } else if (imageFormat == Bitmap.CompressFormat.JPEG) {
             reencodeImageAsJpeg.setEnabled(false);
+        } else {
+            reencodeImageAsIs.setEnabled(false);
+            reencodeImageAsJpeg.setChecked(true);
         }
 
         if (Build.VERSION.SDK_INT >= 21) {
@@ -131,7 +134,7 @@ public class ImageReencodeOptionsController extends Controller implements
         } else if (imageFormat == Bitmap.CompressFormat.JPEG) {
             format = "JPEG";
         } else {
-            format = "Unknown";
+            format = "not available";
         }
 
         reencodeImageAsIs.setText(String.format(context.getString(R.string.reencode_image_as_is), format));
