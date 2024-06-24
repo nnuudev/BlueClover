@@ -60,6 +60,7 @@ public class ThemeHelper {
         themes.add(new Theme("Photon", "photon", R.style.Chan_Theme_Photon, PrimaryColor.ORANGE));
         themes.add(new DarkTheme("Insomnia", "insomnia", R.style.Chan_Theme_Insomnia, PrimaryColor.DARK));
         themes.add(new DarkTheme("Gruvbox", "gruvbox", R.style.Chan_Theme_Gruvbox, PrimaryColor.DARK));
+        themes.add(new DarkTheme("Gruvbox Black", "gruvbox_black", R.style.Chan_Theme_GruvboxBlack, PrimaryColor.BLACK));
         themes.add(new DarkTheme("Neon", "neon", R.style.Chan_Theme_Neon, PrimaryColor.DARK));
         themes.add(new DarkTheme("Solarized Dark", "solarized_dark", R.style.Chan_Theme_SolarizedDark, PrimaryColor.ORANGE));
 
